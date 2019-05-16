@@ -1,0 +1,202 @@
+.row {
+  &--flex {
+    display: flex;
+  }
+}
+
+.home .main {
+  overflow: hidden;
+}
+
+#kurs {
+  padding-bottom: 0;
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: 50px;
+  }
+}
+
+#program {
+  @include media-breakpoint-down(sm) {
+    margin-bottom: 50px;
+  }
+}
+
+.container--steps {
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 133px;
+  padding-bottom: 93px;
+
+  @include media-breakpoint-down(md) {
+    padding-top: 60px;
+    padding-bottom: 43px;
+  }
+
+  @include media-breakpoint-down(xs) {
+    padding-top: 30px;
+    padding-bottom: 15px;
+  }
+
+  .std-heading {
+    margin-top: 17px;
+    margin-bottom: 60px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .container--steps {
+    .std-heading {
+      //@extend .col-4;
+      max-width: 33.33333%;
+      flex: 0 0 33.33333%;
+      //padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    .steps {
+      //@extend .col-8;
+      max-width: 66.66667%;
+      flex: 0 0 66.66667%;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    > .row > .container {
+      display: flex;
+    }
+  }
+}
+
+$step-colors: (#6889ea, #00c3f4, #00d8cb, #00d893);
+
+@for $i from 1 through length($step-colors) {
+  $c: nth($step-colors, $i);
+
+  .steps {
+    &__step:nth-child(#{$i}) & {
+      &__step-icon {
+        color: $c;
+
+        &::before {
+          background-color: $c;
+        }
+
+        &::after {
+          box-shadow: 0 0 28px 2px rgba($c, 0.18);
+        }
+      }
+    }
+  }
+}
+
+.steps {
+  //width: 66.6666%;
+  //display: flex;
+  counter-reset: stepsCounter;
+
+  &__step {
+    counter-increment: stepsCounter;
+    //padding-right: 0;
+    margin-bottom: 40px;
+
+    @include media-breakpoint-down(md) {
+      display: flex;
+    }
+  }
+
+  &__step-icon {
+    color: #6889ea;
+    width: 3.75rem;
+    height: 3.75rem;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: 1.375rem;
+
+    @include media-breakpoint-down(md) {
+      margin-right: 25px;
+    }
+
+    > i {
+      font-size: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    &::after {
+      content: '';
+      width: 3.75rem;
+      height: 3.75rem;
+      border-radius: 100%;
+      background-color: white;
+      border: 1px solid currentColor;
+      box-shadow: 0 0 28px 2px rgba(#6889ea, 0.18);
+      position: absolute;
+      z-index: 1;
+      left: 0;
+      bottom: 0;
+    }
+
+    &::before {
+      content: counter(stepsCounter);
+      width: 1.25rem;
+      height: 1.25rem;
+      background-color: #6889ea;
+      border-radius: 100%;
+      color: white;
+      position: absolute;
+      z-index: 0;
+      right: -8px;
+      bottom: 0;
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding-left: 1px;
+    }
+  }
+
+  &__step-body {
+    @include media-breakpoint-down(md) {
+      flex: 1 0;
+    }
+  }
+
+  &__step-heading {
+    color: #2a3f4c;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+  }
+
+  &__step-content {
+    font-size: 0.9375rem;
+    font-weight: 300;
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.clients-logo {
+  margin-top: 40px;
+
+  &__item {
+    text-align: center;
+    padding: 0 40px;
+    margin-bottom: 20px;
+
+    img {
+      max-width: 100%;
+      max-height: 60px;
+    }
+  }
+}

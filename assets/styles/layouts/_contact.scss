@@ -1,0 +1,77 @@
+.container--contact {
+  padding-top: 160px;
+  padding-bottom: 53px;
+
+  @include media-breakpoint-down(sm) {
+    padding-top: 90px;
+    padding-bottom: 30px;
+  }
+
+  @include media-breakpoint-down(xs) {
+    padding-top: 60px;
+    padding-bottom: 15px;
+  }
+}
+
+.contacts-list {
+  margin-top: 50px;
+  margin-bottom: 80px;
+
+  &__item {
+    display: flex;
+    margin-bottom: 20px;
+  }
+
+  &__item-icon {
+    font-size: 1.5rem;
+    margin: -5px 30px 0 0;
+    color: nth($color-palette, 2);
+  }
+
+  &__item-content {
+    font-weight: 300;
+    color: $color-text__content;
+
+    a {
+      color: nth($color-palette, 2);
+    }
+
+    strong {
+      font-weight: 600;
+      color: $color-text__heading;
+    }
+  }
+
+  &__email {
+    font-weight: 600;
+    margin-bottom: -2px;
+  }
+
+  &__name {
+    font-size: 0.9375rem;
+  }
+
+  &__name-separator {
+    margin: 0 15px;
+
+    @include media-breakpoint-down(xs) {
+      display: block;
+      height: 0;
+      overflow: hidden;
+      margin-top: -4px;
+    }
+  }
+}
+
+.contact-form {
+  margin-top: 4px;
+
+  input {
+    margin-bottom: 13px;
+
+    &[type="submit"] {
+      padding: 17px 20px 18px;
+      cursor: pointer;
+    }
+  }
+}

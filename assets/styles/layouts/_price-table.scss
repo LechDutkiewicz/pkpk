@@ -1,0 +1,139 @@
+.container--cennik {
+  padding-top: 50px;
+  padding-bottom: 150px;
+
+  .shadow-box__container {
+    @include media-breakpoint-down(xs) {
+      flex-wrap: wrap-reverse;
+    }
+  }
+}
+
+.select-course {
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: 22px;
+
+  &__heading {
+    font-size: 1.4365rem;
+    font-weight: 400;
+    color: #4e4e4e;
+    margin-bottom: 18px;
+  }
+
+  &__dates {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: inline-block;
+      color: $color-text__heading--course-details;
+      border: 1px solid $color-text__heading--course-details;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.15s ease-in-out;
+      font-size: 0.9375rem;
+      padding: 2px 13px 4px;
+      margin: 0 4px 10px;
+
+      .gecko &,
+      .ie & {
+        padding-top: 4px;
+        padding-bottom: 2px;
+      }
+
+      &.selected,
+      &:hover {
+        background-color: $color-text__heading--course-details;
+        border-color: $color-text__heading--course-details;
+        color: white;
+      }
+    }
+  }
+}
+.price-table {
+
+  #cennik & {
+    margin-bottom: -150px;
+  }
+
+  &__item {
+    text-align: center;
+    margin: -30px 0;
+    padding-top: 40px;
+    padding-bottom: 30px;
+
+    + .price-table__item {
+      border-left: 1px solid #f6f6f6;
+
+      @include media-breakpoint-down(xs) {
+        border-bottom: 1px solid #f6f6f6;
+        border-left: 0;
+        margin-bottom: 30px;
+      }
+    }
+
+    &--color-green .price-table__item-price {
+      color: $color-green;
+    }
+
+    &--color-secondary .price-table__item-price {
+      color: $color-secondary;
+    }
+  }
+
+  &__item-content {
+    align-self: flex-start;
+  }
+
+  &__item-variant {
+    font-weight: 700;
+    color: black;
+  }
+
+  &__item-price {
+    font-size: 3.4375rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  &__item-desc {
+    text-transform: uppercase;
+    line-height: 1.6;
+    margin: -9px 0 22px;
+    min-height: 38px;
+  }
+
+  &__selected-date {
+    margin-top: 11px;
+
+    span.highlight {
+      color: $color-green;
+    }
+  }
+
+  &__item-desc,
+  &__selected-date {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: rgba($color-text__content, 0.5);
+  }
+
+  &__item-details {
+    list-style: none;
+    margin: 22px 0 0;
+    padding: 0;
+    color: $color-text__content;
+    font-size: 0.9375rem;
+    font-weight: 300;
+
+    li {
+      margin-bottom: 13px;
+
+      &:last-child {
+        margin-bottom: 8px;
+      }
+    }
+  }
+}

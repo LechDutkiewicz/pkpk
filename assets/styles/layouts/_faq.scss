@@ -1,0 +1,41 @@
+.container--faq {
+  padding-top: 100px;
+  padding-bottom: 38px;
+}
+
+.std-heading--faq {
+  margin-bottom: 106px;
+
+  @include media-breakpoint-down(sm) {
+    margin-bottom: 60px;
+  }
+
+  @include media-breakpoint-down(xs) {
+    margin-bottom: 40px;
+  }
+}
+
+.faq {
+  &__item {
+    display: flex;
+    margin-bottom: 25px;
+  }
+
+  &__icon {
+    font-size: 1.875rem;
+    color: nth($color-palette, 2);
+    margin: -9px 25px 0 0;
+  }
+
+  &__question {
+    font-weight: 600;
+    color: $color-text__heading;
+  }
+
+  &__answer {
+    font-weight: 300;
+    font-size: 0.9375rem;
+    color: $color-text__content;
+    line-height: 1.7;
+  }
+}

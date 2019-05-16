@@ -1,0 +1,192 @@
+.row--testimonials {
+  width: calc(100% + 30px);
+  margin: 0 -15px;
+
+  @include media-breakpoint-up(sm) {
+    width: calc(100% + 60px);
+    margin: 0 -30px;
+  }
+
+  .slick-dots {
+    list-style: none;
+    margin: 40px 0 -9px;
+    padding: 0;
+    text-align: center;
+
+    @include media-breakpoint-down(sm) {
+      margin: 20px 0 40px;
+    }
+
+    li {
+      display: inline-block;
+      margin: 0 5px;
+
+      &:only-child {
+        display: none;
+      }
+
+      button {
+        font-size: 0;
+        width: 10px;
+        height: 10px;
+        background-color: rgba(#b7c7cc, 0.5);
+        border-radius: 100%;
+        box-shadow: none;
+        appearance: none;
+        border: 0;
+        padding: 0;
+        transition: background-color 0.15s ease-in-out;
+
+        &:focus {
+          outline: 0;
+        }
+
+        &:hover {
+          background-color: rgba(#b7c7cc, 1);
+        }
+      }
+
+      &.slick-active button {
+        background-color: rgba(#b7c7cc, 1);
+      }
+    }
+  }
+
+  .slick-arrow {
+    position: absolute;
+    bottom: -17px;
+    border: 0;
+    box-shadow: none;
+    background: transparent;
+    padding: 0 30px;
+    font-size: 0;
+    color: #b7c7cc;
+    transition: color 0.15s ease-in-out;
+
+    &::before {
+      font-family: $font-family-material;
+      font-size: 2.125rem;
+    }
+
+    &:hover {
+      color: darken(#b7c7cc, 40%);
+    }
+  }
+
+  .slick-prev {
+    left: 0;
+
+    &::before {
+      content: "\f2fa";
+    }
+  }
+
+  .slick-next {
+    right: 0;
+
+    &::before {
+      content: "\f2fb";
+    }
+  }
+}
+
+.std-heading--testimonials {
+  margin-bottom: 78px;
+
+  @include media-breakpoint-down(sm) {
+    margin-bottom: 45px;
+    margin-top: 40px;
+  }
+}
+
+.testimonial {
+  padding: 12px 15px 0;
+  position: relative;
+
+  &::before {
+    content: "”";
+    font-size: 8.875rem;
+    font-weight: 300;
+    color: nth($color-palette, 1);
+    position: absolute;
+    right: 39px;
+    top: -68px;
+
+    .gecko &,
+    .ie & {
+      top: -50px;
+    }
+  }
+
+  &:nth-child(even)::before {
+    color: nth($color-palette, 2);
+  }
+
+  &__photo {
+    margin-right: 30px;
+    width: 75px;
+    height: 75px;
+    align-items: center;
+    justify-content: center;
+    background: rgba(black, 0.05);
+    display: flex;
+    border-radius: 100%;
+    font-size: 1.5rem;
+    color: rgba(black, 0.4);
+    flex: 0 0 75px;
+
+    img {
+      max-width: 75px;
+      border-radius: 100%;
+    }
+  }
+
+  &__content {
+    background-color: white;
+    padding: 28px 30px 33px;
+    display: flex;
+    border: 1px solid rgba(#ebebeb, 0.47);
+    border-radius: 5px;
+
+    @include media-breakpoint-down(xs) {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+
+  &__text {
+    @include media-breakpoint-down(xs) {
+      width: calc(100% + 100px);
+      margin: 44px 0 0 -100px;
+    }
+  }
+
+  &__name {
+    font-weight: 600;
+    color: $color-text__heading;
+    margin: -8px 0 0;
+  }
+
+  &__city {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: $color-text__content;
+    margin: -7px 0 19px;
+  }
+
+  &__content-inner {
+    font-size: 0.9375rem;
+    font-weight: 300;
+    margin-top: 20px;
+    color: $color-text__content;
+    line-height: 1.7;
+
+    @include media-breakpoint-down(xs) {
+      margin-top: 27px;
+    }
+
+    @include media-breakpoint-up(md) {
+      width: calc(100% - 105px);
+    }
+  }
+}

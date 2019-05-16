@@ -1,0 +1,56 @@
+.comment-list {
+  @extend .list-unstyled;
+}
+.comment-list ol {
+  list-style: none;
+}
+.comment-form p {
+  @extend .form-group;
+}
+.comment-form input[type="text"],
+.comment-form input[type="email"],
+.comment-form input[type="url"],
+.comment-form textarea {
+  @extend .form-control;
+}
+.comment-form input[type="submit"] {
+  @extend .btn;
+  @extend .btn-secondary;
+}
+
+.c-featured-comment {
+  margin-bottom: 4rem;
+
+  &__item {
+    background: #fafcfd;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 70px;
+    padding-bottom: 75px;
+    border-radius: 5px;
+    width: 100%;
+
+    @include media-breakpoint-down(lg) {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    @include media-breakpoint-down(md) {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+
+    > * {
+      @extend .col-md-11;
+      @extend .col-xl-10;
+    }
+  }
+
+  .comment-content {
+    font-size: 0.9375rem;
+    font-weight: 300;
+    color: $color-text__content;
+    line-height: 1.7;
+  }
+}

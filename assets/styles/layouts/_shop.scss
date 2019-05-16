@@ -1,0 +1,301 @@
+.content--app {
+  .skewy__container > .container {
+    @include media-breakpoint-down(xs) {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+}
+
+.app-content {
+  padding-top: 68px;
+  padding-bottom: 68px;
+}
+
+.shop-content {
+  background-color: white;
+  margin-top: -540px;
+  margin-bottom: 70px;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  @include media-breakpoint-up(sm) {
+    min-height: 530px;
+  }
+
+  > * {
+    padding-top: 68px;
+    padding-bottom: 81px;
+    align-items: center;
+    height: 100%;
+  }
+
+  &--app {
+    > * {
+      padding-top: 68px;
+      padding-bottom: 68px;
+      display: flex;
+    }
+
+    .tml-submit-wrap {
+      margin-bottom: 0;
+    }
+
+    .alert {
+      margin-top: 15px;
+      margin-bottom: 0;
+    }
+  }
+
+  .std-heading {
+    margin-bottom: 48px;
+  }
+
+  @include media-breakpoint-down(xs) {
+    > * {
+      padding-top: 35px;
+      padding-bottom: 30px;
+    }
+
+    .std-heading {
+      margin-bottom: 30px;
+    }
+  }
+
+  .std-content {
+    //margin-bottom: 16px;
+  }
+
+  &__info-content {
+    margin-bottom: 61px;
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    a {
+      font-weight: 400;
+      border-bottom: 1px solid;
+      color: inherit;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  &__success {
+    font-weight: 400;
+    color: #1c1c1c;
+    margin: -36px 0 26px;
+  }
+
+
+  &__icon {
+    width: 60px;
+    height: 60px;
+    border: 1px solid nth($color-palette, 1);
+    border-radius: 100%;
+    color: nth($color-palette, 1);
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 28px 2px rgba(nth($color-palette, 1), 0.18);
+    margin-bottom: 24px;
+    margin-top: 51px;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  .warranty__info {
+
+    img {
+
+      @include media-breakpoint-down(xs) {
+
+        max-width: 90px;
+        display: block;
+        margin: 0 auto $grid-gutter-width;
+      }
+    }
+  }
+}
+
+#edd_checkout_user_info {
+  p {
+    margin-bottom: 25px;
+  }
+}
+
+.tml-action-links {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+
+  a {
+    color: $color-text__content;
+    border-bottom: 1px solid rgba($color-text__content, 0.5);
+    transition: all 0.1s ease-in-out;
+
+    &:hover {
+      text-decoration: none;
+      color: $color-secondary;
+      border-color: rgba($color-secondary, 0.5);
+    }
+  }
+}
+
+.login {
+  .std-content {
+    margin-bottom: 13px;
+  }
+}
+
+.item-summary {
+  background: #fafcfd;
+  color: #4b4b4b;
+  margin: 5px 0 35px;
+  font-weight: 400;
+  padding: 50px 40px 35px;
+
+  &__el {
+    margin-bottom: 15px;
+
+    i {
+      color: #8db7b7;
+      margin-right: 12px;
+    }
+  }
+
+  &__heading {
+    color: #8db7b7;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+
+  .edd_cart_amount {
+    color: $color-accent;
+    font-weight: 700;
+  }
+}
+
+#edd-discount-code-wrap {
+  .edd-apply-discount {
+    min-width: auto;
+
+    @include media-breakpoint-down(sm) {
+      margin-top: 10px;
+    }
+  }
+}
+
+#edd_discount_code {
+  margin: -12px 0 30px;
+}
+
+#edd_show_discount {
+  font-size: 0.9375rem;
+  font-weight: 300;
+  color: $color-text__content;
+  margin: 0;
+
+  a {
+    font-weight: 700;
+    color: $color-secondary;
+  }
+}
+
+.payment-options {
+  margin-top: 21px;
+
+  &__logos {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 9px 0;
+  }
+
+  &__logo-item {
+    flex: 0 0 33.3333%;
+    max-width: 33.3333%;
+    text-align: center;
+    padding: 8px 15px;
+    opacity: 0.1;
+
+    @include media-breakpoint-up(sm) {
+      flex: 0 0 25%;
+      max-width: 25%;
+    }
+
+    @include media-breakpoint-up(md) {
+      flex: 0 0 20%;
+      max-width: 20%;
+    }
+
+    @include media-breakpoint-up(lg) {
+      flex: 0 0 14.2857%;
+      max-width: 14.2857%;
+    }
+
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  p {
+    font-size: 0.9375;
+    font-weight: 300;
+    color: rgba($color-text__content, 0.5);
+    margin: 0;
+  }
+}
+
+.password-input-wrapper {
+  width: 100%;
+  margin-bottom: 20px;
+
+  input {
+    @include media-breakpoint-up(sm) {
+      max-width: calc(50% - 30px);
+      flex: 0 0 calc(50% - 30px);
+      margin: 0 15px;
+    }
+  }
+}
+
+#pass-strength-result {
+  margin: 0 10px;
+
+  &.strong {
+    color: green;
+  }
+
+  &.good {
+    color: orange;
+  }
+
+  &.bad,
+  &.short {
+    color: red;
+  }
+}
+
+.bpmj_edd_invoice_data_invoice + script + fieldset:not(#edd_purchase_submit) {
+  display: none !important;
+}
+
+#edd_purchase_receipt + h3,
+#edd_purchase_receipt_pages + h3,
+#edd_purchase_receipt_pages,
+#edd_purchase_receipt_products {
+  display: none !important;
+}

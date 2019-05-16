@@ -1,0 +1,89 @@
+.content--app {
+  &__main {
+    margin-top: -120px;
+    margin-bottom: 80px;
+
+    @include media-breakpoint-down(md) {
+      margin-bottom: 60px;
+    }
+
+    @include media-breakpoint-down(xs) {
+      margin-bottom: 40px;
+    }
+
+    .single-lesson & {
+      margin-top: -250px;
+      margin-bottom: 80px;
+
+      > .shadow-box {
+        margin-bottom: 90px;
+
+        @include media-breakpoint-down(md) {
+          margin-bottom: 70px;
+        }
+      }
+
+      @include media-breakpoint-down(sm) {
+        margin-top: -270px;
+        margin-bottom: 60px;
+      }
+
+      @include media-breakpoint-down(xs) {
+        margin-top: -300px;
+        margin-bottom: 30px;
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      margin-top: -170px;
+    }
+
+    @include media-breakpoint-down(xs) {
+      margin-top: -180px;
+    }
+
+    .raporty & {
+      margin-bottom: 75px;
+    }
+  }
+
+  &__heading {
+    color: white;
+    font-weight: 300;
+    font-size: 2.25rem;
+    margin-bottom: 75px;
+    margin-top: -120px;
+
+    span {
+      font-weight: 200;
+    }
+
+    @include media-breakpoint-down(md) {
+      font-size: 2rem;
+      margin-bottom: 45px;
+    }
+
+    @include media-breakpoint-down(sm) {
+      font-size: 2rem;
+      margin-bottom: 35px;
+    }
+  }
+
+  &__sidebar {
+    @include media-breakpoint-down(sm) {
+      display: none;
+    }
+    @include media-breakpoint-up(md) {
+      padding-left: 2.5%;
+      padding-right: 2.5%;
+    }
+  }
+}
+
+.sidebar-heading {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: $color-text__label;
+  margin-bottom: 28px;
+}

@@ -1,0 +1,25 @@
+#program {
+  .container--program {
+    padding-top: 50px;
+    padding-bottom: 0;
+  }
+}
+
+.container--program {
+  padding-top: 110px;
+  padding-bottom: 125px;
+
+  .std-heading {
+    margin-bottom: 42px;
+  }
+
+  @include media-breakpoint-down(sm) {
+    padding-bottom: 20px;
+    padding-top: 65px;
+
+    .shadow-box {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+@import "common/variables";
+
+// Import npm dependencies
+@import "~bootstrap/scss/_functions.scss";
+@import "~bootstrap/scss/_variables.scss";
+@import "~bootstrap/scss/_mixins.scss";
+@import "~bootstrap/scss/_grid.scss";
+@import "~bootstrap/scss/_buttons.scss";
+@import "~bootstrap/scss/_modal.scss";
+@import "~bootstrap/scss/_alert.scss";
+// @import "~bootstrap/scss/bootstrap";
+
+@import "admin/buttons";
+@import "admin/users";
+
+@import "app/lessons";

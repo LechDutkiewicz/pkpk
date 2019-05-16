@@ -1,0 +1,79 @@
+$enable-flex:           true;
+$main-sm-columns:       12;
+$sidebar-sm-columns:    4;
+
+$grid-gutter-widths: (
+  xs: 40px,
+  md: 30px,
+  lg: 30px,
+  xl: 30px
+);
+
+$grid-breakpoints: (
+  // Extra small screen / phone
+  xs: 0,
+  // Small screen / phone
+  sm: 768px,
+  // Medium screen / tablet
+  md: 992px,
+  // Large screen / desktop
+  lg: 1200px,
+  // Extra large screen / wide desktop
+  xl: 1700px
+);
+
+$container-max-widths: (
+  xs: 740px,
+  sm: 820px,
+  md: 1080px,
+  lg: 1480px,
+  //lg: 1640px,
+  xl: 1620px,
+) !default;
+
+// Colors
+$brand-primary:         #27ae60;
+
+$fa-font-path:          '~font-awesome/fonts';
+$font-family-material: 'Material-Design-Iconic-Font';
+
+$navbar-dark-toggler-icon-bg: none;
+$navbar-light-toggler-icon-bg: none;
+// Skew
+$global-skew: 4.35;
+
+// Fonts
+$font-family-base: 'Montserrat', serif;
+
+// Hamburger
+$hamburger-layer-color: currentColor;
+$hamburger-layer-width: 30px;
+$hamburger-layer-height: 3px;
+$hamburger-layer-spacing: 5px;
+$hamburger-layer-border-radius: 0;
+
+// Colors
+$color-green: #00d893;
+$color-secondary: #6889ea;
+$color-secondary-contrast: white;
+
+$color-palette: (
+  #6889ea,
+  #00c3f4,
+  #00d8cb,
+  #00d893,
+);
+
+$color-accent: #45e0d6;
+
+$color-text__heading: #2a3f4c;
+$color-text__content: #808da2;
+
+$color-text__heading--course-details: #8db7b7;
+$color-text__label: #8db7b7;
+$color-text__heading--course-details--accent: #00d893;
+
+// Tooltips
+
+$tooltip-max-width: 300px;
+$tooltip-padding-y: 10px;

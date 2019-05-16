@@ -1,0 +1,328 @@
+// Search form
+.search-form {
+  @extend .form-inline;
+}
+.search-form label {
+  font-weight: normal;
+  @extend .form-group;
+}
+.search-form .search-field {
+  @extend .form-control;
+}
+.search-form .search-submit {
+  @extend .btn;
+  @extend .btn-secondary;
+}
+
+table {
+  width: 100%;
+}
+
+input {
+  line-height: 1;
+}
+
+select {
+  appearance: none;
+  width: 100%;
+  padding: 17px 20px 18px;
+  border: 1px solid #c0d1d1;
+  background: white;
+  line-height: 1;
+}
+
+label[for="bpmj_edd_invoice_data_invoice_type"] {
+  position: relative;
+
+  &::after {
+    content: "\f2f2";
+    font-family: $font-family-material;
+    font-size: 1.3125rem;
+    position: absolute;
+    right: 20px;
+    top: 37px;
+  }
+}
+
+input,
+textarea {
+  border: 1px solid #c0d1d1;
+  border-radius: 5px;
+  transition: box-shadow 0.15s ease-in-out;
+  padding: 17px 20px 18px;
+  width: 100%;
+  box-shadow: none;
+
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 28px rgba(nth($color-palette, 2), 0.18);
+  }
+
+  form & {
+    appearance: none;
+  }
+}
+
+label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: $color-text__label;
+  text-transform: uppercase;
+
+  form & {
+    width: 100%;
+  }
+
+  > p {
+    margin-bottom: 4px;
+  }
+}
+
+.icheckbox {
+  width: 22px;
+  height: 22px;
+  border: 2px solid $color-secondary;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $color-secondary;
+  float: left;
+  margin: 0px 12px 0 0;
+  padding: 0 0 0 1px;
+  position: relative;
+
+  &::before {
+    content: "\f26b";
+    font-family: $font-family-material;
+    font-size: 0.8125rem;
+    line-height: 1;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.9);
+    transition: all 0.15s ease-in-out;
+  }
+
+  &.checked {
+    &::before {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+  }
+}
+
+#edd_terms_agreement {
+  margin-top: 13px;
+  margin-bottom: 21px;
+}
+
+#edd_terms,
+#edd_show_terms {
+  display: none !important;
+}
+
+fieldset > label,
+.edd-terms-agreement label {
+  text-transform: initial;
+  font-size: 0.9375rem;
+  font-weight: 300;
+  color: $color-text__content;
+  width: calc(100% - 34px);
+  display: inline-block;
+  line-height: 1.3;
+}
+
+.edd-description {
+  font-size: 0.8125rem;
+  color: rgba($color-text__content, 0.5);
+  display: block;
+  margin: -10px 0 8px;
+}
+
+.bpmj_edd_invoice_data_invoice {
+  margin-top: 20px;
+
+  > fieldset > p {
+    margin-bottom: 29px;
+  }
+
+  > fieldset > span > legend {
+    display: none;
+  }
+}
+
+.shop-content {
+  .std-content {
+    margin-bottom: 16px;
+  }
+}
+
+.contact-form {
+  label > span:first-child {
+    display: inline-block;
+    margin-bottom: 4px;
+  }
+}
+
+form {
+  &[name="lostpasswordform"] .tml-user-login-wrap {
+    margin-bottom: 25px;
+  }
+
+  .wpcf7-form-control-wrap {
+    display: block;
+  }
+
+  .wpcf7-not-valid-tip {
+    position: absolute;
+    font-size: 0.6875rem;
+    width: 100%;
+    bottom: -9px;
+    display: none;
+  }
+
+  .wpcf7-not-valid {
+    border-color: red;
+  }
+
+  .wpcf7-response-output {
+    @extend .alert;
+    position: absolute;
+    margin: -22px 15px 0;
+    font-size: 0.75rem;
+    border-radius: 5px;
+    left: 0;
+    right: 0;
+    padding: 12px 15px;
+
+    &.wpcf7-validation-errors {
+      @extend .alert-warning;
+    }
+
+    &.wpcf7-mail-sent-ok {
+      @extend .alert-success;
+    }
+  }
+}
+
+#your-profile {
+  margin-top: 46px;
+
+  .form-field {
+    margin-bottom: 25px;
+
+    &--extra-margin {
+      margin-bottom: 60px;
+    }
+  }
+
+  .tml-submit-wrap input[type="submit"] {
+    width: 100%;
+  }
+}
+
+input[type="checkbox"].ios8-switch {
+  position: absolute;
+  margin: 8px 0 0 16px;    
+  border: 0;
+}
+input[type="checkbox"].ios8-switch + label {
+  position: relative;
+  padding: 5px 0 0 50px;
+  line-height: 2.0em;
+  margin: 10px 0 30px;
+}
+input[type="checkbox"].ios8-switch + label:before {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 0;
+  width: 40px; /* x*5 */
+  height: 24px; /* x*3 */
+  border-radius: 16px; /* x*2 */
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+input[type="checkbox"].ios8-switch + label:after {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 0px;
+  top: 0px;
+  width: 24px; /* x*3 */
+  height: 24px; /* x*3 */
+  border-radius: 16px; /* x*2 */
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+input[type="checkbox"].ios8-switch + label:hover:after {
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+input[type="checkbox"].ios8-switch:checked + label:after {
+  margin-left: 16px;
+}
+input[type="checkbox"].ios8-switch:checked + label:before {
+  background: #55D069;
+}
+
+/* SMALL */
+
+input[type="checkbox"].ios8-switch-sm {
+  margin: 5px 0 0 10px;
+}
+input[type="checkbox"].ios8-switch-sm + label {
+  position: relative;
+  padding: 0 0 0 32px;
+  line-height: 1.3em;
+}
+input[type="checkbox"].ios8-switch-sm + label:before {
+  width: 25px; /* x*5 */
+  height: 15px; /* x*3 */
+  border-radius: 10px; /* x*2 */
+}
+input[type="checkbox"].ios8-switch-sm + label:after {
+  width: 15px; /* x*3 */
+  height: 15px; /* x*3 */
+  border-radius: 10px; /* x*2 */
+}
+input[type="checkbox"].ios8-switch-sm + label:hover:after {
+  box-shadow: 0 0 3px rgba(0,0,0,0.3);
+}
+input[type="checkbox"].ios8-switch-sm:checked + label:after {
+  margin-left: 10px; /* x*2 */
+}
+
+/* LARGE */
+
+input[type="checkbox"].ios8-switch-lg {
+  margin: 10px 0 0 20px;
+}
+input[type="checkbox"].ios8-switch-lg + label {
+  position: relative;
+  padding: 7px 0 0 60px;
+  line-height: 2.3em;
+  border: 0;
+}
+input[type="checkbox"].ios8-switch-lg + label:before {
+  width: 50px; /* x*5 */
+  height: 30px; /* x*3 */
+  border-radius: 20px; /* x*2 */
+}
+input[type="checkbox"].ios8-switch-lg + label:after {
+  width: 30px; /* x*3 */
+  height: 30px; /* x*3 */
+  border-radius: 20px; /* x*2 */
+}
+input[type="checkbox"].ios8-switch-lg + label:hover:after {
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+input[type="checkbox"].ios8-switch-lg:checked + label:after {
+  margin-left: 20px; /* x*2 */
+}
+

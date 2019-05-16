@@ -1,0 +1,97 @@
+#trener {
+  background-image: url('../images/bg-coach.jpg');
+  background-repeat: no-repeat;
+  background-position: 58% center;
+  background-size: auto 100%;
+  min-height: calc(100vh + 50px + 50vw * 0.076 * 2);
+
+  @include media-breakpoint-up(lg) {
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    align-items: center;
+  }
+
+  @include media-breakpoint-down(xs) {
+    .col-6 {
+      max-width: 75%;
+      flex: 0 0 75%;
+    }
+  }
+
+  > .bg__container {
+    @extend .container;
+  }
+}
+
+.coach-content {
+  padding-top: 85px;
+  padding-bottom: 11px;
+
+  @include media-breakpoint-down(sm) {
+    padding-bottom: 40px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding-top: 35px;
+  }
+
+  h2 {
+    @extend .std-heading;
+    color: white;
+    margin-bottom: 55px;
+    display: block;
+    width: 100%;
+  }
+
+  h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  p {
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: #c6d6de;
+    line-height: 1.7;
+    margin-bottom: 30px;
+
+    strong,
+    b {
+      font-weight: 800;
+      color: #fff;
+    }
+
+    &:first-of-type {
+      font-size: 1rem;
+      font-weight: 400;
+      color: white;
+      line-height: 1.65;
+    }
+  }
+}
+
+.social-profiles {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  font-size: 1.5rem;
+
+  li {
+    display: inline-block;
+    margin-right: 27px;
+  }
+
+  a i {
+    transition: all 0.15s ease-in-out;
+  }
+
+  a {
+    color: $color-green;
+
+    &:hover i {
+      transform: scale(1.1);
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.shadow-box {
+  box-shadow: 0 12px 13px rgba(black, 0.09);
+  border-radius: 5px;
+  border: 1px solid rgba(#ebebeb, 0.47);
+  padding-top: 30px;
+  padding-bottom: 30px;
+  transform: translateZ(0);
+
+  &--two-third {
+    width: 66.6666%;
+  }
+
+  &--white {
+    background-color: white;
+  }
+}

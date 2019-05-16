@@ -1,0 +1,68 @@
+.skewy {
+  transform: skewY((-$global-skew) + deg);
+
+  &__container {
+    transform: skewY($global-skew + deg) translateZ(0);
+    // simple trigonometry,
+    // 0.076 is a tan($global-skew), so tan(4.35) in this case
+    margin: calc(50vw * -0.076) 0;
+    padding: calc(50vw * 0.076) 0;
+  }
+
+  &__bg {
+
+  }
+
+  &--white {
+    background-color: white;
+  }
+
+  &--gray {
+    background-color: #f4f7f8;
+  }
+
+  &--dark {
+    background-color: #516d96;
+    color: white;
+  }
+
+  + section {
+    padding-top: calc(50vw * 0.076 * 2);
+    padding-bottom: calc(50vw * 0.076 * 2);
+
+    &.skewy {
+      //margin-top: calc(50vw * 0.076);
+    }
+  }
+
+  + .bg {
+    margin-top: calc(50vw * -0.076);
+  }
+}
+
+.bg {
+  background-repeat: no-repeat;
+  background-position: center;
+
+  @include media-breakpoint-up(lg) {
+    background-attachment: fixed;
+  }
+
+  &--dark {
+    background-color: #516d96;
+    color: white;
+  }
+
+  &--lightblue {
+    background-color: #ebf4f6;
+  }
+
+  &--gray {
+    background-color: #fafcfd;
+  }
+
+  &--steps {
+    background-image: url('../images/bg-steps.png');
+    background-position: left center;
+  }
+}

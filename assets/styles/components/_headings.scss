@@ -1,0 +1,35 @@
+.std-heading {
+  font-size: 1.875rem;
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 18px;
+  color: $color-text__heading;
+
+  @include media-breakpoint-up(xs) {
+    font-size: 1.875rem;
+  }
+
+  @include media-breakpoint-up(sm) {
+    font-size: 2.25rem;
+  }
+
+  &--full-width {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+
+  &--center {
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+.std-content {
+  font-weight: 300;
+  color: $color-text__content;
+  line-height: 1.65;
+
+  @include media-breakpoint-down(md) {
+    font-size: 0.9375rem;
+  }
+}
