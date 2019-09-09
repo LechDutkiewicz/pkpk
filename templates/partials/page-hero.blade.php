@@ -22,7 +22,7 @@
       </div>
     </div>
     <div :class="['page-hero__video', { playing: youtubePlaying == true }]">
-      <youtube video-id="{{ the_field('hero_video_id') }}" player-width="100%" player-height="100%" @playing="playing" @ended="end" :player-vars="{controls: 0, iv_load_policy: 3, showinfo: 0, rel: 0}"></youtube>
+      <youtube video-id="{{ the_field('hero_video_id') }}" player-width="100%" player-height="100%" @playing="playing" @ended="end" :player-vars="{controls: 1, iv_load_policy: 3, showinfo: 0, rel: 0}"></youtube>
     </div>
   </div>
 </section>

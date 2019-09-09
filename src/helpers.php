@@ -217,7 +217,7 @@ function cta_warranty_msg( $color = 'dark', $layout = 'unset' ) {
 
     if ( $cta_warranty && $cta_warranty_tooltip ) {
         ?>
-        <span class="cta__warranty cta__warranty--<?= $color; ?> justify__content--<?= $layout; ?>" data-toggle="tooltip" data-html="true" title="<?= $cta_warranty_tooltip; ?>" data-trigger="click hover focus"><span><?= $cta_warranty; ?></span><i class="fa fa-info"></i></span>
+        <span class="cta__warranty cta__warranty--<?= $color; ?> justify__content--<?= $layout; ?>" data-toggle="tooltip" data-html="true" title="<?= $cta_warranty_tooltip; ?>" data-trigger="hover focus"><span><?= $cta_warranty; ?></span><i class="fa fa-info"></i></span>
         <?php
     }
 

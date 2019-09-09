@@ -12,9 +12,9 @@
               @component('components.skewy-container', ['variant' => 'white'])
                 <div class="container">
                   <div class="row justify-content-center no-gutters">
-                    @component('components.shadow-box', ['variant' => 'white', 'col' => 'md-10 col-lg-8 shop-content', 'row' => false])
+                    @component('components.shadow-box', ['variant' => 'white', 'col' => 'md-11 shop-content', 'row' => false])
                       <div class="container--flex justify-content-center container--full-width">
-                        <div class="col-sm-10">
+                        <div class="col-sm-11">
                           @yield('content')
                         </div>
                       </div>

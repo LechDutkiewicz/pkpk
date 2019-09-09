@@ -28,6 +28,7 @@ export default {
           arrows: false,
           dots: true,
           slidesToScroll: 2,
+          adaptiveHeight: true,
           // infinite: false,
           // fade: true,
           // Any other options that can be got from plugin documentation
@@ -106,34 +107,37 @@ export default {
             app.headerSticky = false;
           });
 
-        // setTimeout(() => app.notYetPopup = true, 5000)
+          // setTimeout(() => app.notYetPopup = true, 5000)
 
-        const root = $('html, body');
+          const root = $('html, body');
 
-        $('.home a.brand').on('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
+          $('.home a.brand').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
 
-          $('#app').velocity('scroll', {
-            duration: 500,
-            easing: [ .71,.29,.15,.99 ]
+            $('#app').velocity('scroll', {
+              duration: 500,
+              easing: [ .71,.29,.15,.99 ]
+            });
           });
-        });
 
-        $('.nav-primary a, .scroll-to-btn').on('click', function(e) {
-          const windowWidth = $(window).width();
-          let additionalOffset;
+          $('.nav-primary a, .scroll-to-btn').on('click', function(e) {
+            const windowWidth = $(window).width();
+            let additionalOffset;
 
-          if ( windowWidth < 1024 ) {
-            additionalOffset = -60;
-          } else {
-            additionalOffset = 120 - (windowWidth * 0.5 * 0.076);
-          }
+            if ( windowWidth < 1024 ) {
+              additionalOffset = -60;
+            } else {
+              additionalOffset = 120 - (windowWidth * 0.5 * 0.076);
+            }
 
-          this.navOpen = false;
+            /* eslint-disable no-console */
+            // console.log(t);
+            /* eslint-enable no-console */
+            app.navOpen = false;
 
-          e.preventDefault();
-          e.stopPropagation();
+            e.preventDefault();
+            e.stopPropagation();
           // set target to anchor's "href" attribute
           const target = $(this).attr('href');
           // scroll to each target
@@ -144,9 +148,9 @@ export default {
           });
         });
 
-        if ( typeof wpcf7InitForm !== 'undefined' ) {
-          $('div.wpcf7 > form').wpcf7InitForm();
-        }
+          if ( typeof wpcf7InitForm !== 'undefined' ) {
+            $('div.wpcf7 > form').wpcf7InitForm();
+          }
 
         // $('[data-toggle="tooltip"]').tooltip();
       },
@@ -157,7 +161,7 @@ export default {
       }
     });
 
-    $('.spin').velocity({  rotateZ: "+=360" }, { duration: 2000, easing: "linear", loop: true});
+$('.spin').velocity({  rotateZ: "+=360" }, { duration: 2000, easing: "linear", loop: true});
 
-  },
+},
 };

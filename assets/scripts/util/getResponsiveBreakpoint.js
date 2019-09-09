@@ -22,9 +22,6 @@
       this.env = this.envs[i];
       this.el.addClass("d-" + this.env + "-none");
       if (this.el.is(":hidden")) {
-    /* eslint-disable no-console */
-    console.log(this.env);
-    /* eslint-enable no-console */
         break; // env detected
       }
     }
@@ -34,8 +31,5 @@
 
   init() {
     this.appendContainers();
-    /* eslint-disable no-console */
-    // console.log('hula breakpoint');
-    /* eslint-enable no-console */
   }
 }

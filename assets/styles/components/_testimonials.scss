@@ -110,7 +110,7 @@
     color: nth($color-palette, 1);
     position: absolute;
     right: 39px;
-    top: -68px;
+    top: 0;
 
     .gecko &,
     .ie & {

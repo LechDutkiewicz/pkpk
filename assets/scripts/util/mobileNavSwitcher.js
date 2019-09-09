@@ -10,7 +10,7 @@ import Breakpoint from './getResponsiveBreakpoint';
 
  export default class mobileNavSwitcher {
   constructor() {
-    this.mobileSizes = ["xs", "sm"];
+    this.mobileSizes = ["xs", "sm", "md"];
   }
 
   detectIfMobile(currentSize) {
@@ -31,7 +31,7 @@ import Breakpoint from './getResponsiveBreakpoint';
 
       if (!isMobile) {
 
-        var navContainer = $(".banner--app")
+        var navContainer = $(".banner")
         if (navContainer.hasClass('nav-open')) {
 
           var lessonsContainer = $(".banner__lessons-list"),

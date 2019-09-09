@@ -12,9 +12,6 @@ import Breakpoint from './getResponsiveBreakpoint';
   constructor() {
     this.mobileSizes = ["xs", "sm"];
     this.currentSize = breakpoint.getBreakpointName();
-    /*eslint no-console: ["error", { allow: ["warn", "error"] }] */
-
-console.warn(this.currentSize);
     this.isMobile = false;
   }
 
@@ -71,7 +68,7 @@ console.warn(this.currentSize);
 
   init() {
     this.detectIfMobile();
-    this.addListeners();
+    // this.addListeners();
     this.bindInputEvents();
   }
 }

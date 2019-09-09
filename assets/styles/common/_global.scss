@@ -73,3 +73,12 @@ a {
 .hidden {
   display: none !important;
 }
+
+hr {
+
+  &.hr__lg {
+
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+}
