@@ -9,8 +9,8 @@ use tpayLibs\src\_class_tpay\Utilities\Lang;
 add_action('add_meta_boxes', function () {
 	add_meta_box( 'lesson-parent', esc_html__('Kurs', 'pkpk'), 'lesson_attributes_meta_box', 'lesson', 'side', 'high', null );
 	add_meta_box( 'lesson-list', esc_html__('Lekcje', 'pkpk'), 'lesson_list_meta_box', 'course', 'side', 'high', null );
-	add_meta_box( 'reports-list', esc_html__('Raporty', 'pkpk'), 'reports_list_meta_box', 'course', 'side', 'high', null );
-	add_meta_box( 'course-users', esc_html__('Uczestnicy Kursu', 'pkpk'), 'course_users_meta_box', 'course', 'side', 'high', null );
+	add_meta_box( 'reports-list', esc_html__('Raporty', 'pkpk'), 'reports_list_meta_box', 'course', 'normal', 'high', null );
+	add_meta_box( 'course-users', esc_html__('Uczestnicy Kursu', 'pkpk'), 'course_users_meta_box', 'course', 'normal', 'high', null );
 }, 20, 3);
 
 function get_admin_edit_user_link( $user_id ){

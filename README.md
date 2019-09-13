@@ -118,7 +118,7 @@ To use Browsersync you need to update `devUrl` at the bottom of `assets/config.j
 If your local development URL is `https://project-name.dev`, update the file to read:
 ```json
 ...
-  "devUrl": "https://project-name.dev",
+  "devUrl": "http://localhost/produktywnosckrok",
 ...
 ```
 

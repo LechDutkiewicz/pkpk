@@ -418,7 +418,7 @@ class Lesson extends Course {
         return $this->lesson_id;
     }
 
-    public function currentNumber($searching_id) {
+    public function currentNumber($searching_id = null) {
         if (empty($searching_id) ) {
             $searching_id = $this->lesson_id;
         }

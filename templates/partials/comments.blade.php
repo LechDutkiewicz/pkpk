@@ -11,7 +11,14 @@ if (post_password_required()) {
     </h2>
 
     <ol class="comment-list">
-      {!! wp_list_comments(['style' => 'ul', 'short_ping' => true, 'callback' => 'App\comment' ]) !!}
+      @php
+      global $wp_query;
+      $comment_arr = $wp_query->comments;
+      // posortuj komentarze według likeów dodanych wtyczką WP ULike
+      usort($comment_arr, 'comment_comparator');
+
+      @endphp
+      {!! wp_list_comments(['style' => 'ul', 'short_ping' => true, 'callback' => 'App\comment' ], $comment_arr) !!}
     </ol>
 
     @if (get_comment_pages_count() > 1 && get_option('page_comments'))

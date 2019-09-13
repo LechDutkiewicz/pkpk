@@ -459,6 +459,25 @@
       padding-bottom: 40px;
     }
 
+    .c-lesson__content & {
+      padding-top: 30px;
+      padding-bottom: 50px;
+      margin-top: 20px;
+      margin-bottom: 20px;    
+
+      @include media-breakpoint-down(sm) {
+        margin: 20px 0 0;
+        padding-top: 25px;
+        padding-bottom: 40px;
+      }
+
+      @include media-breakpoint-down(xs) {
+        margin: 20px -15px;
+        padding-top: 15px;
+        padding-bottom: 30px;
+      }
+    }
+
     input[type="submit"] {
       @extend .btn;
       @extend .btn--large;
@@ -479,222 +498,222 @@
 .c-comments {
 //  background: #fafcfd;
 
-  textarea {
-    padding: 17px 20px 18px;
-    min-height: 191px;
-    resize: none !important;
+textarea {
+  padding: 17px 20px 18px;
+  min-height: 191px;
+  resize: none !important;
 
-    &:focus {
-      border-color: #c0d1d1;
+  &:focus {
+    border-color: #c0d1d1;
+  }
+}
+
+.cnns-comment-subscription {
+  display: flex;
+  align-items: center;
+
+  label {
+    margin-bottom: 0;
+  }
+}
+
+.bypostauthor .comment-author .fn::after {
+  content: 'Autor';
+  background: $color-secondary;
+  padding: 3px 8px;
+  text-transform: uppercase;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: white;
+  border-radius: 3px;
+  display: inline-block;
+  color: white;
+  margin-left: 10px;
+  position: relative;
+  top: -2px;
+}
+
+.comment-form-attachment {
+  position: absolute;
+  width: calc(100% - 30px);
+  bottom: 57px;
+
+  @include media-breakpoint-down(sm) {
+    width: calc(100% - 40px);
+  }
+
+  label {
+    @extend .btn;
+    @extend .btn--border-secondary;
+    text-transform: none;
+
+    small {
+      display: none;
     }
   }
 
-  .cnns-comment-subscription {
-    display: flex;
-    align-items: center;
-
-    label {
-      margin-bottom: 0;
-    }
-  }
-
-  .bypostauthor .comment-author .fn::after {
-    content: 'Autor';
-    background: $color-secondary;
-    padding: 3px 8px;
-    text-transform: uppercase;
-    font-size: 0.6875rem;
-    font-weight: 700;
-    color: white;
-    border-radius: 3px;
-    display: inline-block;
-    color: white;
-    margin-left: 10px;
-    position: relative;
-    top: -2px;
-  }
-
-  .comment-form-attachment {
+  #attachment {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
     position: absolute;
-    width: calc(100% - 30px);
-    bottom: 57px;
+    z-index: -1;
+  }
+}
 
-    @include media-breakpoint-down(sm) {
-      width: calc(100% - 40px);
-    }
+.form-submit {
+  margin-top: 85px;
+}
 
-    label {
-      @extend .btn;
-      @extend .btn--border-secondary;
-      text-transform: none;
+h2 {
+  color: $color-text__heading;
+  font-size: 2.25rem;
+  font-weight: 300;
+  margin-bottom: 48px;
+  margin-top: 12px;
 
-      small {
-        display: none;
-      }
-    }
-
-    #attachment {
-      width: 0.1px;
-    	height: 0.1px;
-    	opacity: 0;
-    	overflow: hidden;
-    	position: absolute;
-    	z-index: -1;
-    }
+  @include media-breakpoint-down(md) {
+    font-size: 1.9rem;
   }
 
-  .form-submit {
-    margin-top: 85px;
+  @include media-breakpoint-down(xs) {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+    margin-top: -10px;
   }
+}
 
-  h2 {
-    color: $color-text__heading;
-    font-size: 2.25rem;
-    font-weight: 300;
-    margin-bottom: 48px;
-    margin-top: 12px;
+.comment {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+
+  .comment-body {
+    background: #fafcfd;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 70px;
+    padding-bottom: 75px;
+    border-radius: 5px;
+    width: 100%;
+
+    @include media-breakpoint-down(lg) {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
 
     @include media-breakpoint-down(md) {
-      font-size: 1.9rem;
+      padding-top: 30px;
+      padding-bottom: 30px;
     }
 
-    @include media-breakpoint-down(xs) {
-      font-size: 1.6rem;
-      margin-bottom: 30px;
-      margin-top: -10px;
+    > * {
+      @extend .col-md-11;
+      @extend .col-xl-10;
     }
+  }
+
+  .comment-content {
+    font-size: 0.9375rem;
+    font-weight: 300;
+    color: $color-text__content;
+    line-height: 1.7;
+  }
+}
+
+.comment-meta {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.edit-link {
+  margin-left: 20px;
+}
+
+.comment-metadata {
+  a {
+    color: $color-text__label;
+    transition: all 0.15s ease-in-out;
+
+    &:hover {
+      text-decoration: none;
+      color: $color-secondary;
+    }
+
+    i {
+      margin-left: 10px;
+    }
+  }
+}
+
+.comment-author {
+  .avatar {
+    display: none;
+  }
+
+  .fn {
+    font-weight: 600;
+    color: $color-text__heading;
+  }
+
+  .says {
+    font-size: 0.875rem;
+    font-weight: 300;
+    display: inline-block;
+    color: $color-text__content;
+    margin-left: 5px;
+  }
+}
+
+.comment-metadata {
+  font-weight: 300;
+  font-size: 0.9375rem;
+  margin-top: 2px;
+
+  strong {
+    font-weight: 500;
+  }
+}
+
+.comment-awaiting-moderation {
+  @extend .alert;
+  @extend .alert-warning;
+  margin-top: 20px;
+  flex: 1 1 100%;
+}
+
+.reply {
+  margin-top: 12px;
+}
+
+.comment-reply-link {
+  @extend .btn;
+  @extend .btn--border-secondary;
+  max-width: 210px;
+  width: 100%;
+
+  i {
+    margin-right: 14px;
+  }
+}
+
+ul.children {
+  padding-left: calc(4.1666% + 15px);
+  width: 100%;
+
+  @include media-breakpoint-up(xl) {
+    padding-left: calc(8.3333% + 15px);
   }
 
   .comment {
-    flex-wrap: wrap;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 15px;
-
-    .comment-body {
-      background: #fafcfd;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      padding-top: 70px;
-      padding-bottom: 75px;
-      border-radius: 5px;
-      width: 100%;
-
-      @include media-breakpoint-down(lg) {
-        padding-top: 40px;
-        padding-bottom: 40px;
-      }
-
-      @include media-breakpoint-down(md) {
-        padding-top: 30px;
-        padding-bottom: 30px;
-      }
-
-      > * {
-        @extend .col-md-11;
-        @extend .col-xl-10;
-      }
-    }
-
-    .comment-content {
-      font-size: 0.9375rem;
-      font-weight: 300;
-      color: $color-text__content;
-      line-height: 1.7;
-    }
+    margin-top: 15px;
   }
-
-  .comment-meta {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-  }
-
-  .edit-link {
-    margin-left: 20px;
-  }
-
-  .comment-metadata {
-    a {
-      color: $color-text__label;
-      transition: all 0.15s ease-in-out;
-
-      &:hover {
-        text-decoration: none;
-        color: $color-secondary;
-      }
-
-      i {
-        margin-left: 10px;
-      }
-    }
-  }
-
-  .comment-author {
-    .avatar {
-      display: none;
-    }
-
-    .fn {
-      font-weight: 600;
-      color: $color-text__heading;
-    }
-
-    .says {
-      font-size: 0.875rem;
-      font-weight: 300;
-      display: inline-block;
-      color: $color-text__content;
-      margin-left: 5px;
-    }
-  }
-
-  .comment-metadata {
-    font-weight: 300;
-    font-size: 0.9375rem;
-    margin-top: 2px;
-
-    strong {
-      font-weight: 500;
-    }
-  }
-
-  .comment-awaiting-moderation {
-    @extend .alert;
-    @extend .alert-warning;
-    margin-top: 20px;
-    flex: 1 1 100%;
-  }
-
-  .reply {
-    margin-top: 12px;
-  }
-
-  .comment-reply-link {
-    @extend .btn;
-    @extend .btn--border-secondary;
-    max-width: 210px;
-    width: 100%;
-
-    i {
-      margin-right: 14px;
-    }
-  }
-
-  ul.children {
-    padding-left: calc(4.1666% + 15px);
-    width: 100%;
-
-    @include media-breakpoint-up(xl) {
-      padding-left: calc(8.3333% + 15px);
-    }
-
-    .comment {
-      margin-top: 15px;
-    }
-  }
+}
 }
 
 .comment-respond {

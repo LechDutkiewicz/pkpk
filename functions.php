@@ -54,7 +54,7 @@ array_map(function ($file) use ($sage_error) {
     if (!locate_template($file, true, true)) {
         $sage_error(sprintf(__('Error locating <code>%s</code> for inclusion.', 'sage'), $file), 'File not found');
     }
-}, ['helpers', 'setup', 'filters', 'admin', 'post-types', 'metaboxes', 'rest', 'course-app', 'make-pdf', 'lib/edd-overrides/tpayLibs/src/_class_tpay/PaymentForms/pkpkpaymentform', 'pkpk-edd']);
+}, ['helpers', 'setup', 'filters', 'admin', 'post-types', 'metaboxes', 'rest', 'course-app', 'make-pdf', 'lib/edd-overrides/tpayLibs/src/_class_tpay/PaymentForms/pkpkpaymentform', 'pkpk-edd', 'shortcodes']);
 
 /**
  * Here's what's happening with these hooks:
@@ -143,7 +143,7 @@ function download_certificate() {
 
     if (! is_numeric($course)) {
       wp_die('ID must be integer, my dear.');
-    }
+  }
 
     // $action = 'download_certificate_' . ($user_id * $course);
     //
@@ -151,53 +151,53 @@ function download_certificate() {
     //   wp_die('Security check.');
     // }
 
-    $restricted_to = get_field('course_download', $course);
+  $restricted_to = get_field('course_download', $course);
 
-    if (empty($restricted_to)) {
+  if (empty($restricted_to)) {
       wp_die('This course does not exist.');
-    }
+  }
 
-    $payments = App\get_payments_user_meta( $restricted_to );
+  $payments = App\get_payments_user_meta( $restricted_to );
     //print_r($payments);
-    $final_user = '';
+  $final_user = '';
 
-    foreach($payments as $payment) {
+  foreach($payments as $payment) {
         // check if user exist
-        $user = get_userdata( $payment['id'] );
-        if ( $user !== false ) {
+    $user = get_userdata( $payment['id'] );
+    if ( $user !== false ) {
             //user id does exist
-            if ( !empty($payment['first_name']) && !empty($payment['last_name'] ) ) {
-              if ( $user_id == $payment['id'] ) {
-                $final_user = $payment;
-              }
-              //print_r($user_id);
-            } else {
-              // we have to ask user for first name or last name
-            }
+        if ( !empty($payment['first_name']) && !empty($payment['last_name'] ) ) {
+          if ( $user_id == $payment['id'] ) {
+            $final_user = $payment;
         }
+              //print_r($user_id);
+    } else {
+              // we have to ask user for first name or last name
     }
+}
+}
 
-    if ( empty($final_user) ) {
-        $user = wp_get_current_user();
-        $final_user['first_name'] = $user->user_firstname;
-        $final_user['last_name'] = $user->user_lastname;
-        $final_user['id'] = $user->ID;
-    }
+if ( empty($final_user) ) {
+    $user = wp_get_current_user();
+    $final_user['first_name'] = $user->user_firstname;
+    $final_user['last_name'] = $user->user_lastname;
+    $final_user['id'] = $user->ID;
+}
 
-    $course_end = get_field('course_end', $course, false);
+$course_end = get_field('course_end', $course, false);
 
-    $upload = wp_upload_dir();
-    $upload_dir = $upload['basedir'];
-    $upload_dir = $upload_dir . '/pkpk-courses/course-' . $course . '/certificates';
-    
-    if( ! wp_mkdir_p($upload_dir) ) {
-        wp_mkdir_p($upload_dir);
-    }
+$upload = wp_upload_dir();
+$upload_dir = $upload['basedir'];
+$upload_dir = $upload_dir . '/pkpk-courses/course-' . $course . '/certificates';
 
-    $filename = $final_user['id'] . ' ' . $final_user['first_name'] . ' ' . $final_user['last_name'] .'.pdf';
-    $filename = remove_accents($filename);
-    $filename = str_replace(' ', '-', $filename);
-    $file = $upload_dir . '/' . $filename;
+if( ! wp_mkdir_p($upload_dir) ) {
+    wp_mkdir_p($upload_dir);
+}
+
+$filename = $final_user['id'] . ' ' . $final_user['first_name'] . ' ' . $final_user['last_name'] .'.pdf';
+$filename = remove_accents($filename);
+$filename = str_replace(' ', '-', $filename);
+$file = $upload_dir . '/' . $filename;
 
     if(! file_exists($file) ) { // file does not exist
         App\makePDF($final_user, $course_end, $upload_dir);
@@ -223,5 +223,20 @@ function user_login_session( $expire ) { // Set login session limit in seconds
     // return MONTH_IN_SECONDS;
     return DAY_IN_SECONDS * 5;
     // return HOUR_IN_SECONDS;
+}
+
+// sort comments compatible with WP Ulike plugin
+// solution: https://wordpress.stackexchange.com/questions/16676/sort-comments-by-karma
+// plugin: https://wordpress.org/support/plugin/wp-ulike/
+function comment_comparator($a, $b) {
+    $compared = 0;
+    $comments_a = get_comment_meta( $a->comment_ID, '_commentliked', true );
+    $comments_b = get_comment_meta( $b->comment_ID, '_commentliked', true );
+
+    if($comments_a != $comments_b)
+    {
+        $compared = $comments_a < $comments_b ? 1:-1;
+    }
+    return $compared;
 }
 
