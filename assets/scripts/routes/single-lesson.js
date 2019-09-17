@@ -62,7 +62,45 @@ export default {
         });
 
         $('input').iCheck({
-           cursor: true,
+         cursor: true,
+       });
+
+        var timeoutId,
+        raport = $('#raport'),
+        action = 'autosave-raport',
+        statusHolder = raport.find('.c-lesson__report--status');
+
+        raport.keypress( function() {
+
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout( function() {
+
+            var form_data = new FormData(document.forms.namedItem("raport"));
+            
+            // var form_data = raport.serialize();
+            form_data.append('action', action);
+            form_data.append('post_id', raport.data('post-id'));
+            form_data.append('user_id', raport.data('user-id'));
+
+            // eslint-disable-next-line no-console
+            console.log(form_data);
+            $.ajax({
+              type:         'POST',
+              url:          ajax_login_object.ajaxurl,
+              data:         form_data,
+              dataType:     'json',
+              processData:  false,
+              contentType:  false,
+              cache:        false,
+            }).success(function(){
+
+              var d = new Date();
+              statusHolder.html('Zapisano wersję roboczą o: ' + d.toLocaleTimeString() + '.<span style="color:red">Nie zapomnij wysłać raportu jak go ukończysz!</span>');
+
+            }).error(function(){
+              statusHolder.html('Nie udało się zarobić automatycznego zapisu wersji roboczej raportu.');
+            });
+          }, 750);
         });
 
         autosize(document.querySelectorAll('textarea'));
