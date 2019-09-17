@@ -77,7 +77,7 @@ function report_shortcode_thickbox() {
 			<?php
 			if ( $the_query->have_posts() ) {
 				$i = $the_query->found_posts;
-				$echo = false;
+				$echo = true;
 				?>
 				<select id="report_shortcode_select" style="clear: both; display: block; margin-bottom: 1em; margin-top: 1em;">
 					<?php
@@ -85,11 +85,12 @@ function report_shortcode_thickbox() {
 						$the_query->the_post();
 
 						// Jeśli w pętli postów dojdę do tego samego, który aktualnie edytuję, zacznij wyświetlać posty jako opcje w select. Jest to po to, aby dało się wstawić shortcode odnoszący się tylko do przeszłych lekcji
-						if ( $post->ID == $lesson_id ) {
-							$echo = true;
-							$i--;
-							continue;
-						}
+						// if ( $post->ID == $lesson_id ) {
+						// 	$echo = true;
+						// 	$i--;
+						// 	continue;
+						// }
+
 						if ($echo) {
 							?>
 							<option lesson-id="<?= $lesson_id; ?>" value="<?= $post->ID; ?>"><?= "$i. $post->post_title"; ?></option>

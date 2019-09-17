@@ -467,25 +467,6 @@
       padding-bottom: 40px;
     }
 
-    .c-lesson__content & {
-      padding-top: 30px;
-      padding-bottom: 50px;
-      margin-top: 20px;
-      margin-bottom: 20px;    
-
-      @include media-breakpoint-down(sm) {
-        margin: 20px 0 0;
-        padding-top: 25px;
-        padding-bottom: 40px;
-      }
-
-      @include media-breakpoint-down(xs) {
-        margin: 20px -15px;
-        padding-top: 15px;
-        padding-bottom: 30px;
-      }
-    }
-
     input[type="submit"] {
       @extend .btn;
       @extend .btn--large;
@@ -821,6 +802,12 @@ ul.children {
       font-size: 1rem;
       font-weight: 600;
 
+      &--day {
+        color: $color-text__label;
+        font-size: .9rem;
+        font-weight: 300;
+      }
+
       i {
         margin-right: 12px;
       }
@@ -927,6 +914,38 @@ ul.children {
 
     .btn {
       margin-top: 22px;
+    }
+  }
+}
+
+.c-lesson__content {
+
+  .c-lesson__report {
+    padding: 15px 0;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    border-radius: 0;
+    background: none;
+
+    .report__header {
+      border-top: 3px double #d6e4e4;
+    }
+
+    .c-report {
+      border-bottom: 3px double #d6e4e4;
+      padding-bottom: 5px;
+    }
+
+    p {
+      margin: 10px 0 5px;
+    }
+
+    .report__info__heading {
+      padding-top: 0;
+    }
+
+    .report__content {
+      margin-top: 8px;
     }
   }
 }
