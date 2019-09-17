@@ -17,28 +17,6 @@ jQuery(document).ready(function($) {
 						tinymce.execCommand('mceInsertContent', false, content);
 						tb_remove();
 					});
-
-
-					// var selected = tinyMCE.activeEditor.selection.getContent(),
-					// $reportReveal = $('#report_shortcode_reveal'),
-					// submit = $reportReveal.find('[type="submit"]'),
-					// content = null;
-
-					// $reportReveal.foundation('open');
-
-					// submit.off('click').on('click', function(){
-					// 	$reportReveal.foundation('close');
-
-					// 	var buttonRole = $(this).data('type'),
-					// 	reportColor = $reportReveal.find('input[name="color"]:checked').val(),
-					// 	target = $reportReveal.find('[name="' + buttonRole + '"]').val();
-
-					// 	content =  '[cytat link_do=' + target;
-					// 	content += reportColor !== undefined ? ' kolor=' + reportColor : '';
-					// 	content += ']';
-
-					// 	tinymce.execCommand('mceInsertContent', false, content);
-					// });
 					
 				});
 
