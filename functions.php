@@ -54,7 +54,7 @@ array_map(function ($file) use ($sage_error) {
     if (!locate_template($file, true, true)) {
         $sage_error(sprintf(__('Error locating <code>%s</code> for inclusion.', 'sage'), $file), 'File not found');
     }
-}, ['helpers', 'setup', 'filters', 'admin', 'post-types', 'metaboxes', 'rest', 'course-app', 'make-pdf', 'lib/edd-overrides/tpayLibs/src/_class_tpay/PaymentForms/pkpkpaymentform', 'pkpk-edd', 'shortcodes']);
+}, ['helpers', 'setup', 'filters', 'admin', 'post-types', 'metaboxes', 'rest', 'course-app', 'make-pdf', 'lib/edd-overrides/tpayLibs/src/_class_tpay/PaymentForms/pkpkpaymentform', 'pkpk-edd', 'shortcodes', 'ajax-actions']);
 
 /**
  * Here's what's happening with these hooks:
