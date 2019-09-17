@@ -33,7 +33,15 @@
       $report_status_class = '';
 
       if ( $report_is_sended ) {
-        $report_status_class .= 'is-sended';
+        if ( $report_is_sended === 1 ) {
+          $report_status_class .= 'is-sended';
+        } else {
+          if ( $report_can_send ) {
+            $report_status_class .= 'is-draft can-send';
+          } else {
+            $report_status_class .= 'is-draft cannot-send';
+          }
+        }
       } else {
         if ( $report_can_send ) {
           $report_status_class .= 'not-sended can-send';
@@ -52,13 +60,21 @@
             <div class="c-lessons__item__meta d-flex justify-content-between">
               <p class="c-lessons__item__date">{{ the_date('j F Y') }}</p>
               <span class="c-lessons__item__report-status {{ $report_status_class }}">
-                @if ($report_is_sended)
+                @if ($report_is_sended === 1)
                   <i class="zmdi zmdi-check"></i> {{ __('Raport wysłany w terminie', 'pkpk') }}
                 @else
-                  @if ($report_can_send)
-                    <i class="zmdi zmdi-time-countdown"></i> {{ __('Raport jeszcze nie wysłany', 'pkpk') }}
+                  @if ($report_is_sended === 2)
+                    @if ($report_can_send)
+                      <i class="zmdi zmdi-alert-triangle"></i> {{ __('Masz wersję roboczą raportu, ale nie została wysłana', 'pkpk') }}
+                    @else
+                      <i class="zmdi zmdi-close"></i> {{ __('Masz wersję roboczą raportu, ale nie możesz już jej wysłać', 'pkpk') }}
+                    @endif
                   @else
-                    <i class="zmdi zmdi-close"></i> {{ __('Nie możesz już wysłać raportu', 'pkpk') }}
+                    @if ($report_can_send)
+                      <i class="zmdi zmdi-time-countdown"></i> {{ __('Raport jeszcze nie wysłany', 'pkpk') }}
+                    @else
+                      <i class="zmdi zmdi-close"></i> {{ __('Nie możesz już wysłać raportu', 'pkpk') }}
+                    @endif
                   @endif
                 @endif
               </span>
