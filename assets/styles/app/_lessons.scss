@@ -112,6 +112,14 @@
         color: $color-green;
       }
 
+      &.is-draft {
+        color: #FF5600;
+
+        &.cannot-send {
+          color: red;
+        }
+      }
+
       &.not-sended {
         color: $color-secondary;
 
@@ -778,6 +786,14 @@ ul.children {
   textarea {
     min-height: 79px;
     resize: none !important;
+  }
+
+  &--status {
+
+    > span {
+      display: block;
+      color: red;
+    }
   }
 }
 .c-lesson__report .report {
