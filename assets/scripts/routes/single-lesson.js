@@ -77,13 +77,10 @@ export default {
 
             var form_data = new FormData(document.forms.namedItem("raport"));
             
-            // var form_data = raport.serialize();
             form_data.append('action', action);
             form_data.append('post_id', raport.data('post-id'));
             form_data.append('user_id', raport.data('user-id'));
 
-            // eslint-disable-next-line no-console
-            console.log(form_data);
             $.ajax({
               type:         'POST',
               url:          ajax_login_object.ajaxurl,
