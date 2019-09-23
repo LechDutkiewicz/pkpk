@@ -18,13 +18,20 @@ function autosave_raport() {
 			$reports = [];
 		}
 
+		$raportEntry = [];
+
+		// set timezone
+		date_default_timezone_set('Europe/Warsaw');
+		$now = date("Y-m-d H:i:s");
+		$reportEntry['createdAt'] = $now;
+
 		if ( $lesson_id ) {
 
 			$fields = get_post_meta( $lesson_id, 'prod_userreporting_fields', true );
 
 			// zapisz do BD wartości pól z raportu
 			if ($fields) {
-				foreach ($fields as $name => $field0) {
+				foreach ($fields as $name => $field) {
 					if ($field['type'] == 'longtext') {
 						$reportEntry[$name] = sanitize_textarea_field($_POST[$name]);
 					} else {
