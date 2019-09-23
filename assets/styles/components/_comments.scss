@@ -54,3 +54,14 @@
     line-height: 1.7;
   }
 }
+
+.wpulike {
+
+  &-heart {
+
+    .wp_ulike_general_class {
+      padding: 7px 5px;
+      border-radius: 5px;
+    }
+  }
+}

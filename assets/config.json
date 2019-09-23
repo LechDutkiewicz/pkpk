@@ -18,7 +18,7 @@
     "assets/scripts/**/*.js",
     "assets/styles/**/*.scss"
   ],
-  "publicPath": "/wp-content/themes/pkpk",
+  "publicPath": "/produktywnosckrok/wp-content/themes/pkpk",
   "devUrl": "http://localhost/produktywnosckrok",
   "proxyUrl": "http://localhost:3000",
   "cacheBusting": "[name]_[hash:8]",

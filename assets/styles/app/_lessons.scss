@@ -610,6 +610,23 @@ h2 {
     font-weight: 300;
     color: $color-text__content;
     line-height: 1.7;
+    display: flex;
+    flex-flow: inherit;
+    align-items: center;
+
+    > * {
+      flex: 0 0 100%;
+    }
+
+    .wpulike {
+      flex: 0 0 auto;
+      order: 20;
+      margin-left: 15px;
+    }
+
+    .reply {
+      flex: 0 0 auto;
+    }
   }
 }
 
@@ -676,15 +693,16 @@ h2 {
   flex: 1 1 100%;
 }
 
-.reply {
-  margin-top: 12px;
-}
+// .reply {
+//   margin-top: 12px;
+// }
 
 .comment-reply-link {
   @extend .btn;
   @extend .btn--border-secondary;
   max-width: 210px;
   width: 100%;
+  line-height: 17px;
 
   i {
     margin-right: 14px;

@@ -533,7 +533,6 @@ function comment( $comment, $depth, $args ) {
 
 <div class="comment-content">
    <?php comment_text(); ?>
-</div><!-- .comment-content -->
 
 <?php
 $post_id = get_the_ID();
@@ -556,6 +555,8 @@ comment_reply_link($default, $comment_id, $post_id);
 
         //print_r($test);
 ?>
+
+</div><!-- .comment-content -->
 </article><!-- .comment-body -->
 <?php
 }
