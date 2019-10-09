@@ -129,7 +129,7 @@ function course_users_meta_box($post) {
 		return $user['is_active'];
 	});
 
-	echo '<p>Wszystkich uczestnikow: <strong>' . count($users) . '</strong></p>';
+	echo '<p>Wszystkich uczestników: <strong>' . count($users) . '</strong></p>';
 	echo '<p>Aktywnych uczestników: <strong>' . count($active_users) . '</strong></p>';
 	echo '<p>Zawieszonych uczestników: <strong>' . ( count($users) - count($active_users) ) . '</strong></p>';
 
@@ -179,10 +179,14 @@ function course_users_meta_box($post) {
 			}
 
 			echo '<tr>';
-			echo '<td><a href="' . $mandatory_url . '" target="_blank">' . $mandatory_title . '</a>' . $mandatory_date . '</td>';
-			echo '<td><a href="' . $mandatory_unfilled_url . '" target="_blank">' . $mandatory_unfilled_title . '</a>' . $mandatory_unfilled_date . '</td>';
-			echo '<td><a href="' . $not_mandatory_url . '" target="_blank">' . $not_mandatory_title . '</a>' . $not_mandatory_date . '</td>';
-			echo '<td><a href="' . $not_mandatory_unfilled_url . '" target="_blank">' . $not_mandatory_unfilled_title . '</a>' . $not_mandatory_unfilled_date . '</td>';
+
+			echo '<td>' . $mandatory_date . '<br><a href="' . $mandatory_url . '" target="_blank">' . $mandatory_title . '</a></td>';
+
+			echo '<td>' . $mandatory_unfilled_date . '<br><a href="' . $mandatory_unfilled_url . '" target="_blank">' . $mandatory_unfilled_title . '</a></td>';
+
+			echo '<td>' . $not_mandatory_date . '<br><a href="' . $not_mandatory_url . '" target="_blank">' . $not_mandatory_title . '</a></td>';
+
+			echo '<td>' . $not_mandatory_unfilled_date . '<br><a href="' . $not_mandatory_unfilled_url . '" target="_blank">' . $not_mandatory_unfilled_title . '</a></td>';
 			echo '</tr>';
 		}
 
@@ -213,12 +217,12 @@ function reports_list_meta_box($post) {
 		'post_type' => 'lesson',
 		'post_parent' => $parent_id,
 		'post_status' => 'publish',
-		'posts_per_page' => -1
+		'posts_per_page' => 5
 	) );
 
-	$i = 0;
+	$i = 1;
 	$bad_users = [];
-	$max_reports = 1;
+	$max_reports = 3;
 
 	if ( $the_query->have_posts() ) {
 		while ( $the_query->have_posts() ) {
@@ -239,47 +243,107 @@ function reports_list_meta_box($post) {
 				$report_is_open = true;
 			}
 
-			// echo $report_is_open;
+			echo "Czy raport jest jeszcze otwarty? : $report_is_open";
+			// echo "<br>Czy raport jest obowiązkowy? : $mandatory";
+			// echo "<br>Iteracja: $i";
 			
-			if (!$mandatory) {
-				continue;
-			}
-
-			echo $i;
+			// if (!$mandatory) {
+			// 	continue;
+			// }
 
 			if ($users) {
+
+				$lesson_bad_users = [];
+
 				foreach ($users as $user) {
 					$userHasReport = false;
 					$wpuser = get_user_by( 'email', $user['email'] );
 					$userId = $wpuser->ID;
 					$user_is_active = !in_array( 'inactive_subscriber', (array) $wpuser->roles );
 
-					if ($reports[$userId] ) {
-						$userHasReport = true;
+					// jeśli raport użytkownika dla danej lekcji istnieje lub jest jeszcze otwarty
+					if ( (array_key_exists($userId, $reports) || $report_is_open) && $i > 1 ) {
+
+						// jeśli użytkownik wcześniej trafił do tablicy niewypełnionych raportów, usuń go stamtąd
+						if ( array_key_exists($userId, $bad_users) ) {
+							unset($bad_users[$userId]);
+						}
+
+						continue;
 					}
-					if (!$user_is_active) {
-						unset($bad_users[$userId]);
-					}
-					if ($i === 0 && $report_is_open) {
-						$max_reports = 2;
-					}
-					if (!$userHasReport) {            
-						if ($i === $max_reports - 1) {
+
+					else {
+
+						// jeśli raport nie jest obowiązkowy, dodaj kolejną iterację pętli
+						if ( !$mandatory ) {
+
+							$max_reports++;
+						}
+
+						// dodaj użytkownika do tablicy niewypełnionych raportów tylko jeśli to pierwsza iteracja pętli
+						if ( $i === 1 ) {
+
 							$bad_users[$userId] = [
 								'email' => $user['email']
 							];
 						}
-					} else {
-						if ($i === $max_reports) {
-							unset($bad_users[$userId]);
-						}
 					}
 
-					if (count($course_users[$userId]['not_mandatory_reports']) > 0) {
+					// jeśli użytkownik nie jest aktywnym użytkownikiem a jego ID jest już w tablicy
+					if ( !$user_is_active && array_key_exists($userId, $bad_users) ) {
 						unset($bad_users[$userId]);
 					}
+
+					// jeśli jest to aktualna lekcja i raportowanie jest jeszcze otwarte
+					// if ( $i === 0 && $report_is_open ) {
+					// 	$max_reports = 2;
+					// }
+
+					// jeśli raport użytkownika dla danej lekcji nie istnieje, dopisz go do tablicy
+					// if ( !$userHasReport ) {            
+					// 	if ( $i === 0 ) {
+					// 		$bad_users[$userId] = [
+					// 			'email' => $user['email']
+					// 		];
+					// 	}
+					// 		$lesson_bad_users[$userId] = [
+					// 			'email' => $user['email']
+					// 		];
+
+					// echo "<br>Użytkownik $userId dodany do tablicy";
+					// echo array_key_exists($userId, $reports) ? "istnieje" : "nie istnieje";
+						// }
+					// } else {
+					// 	if ( array_key_exists($userId, $bad_users) ) {
+					// 		unset($bad_users[$userId]);
+					// echo "<br>Użytkownik $userId usunięty metodą 22 z tablicy";
+						// }
+					// }
+
+					// var_dump($course_users);
+					// echo "<hr>";
+
+					// echo "<br>";
+					// print_r($course_users[$userId]['not_mandatory_reports']);
+					// echo "<hr>";
+
+					// if ( is_array($course_users[$userId]['not_mandatory_reports']) && count($course_users[$userId]['not_mandatory_reports']) > 0 ) {
+					// 	unset($bad_users[$userId]);
+					// echo "<br>Użytkownik $userId usunięty metodą 33 z tablicy";
+					// }
 				}
+
+			// echo "<br>Użytkownicy, który nie wypełnili danej lekcji:<br>";
+				// print_r($lesson_bad_users);
+			// echo "<hr>";
 			}
+
+			// echo "<br>Maksymalna liczba raportów: $max_reports";
+			// echo "<br>Raporty z lekcji:<br>";
+			// print_r($reports);
+			// echo "<br>Użytkownicy, który nie wypełnili:<br>";
+			// print_r($bad_users);
+			// echo "<hr>";
 
 			$i++;
 		}
@@ -287,11 +351,11 @@ function reports_list_meta_box($post) {
 
 	if ($bad_users) {
 		echo '<div><p>Lista aktywnych uczestników, którzy nie wypełnili dwóch ostatnich obowiązkowych, zamkniętych raportów, nie wypełnili obecnie otwartego (jeśli istnieje) i nie wypełnili żadnego nieobowiązkowego:</p>';
-		$i = 1;
+		echo '<ol>';
 		foreach ($bad_users as $userId => $user) {
-			echo $i .'. <a href="#prod-user-' . $userId . '">' . $user['email'] . '</a><br>';
-			$i++;
+			echo '<li><a href="#prod-user-' . $userId . '">' . $user['email'] . '</a></li>';
 		}
+		echo '</ol>';
 		echo '</div>';
 	}
 
@@ -310,7 +374,8 @@ function reports_list_meta_box($post) {
 		while ( $the_query->have_posts() ) {
 			$the_query->the_post();
 			$reports = get_post_meta(get_the_ID(), 'prod_userreporting_reports', true);
-			$timevalid = get_post_meta(get_the_ID(), 'prod_userreporting_timevalid', true);
+			$timevalid = get_post_meta(get_the_ID(), 'prod_userreporting_timevalid', true);			
+			$mandatory = get_post_meta(get_the_ID(), 'prod_userreporting_mandatory', true) == "true" ? "obowiązkowy" : "nieobowiązkowy";
 			$report_date = get_the_time('Y/m/d');
 			$report_expire = strtotime($report_date) + $timevalid * 60 * 60;
 			$user_is_active = !in_array( 'inactive_subscriber', (array) $wpuser->roles );
@@ -339,21 +404,22 @@ function reports_list_meta_box($post) {
 			printf('
 				<div class="related-lessons__lesson">
 				<div class="related-lessons__date">%1s</div>
-				<div class="related-lessons__title"><strong>%2s</strong></div>
+				<div class="related-lessons__title"><strong>%2s</strong>&nbsp;<small>(%3s)</small></div>
 				<div class="related-lessons__controls">
-				<a data-href="%3s" class="related-lessons__control-link"><span>%4s</span></a>
-				<a data-href="%5s" class="related-lessons__control-link"><span>%6s</span></a>
+				<a href="%4s" target="_blank" class="related-lessons__control-link"><span>%5s</span></a>
+				<a href="%6s" target="_blank" class="related-lessons__control-link"><span>%7s</span></a>
 				</div>
 				</div>',
 				'Od: ' . get_the_date('j F, Y g:i a') . '<br>Do: ' . date_i18n( 'j F, Y g:i a', $report_expire ),
 				get_the_title(),
+				$mandatory,
 				get_the_permalink(),
 				esc_html__( 'Wypełnione', 'pkpk' ) . ' (' . count($reports) . ')',
 				get_edit_post_link(),
 				esc_html__( 'Niewypełnione', 'pkpk' ) . ' (' . count($bad_users)  . ')'
 			);
 
-			echo 'Niewypełnione raporty:<br/><br/>';
+			echo 'Niewypełnione raporty:';
 
 			//$users2 = prod_userreporting_get_users_with_unfilled_reports(get_the_ID(), $parent_id);
 			// and simply send warning email to everyone      
@@ -361,14 +427,16 @@ function reports_list_meta_box($post) {
 			// print_r($reports);
 			if ($bad_users) {
 				$i = 1;
+				echo "<ol>";
 				foreach ($bad_users as $user) {
 					$wpuser = get_user_by( 'email', $user['email'] );
 					$user_is_active = !in_array( 'inactive_subscriber', (array) $wpuser->roles );
 					if ($user_is_active) {
-						echo $i . '. ' . $user['email'] . '<br />';
+						echo '<li>' . $user['email'] . '</li>';
 					}
 					$i++;
 				}
+				echo "</ol>";
 			}
 			echo '<br />';
 		}

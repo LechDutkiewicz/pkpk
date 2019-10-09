@@ -14,7 +14,7 @@ function autosave_raport() {
 		// pobierz raporty dla danej lekcji
 		$reports = get_post_meta( $lesson_id, 'prod_userreporting_reports', true );
 
-		if ( !is_array($reports) ) {
+		if ( !is_array($reports) && strlen($reports) === 0 ) {
 			$reports = [];
 		}
 

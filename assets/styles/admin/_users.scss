@@ -7,3 +7,25 @@
 		text-decoration: none;
 	}
 }
+
+#reports-list {
+
+	.related-lessons {
+
+		ol {
+
+			column-count: 3;
+		}
+	}
+}
+
+#course-users {
+
+	table {
+		width: 100%;
+
+		th {
+			width: 25%;
+		}
+	}
+}

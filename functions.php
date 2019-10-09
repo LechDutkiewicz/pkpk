@@ -17,30 +17,30 @@ show_admin_bar(false);
  * @param string $title
  */
 $sage_error = function ($message, $subtitle = '', $title = '') {
-    $title = $title ?: __('Sage &rsaquo; Error', 'sage');
-    $footer = '<a href="https://roots.io/sage/docs/">roots.io/sage/docs/</a>';
-    $message = "<h1>{$title}<br><small>{$subtitle}</small></h1><p>{$message}</p><p>{$footer}</p>";
-    wp_die($message, $title);
+  $title = $title ?: __('Sage &rsaquo; Error', 'sage');
+  $footer = '<a href="https://roots.io/sage/docs/">roots.io/sage/docs/</a>';
+  $message = "<h1>{$title}<br><small>{$subtitle}</small></h1><p>{$message}</p><p>{$footer}</p>";
+  wp_die($message, $title);
 };
 
 /**
  * Ensure compatible version of PHP is used
  */
 if (version_compare('5.6.4', phpversion(), '>=')) {
-    $sage_error(__('You must be using PHP 5.6.4 or greater.', 'sage'), __('Invalid PHP version', 'sage'));
+  $sage_error(__('You must be using PHP 5.6.4 or greater.', 'sage'), __('Invalid PHP version', 'sage'));
 }
 
 /**
  * Ensure dependencies are loaded
  */
 if (!class_exists('Roots\\Sage\\Container')) {
-    if (!file_exists($composer = __DIR__.'/vendor/autoload.php')) {
-        $sage_error(
-            __('You must run <code>composer install</code> from the Sage directory.', 'sage'),
-            __('Autoloader not found.', 'sage')
-        );
-    }
-    require_once $composer;
+  if (!file_exists($composer = __DIR__.'/vendor/autoload.php')) {
+    $sage_error(
+      __('You must run <code>composer install</code> from the Sage directory.', 'sage'),
+      __('Autoloader not found.', 'sage')
+    );
+  }
+  require_once $composer;
 }
 
 /**
@@ -50,10 +50,10 @@ if (!class_exists('Roots\\Sage\\Container')) {
  * Add or remove files to the array as needed. Supports child theme overrides.
  */
 array_map(function ($file) use ($sage_error) {
-    $file = "src/{$file}.php";
-    if (!locate_template($file, true, true)) {
-        $sage_error(sprintf(__('Error locating <code>%s</code> for inclusion.', 'sage'), $file), 'File not found');
-    }
+  $file = "src/{$file}.php";
+  if (!locate_template($file, true, true)) {
+    $sage_error(sprintf(__('Error locating <code>%s</code> for inclusion.', 'sage'), $file), 'File not found');
+  }
 }, ['helpers', 'setup', 'filters', 'admin', 'post-types', 'metaboxes', 'rest', 'course-app', 'make-pdf', 'lib/edd-overrides/tpayLibs/src/_class_tpay/PaymentForms/pkpkpaymentform', 'pkpk-edd', 'shortcodes', 'ajax-actions']);
 
 /**
@@ -74,15 +74,15 @@ array_map(function ($file) use ($sage_error) {
  * └── TEMPLATEPATH           -> /srv/www/example.com/current/web/app/themes/sage/templates
  */
 if (is_customize_preview() && isset($_GET['theme'])) {
-    $sage_error(__('Theme must be activated prior to using the customizer.', 'sage'));
+  $sage_error(__('Theme must be activated prior to using the customizer.', 'sage'));
 }
 add_filter('template', function ($stylesheet) {
-    return dirname($stylesheet);
+  return dirname($stylesheet);
 });
 if (basename($stylesheet = get_option('template')) !== 'templates') {
-    update_option('template', "{$stylesheet}/templates");
-    wp_redirect($_SERVER['REQUEST_URI']);
-    exit();
+  update_option('template', "{$stylesheet}/templates");
+  wp_redirect($_SERVER['REQUEST_URI']);
+  exit();
 }
 add_filter('tml_template_paths', function() {
   return array(TEMPLATEPATH);
@@ -130,19 +130,19 @@ add_action( 'wp_ajax_nopriv_download_certificate', 'download_certificate' );
 
 function download_certificate() {
     // check if user is logged in, if not redirect to login page
-    if (! is_user_logged_in() ) {
-        auth_redirect();
-    } else {
-        $user = get_current_user_id();
-        $user_id = $user->ID;
-    }
+  if (! is_user_logged_in() ) {
+    auth_redirect();
+  } else {
+    $user = get_current_user_id();
+    $user_id = $user->ID;
+  }
 
     // $user_id = $_GET['id'];
-    $course = $_GET['course'];
+  $course = $_GET['course'];
     //$my_nonce = $_GET['nonce'];
 
-    if (! is_numeric($course)) {
-      wp_die('ID must be integer, my dear.');
+  if (! is_numeric($course)) {
+    wp_die('ID must be integer, my dear.');
   }
 
     // $action = 'download_certificate_' . ($user_id * $course);
@@ -154,7 +154,7 @@ function download_certificate() {
   $restricted_to = get_field('course_download', $course);
 
   if (empty($restricted_to)) {
-      wp_die('This course does not exist.');
+    wp_die('This course does not exist.');
   }
 
   $payments = App\get_payments_user_meta( $restricted_to );
@@ -166,41 +166,41 @@ function download_certificate() {
     $user = get_userdata( $payment['id'] );
     if ( $user !== false ) {
             //user id does exist
-        if ( !empty($payment['first_name']) && !empty($payment['last_name'] ) ) {
-          if ( $user_id == $payment['id'] ) {
-            $final_user = $payment;
+      if ( !empty($payment['first_name']) && !empty($payment['last_name'] ) ) {
+        if ( $user_id == $payment['id'] ) {
+          $final_user = $payment;
         }
               //print_r($user_id);
-    } else {
+      } else {
               // we have to ask user for first name or last name
+      }
     }
-}
-}
+  }
 
-if ( empty($final_user) ) {
+  if ( empty($final_user) ) {
     $user = wp_get_current_user();
     $final_user['first_name'] = $user->user_firstname;
     $final_user['last_name'] = $user->user_lastname;
     $final_user['id'] = $user->ID;
-}
+  }
 
-$course_end = get_field('course_end', $course, false);
+  $course_end = get_field('course_end', $course, false);
 
-$upload = wp_upload_dir();
-$upload_dir = $upload['basedir'];
-$upload_dir = $upload_dir . '/pkpk-courses/course-' . $course . '/certificates';
+  $upload = wp_upload_dir();
+  $upload_dir = $upload['basedir'];
+  $upload_dir = $upload_dir . '/pkpk-courses/course-' . $course . '/certificates';
 
-if( ! wp_mkdir_p($upload_dir) ) {
+  if( ! wp_mkdir_p($upload_dir) ) {
     wp_mkdir_p($upload_dir);
-}
+  }
 
-$filename = $final_user['id'] . ' ' . $final_user['first_name'] . ' ' . $final_user['last_name'] .'.pdf';
-$filename = remove_accents($filename);
-$filename = str_replace(' ', '-', $filename);
-$file = $upload_dir . '/' . $filename;
+  $filename = $final_user['id'] . ' ' . $final_user['first_name'] . ' ' . $final_user['last_name'] .'.pdf';
+  $filename = remove_accents($filename);
+  $filename = str_replace(' ', '-', $filename);
+  $file = $upload_dir . '/' . $filename;
 
     if(! file_exists($file) ) { // file does not exist
-        App\makePDF($final_user, $course_end, $upload_dir);
+      App\makePDF($final_user, $course_end, $upload_dir);
     }
 
     header("Cache-Control: public");
@@ -211,9 +211,9 @@ $file = $upload_dir . '/' . $filename;
 
     // read the file from disk
     readfile($file);
-}
+  }
 
-/*----------  Keep users logged in for 5 days  ----------*/
+  /*----------  Keep users logged in for 5 days  ----------*/
 
 
 // add_filter ( 'auth_cookie_expiration', 'user_login_session' );
@@ -221,7 +221,7 @@ $file = $upload_dir . '/' . $filename;
 function user_login_session( $expire ) { // Set login session limit in seconds
     // return YEAR_IN_SECONDS;
     // return MONTH_IN_SECONDS;
-    return DAY_IN_SECONDS * 5;
+  return DAY_IN_SECONDS * 5;
     // return HOUR_IN_SECONDS;
 }
 
@@ -229,14 +229,96 @@ function user_login_session( $expire ) { // Set login session limit in seconds
 // solution: https://wordpress.stackexchange.com/questions/16676/sort-comments-by-karma
 // plugin: https://wordpress.org/support/plugin/wp-ulike/
 function comment_comparator($a, $b) {
-    $compared = 0;
-    $comments_a = get_comment_meta( $a->comment_ID, '_commentliked', true );
-    $comments_b = get_comment_meta( $b->comment_ID, '_commentliked', true );
+  $compared = 0;
+  $comments_a = get_comment_meta( $a->comment_ID, '_commentliked', true );
+  $comments_b = get_comment_meta( $b->comment_ID, '_commentliked', true );
 
-    if($comments_a != $comments_b)
-    {
-        $compared = $comments_a < $comments_b ? 1:-1;
+    // var_dump($comments_a);
+    // var_dump($comments_b);
+  var_dump($a);
+
+    // $date_a = strtotime( $a->comment_date );
+    // $date_b = strtotime( $b->comment_date );
+
+    // echo $date_a;
+  echo "<hr>";
+
+  if ($comments_a != $comments_b) {
+    $compared = $comments_a < $comments_b ? 1:-1;
+  }
+  else if ($date_a != $date_b && $a->comment_parent == $b->comment_parent) {
+    $compared = $date_a > $date_b ? 1:-1;
+  }
+  return $compared;
+}
+
+function change_key( $array, $old_key, $new_key ) {
+
+  if( ! array_key_exists( $old_key, $array ) )
+    return $array;
+
+  $keys = array_keys( $array );
+  $keys[ array_search( $old_key, $keys ) ] = $new_key;
+
+  return array_combine( $keys, $array );
+}
+
+function sort_likes($comments) {
+
+  $liked_comments = [];
+  $liked_comments_ids = [];
+  $liked_comments_children_ids = [];
+  echo "komentarze klucze:";
+
+  print_r($comments);
+
+  print_r(array_keys($comments));
+
+  foreach ( $comments as $key => $comment ) {
+
+    $comments = change_key($comments, $key, $comment->comment_ID);
+
+    $liked = get_comment_meta( $comment->comment_ID, '_commentliked', true );
+    // var_dump($liked);
+    // var_dump($comment);
+    // echo count($comment->children);
+    // $children = $comment->get_children();
+    // echo "<br>DZIECI:";
+    // var_dump($children);
+    // echo "<hr>";
+
+    if ($liked) {
+
+      // echo "ID polubionego postu: ". $comment->comment_ID . "<br>";
+
+      $liked_comments_ids[] = $comment->comment_ID;
+      // unset($comments[$comment->comment_ID]);
+
+      $children = $comment->get_children();
+
+      if ( is_array($children) && count($children) > 0 ) {
+        foreach ( $children as $child_key => $child_comment ) {
+          $liked_comments_children_ids[] = $child_comment->comment_ID;
+          // unset($comments[$child_key]);
+          // echo "<br>" . $child_comment->comment_ID . "<br>";
+        }
+      }
     }
-    return $compared;
+
+  }
+
+  echo "<hr>Komentarze klucze z ID:";
+
+  print_r(array_keys($comments));
+
+  echo "<hr>Polubione komentarze z ID:";
+
+  print_r($liked_comments_ids);
+
+  echo "<hr>Dzieci polubionych komentarzy z ID:";
+
+  print_r($liked_comments_children_ids);
+
+  return $comments;
 }
 
