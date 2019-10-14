@@ -217,7 +217,7 @@ function reports_list_meta_box($post) {
 		'post_type' => 'lesson',
 		'post_parent' => $parent_id,
 		'post_status' => 'publish',
-		'posts_per_page' => 5
+		'posts_per_page' => 6
 	) );
 
 	$i = 1;
@@ -243,13 +243,19 @@ function reports_list_meta_box($post) {
 				$report_is_open = true;
 			}
 
-			echo "Czy raport jest jeszcze otwarty? : $report_is_open";
+			// echo "Czy raport jest jeszcze otwarty? : $report_is_open";
 			// echo "<br>Czy raport jest obowiązkowy? : $mandatory";
 			// echo "<br>Iteracja: $i";
 			
 			// if (!$mandatory) {
 			// 	continue;
 			// }
+
+			// jeśli raport nie jest obowiązkowy, dodaj kolejną iterację pętli
+			if ( !$mandatory ) {
+
+				$max_reports++;
+			}
 
 			if ($users) {
 
@@ -262,7 +268,7 @@ function reports_list_meta_box($post) {
 					$user_is_active = !in_array( 'inactive_subscriber', (array) $wpuser->roles );
 
 					// jeśli raport użytkownika dla danej lekcji istnieje lub jest jeszcze otwarty
-					if ( (array_key_exists($userId, $reports) || $report_is_open) && $i > 1 ) {
+					if ( (array_key_exists($userId, $reports) || ( $report_is_open) && $i > 1 && $mandatory ) ) {
 
 						// jeśli użytkownik wcześniej trafił do tablicy niewypełnionych raportów, usuń go stamtąd
 						if ( array_key_exists($userId, $bad_users) ) {
@@ -273,12 +279,6 @@ function reports_list_meta_box($post) {
 					}
 
 					else {
-
-						// jeśli raport nie jest obowiązkowy, dodaj kolejną iterację pętli
-						if ( !$mandatory ) {
-
-							$max_reports++;
-						}
 
 						// dodaj użytkownika do tablicy niewypełnionych raportów tylko jeśli to pierwsza iteracja pętli
 						if ( $i === 1 ) {

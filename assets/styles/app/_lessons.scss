@@ -67,7 +67,7 @@
 
     &__content {
       font-size: 0.9375rem;
-      font-weight: 300;
+      // font-weight: 300;
       color: $color-text__content;
       line-height: 1.7;
       margin-bottom: 1.3125rem;
@@ -188,7 +188,7 @@
 
     li.active {
       margin: 30px 0 30px 11px;
-      color: #36dea9;
+      color: $color-green;
       position: relative;
       font-size: 1.125rem;
 
@@ -227,7 +227,8 @@
     border-radius: 100%;
     display: inline-block;
     text-align: center;
-    color: #3fdfac;
+    // color: #3fdfac;
+    color: $color-green;
     font-size: 0.8125rem;
     font-weight: 600;
     margin-right: 15px;
@@ -434,6 +435,12 @@
         }
       }
     }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
     @include media-breakpoint-down(md) {
       font-size: 0.9375rem;
     }
@@ -607,7 +614,7 @@ h2 {
 
   .comment-content {
     font-size: 0.9375rem;
-    font-weight: 300;
+    // font-weight: 300;
     color: $color-text__content;
     line-height: 1.7;
     display: flex;

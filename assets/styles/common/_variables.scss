@@ -53,25 +53,35 @@ $hamburger-layer-spacing: 5px;
 $hamburger-layer-border-radius: 0;
 
 // Colors
-$color-green: #00d893;
-$color-secondary: #6889ea;
+// $color-green: #00d893;
+$color-green: #00A873;
+// $color-secondary: #6889ea;
+$color-secondary: #1C47CA;
 $color-secondary-contrast: white;
+$color-tertiary: #005E75;
+
+// Bootstrap palette changes
+$blue: #0071eb;
 
 $color-palette: (
-  #6889ea,
-  #00c3f4,
+  $color-secondary,
+  $color-tertiary,
   #00d8cb,
-  #00d893,
+  $color-green,
 );
 
-$color-accent: #45e0d6;
+// $color-accent: #45e0d6;
+$color-accent: #008057;
 
 $color-text__heading: #2a3f4c;
-$color-text__content: #808da2;
+// $color-text__content: #808da2;
+$color-text__content: #2a2d32;
 
-$color-text__heading--course-details: #8db7b7;
-$color-text__label: #8db7b7;
-$color-text__heading--course-details--accent: #00d893;
+// $color-text__heading--course-details: #8db7b7;
+$color-text__heading--course-details: #4F7D7D;
+// $color-text__label: #8db7b7;
+$color-text__label: #4F7D7D;
+$color-text__heading--course-details--accent: $color-green;
 
 $color-shop__bg: #f5f6f7;
 $color-box__shadow: #e7eeef;
