@@ -24,7 +24,8 @@
 
     &:nth-child(2n) {
       .features-list__element-icon {
-        color: nth($color-palette, 2);
+        // color: nth($color-palette, 2);
+        color: $color-accent;
       }
     }
   }

@@ -393,8 +393,8 @@
   &__content {
     border-top: 1px solid #f0f0f0;
     padding-top: 70px;
-    color: $color-text__content;
-    font-weight: 300;
+    // color: $color-text__content;
+    // font-weight: 300;
     line-height: 1.7;
 
     h2, h3, h4 {
@@ -861,7 +861,7 @@ ul.children {
 
   &__content-inner {
     text-transform: none;
-    font-weight: 300;
+    // font-weight: 300;
     color: $color-text__content;
     font-size: 1rem;
     margin-top: 0;
@@ -893,7 +893,7 @@ ul.children {
 
   &__content-inner {
     text-transform: none;
-    font-weight: 300;
+    // font-weight: 300;
     color: $color-text__content;
     font-size: 1rem;
     margin-top: 0;
@@ -998,7 +998,7 @@ ul.children {
 
     p {
       color: #4f4f4f;
-      font-weight: 300;
+      // font-weight: 300;
       margin: 0;
 
       strong {

@@ -95,7 +95,7 @@ export default {
               statusHolder.html('Zapisano wersję roboczą o: ' + d.toLocaleTimeString() + '.<span style="color:red">Nie zapomnij wysłać raportu jak go ukończysz!</span>');
 
             }).error(function(){
-              statusHolder.html('Nie udało się zarobić automatycznego zapisu wersji roboczej raportu.');
+              statusHolder.html('Nie udało się zrobić automatycznego zapisu wersji roboczej raportu.');
             });
           }, 750);
         });

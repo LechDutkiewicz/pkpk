@@ -42,9 +42,6 @@ $navbar-light-toggler-icon-bg: none;
 // Skew
 $global-skew: 4.35;
 
-// Fonts
-$font-family-base: 'Montserrat', serif;
-
 // Hamburger
 $hamburger-layer-color: currentColor;
 $hamburger-layer-width: 30px;
@@ -53,40 +50,63 @@ $hamburger-layer-spacing: 5px;
 $hamburger-layer-border-radius: 0;
 
 // Colors
-// $color-green: #00d893;
-$color-green: #00A873;
-// $color-secondary: #6889ea;
-$color-secondary: #1C47CA;
+$color-green: #00D893;
+// $color-green: #00A873;
+// $color-green: #359EAB;
+$color-secondary: #6889EA;
+// $color-secondary: #1C47CA;
 $color-secondary-contrast: white;
-$color-tertiary: #005E75;
+$color-tertiary: #3571CF;
 
 // Bootstrap palette changes
-$blue: #0071eb;
+$blue: #6889EA;
 
 $color-palette: (
   $color-secondary,
   $color-tertiary,
-  #00d8cb,
-  $color-green,
+  #00D8C1,
 );
 
 // $color-accent: #45e0d6;
-$color-accent: #008057;
+$color-accent: #00D8C1;
 
 $color-text__heading: #2a3f4c;
 // $color-text__content: #808da2;
-$color-text__content: #2a2d32;
+$color-text__content: #2a3f4c;
 
-// $color-text__heading--course-details: #8db7b7;
-$color-text__heading--course-details: #4F7D7D;
+$color-text__heading--course-details: #8db7b7;
+// $color-text__heading--course-details: #507C7C;
 // $color-text__label: #8db7b7;
-$color-text__label: #4F7D7D;
+$color-text__label: #507C7C;
 $color-text__heading--course-details--accent: $color-green;
+$color-text__heading--light: #EBF4F6;
 
 $color-shop__bg: #f5f6f7;
 $color-box__shadow: #e7eeef;
 $color-shop__info: #363e48;
 
+// Body
+//
+// Settings for the `<body>` element.
+
+$body-color: $color-text__content;
+
+// Links
+//
+// Style anchor elements.
+
+$link-color: $color-secondary;
+
+// Fonts
+//
+// Font, line-height, and color for body text, headings, and more.
+$font-family-base: 'Montserrat', sans-serif;
+
+$font-weight-normal: 400;
+
+$headings-font-family: 'Montserrat', sans-serif;
+
+$headings-font-weight: 300;
 
 // Tooltips
 

@@ -55,7 +55,9 @@
     margin-top: -120px;
 
     span {
-      font-weight: 200;
+      // font-weight: 200;
+      font-size: 80%;
+      color: $color-text__heading--light;
     }
 
     @include media-breakpoint-down(md) {

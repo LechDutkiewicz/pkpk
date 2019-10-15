@@ -119,7 +119,8 @@
   }
 
   &:nth-child(even)::before {
-    color: nth($color-palette, 2);
+    // color: nth($color-palette, 2);
+    color: $color-accent;
   }
 
   &__photo {
