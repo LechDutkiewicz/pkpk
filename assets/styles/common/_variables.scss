@@ -50,16 +50,19 @@ $hamburger-layer-spacing: 5px;
 $hamburger-layer-border-radius: 0;
 
 // Colors
-$color-green: #00D893;
-// $color-green: #00A873;
-// $color-green: #359EAB;
-$color-secondary: #6889EA;
+// $color-green: #00D893; // wersja oryginalna
+$color-green: #00A873; // wersja najbardziej czytelna
+// $color-green: #359EAB; // wersja czytelna z palety
+// $color-secondary: #6889EA; // wersha czytelna z palety
+$color-secondary: #0071EB; // wersja najbardziej czytelna
 // $color-secondary: #1C47CA;
 $color-secondary-contrast: white;
-$color-tertiary: #3571CF;
+// $color-tertiary: #3571CF; // versja z palety
+$color-tertiary: #005E75; // wersja najbardziej czytelna
 
 // Bootstrap palette changes
-$blue: #6889EA;
+// $blue: #6889EA; // wersja czytelna z palety
+$blue: #0071EB; // wersja najbardziej czytelna
 
 $color-palette: (
   $color-secondary,
@@ -72,7 +75,8 @@ $color-accent: #00D8C1;
 
 $color-text__heading: #2a3f4c;
 // $color-text__content: #808da2;
-$color-text__content: #2a3f4c;
+// $color-text__content: #2a3f4c;
+$color-text__content: #2A2D32;
 
 $color-text__heading--course-details: #8db7b7;
 // $color-text__heading--course-details: #507C7C;

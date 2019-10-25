@@ -139,6 +139,7 @@ function download_certificate() {
 
     // $user_id = $_GET['id'];
   $course = $_GET['course'];
+  $course = 2763;
     //$my_nonce = $_GET['nonce'];
 
   if (! is_numeric($course)) {
@@ -159,7 +160,7 @@ function download_certificate() {
 
   $payments = App\get_payments_user_meta( $restricted_to );
     //print_r($payments);
-  $final_user = '';
+  $final_user = [];
 
   foreach($payments as $payment) {
         // check if user exist
@@ -177,7 +178,7 @@ function download_certificate() {
     }
   }
 
-  if ( empty($final_user) ) {
+  if ( empty($final_user) || is_string($user) ) {
     $user = wp_get_current_user();
     $final_user['first_name'] = $user->user_firstname;
     $final_user['last_name'] = $user->user_lastname;

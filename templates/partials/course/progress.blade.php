@@ -19,6 +19,6 @@
   </div>
   <a href="{{ get_permalink( get_page_by_title( 'Raporty' ) ) . $course->id }}" class="btn btn--border-secondary btn--large btn--full-width">{{ __('Zobacz swoje raporty', 'pkpk') }}</a>
   @if(get_field('course_cert_allowed', $course->id))
-    <a href="{{ $cert_url }}" class="btn btn--green btn--large btn--full-width">{{ __('Pobierz certyfikat ukończenia', 'pkpk') }}</a>
+    <a href="{{ $cert_url }}" class="btn btn--green btn--large btn--full-width">{{ __('Certyfikat ukończenia', 'pkpk') }}</a>
   @endif
 </div>

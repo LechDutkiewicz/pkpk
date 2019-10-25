@@ -246,10 +246,6 @@ function reports_list_meta_box($post) {
 			// echo "Czy raport jest jeszcze otwarty? : $report_is_open";
 			// echo "<br>Czy raport jest obowiązkowy? : $mandatory";
 			// echo "<br>Iteracja: $i";
-			
-			// if (!$mandatory) {
-			// 	continue;
-			// }
 
 			// jeśli raport nie jest obowiązkowy, dodaj kolejną iterację pętli
 			if ( !$mandatory ) {
@@ -286,6 +282,10 @@ function reports_list_meta_box($post) {
 							$bad_users[$userId] = [
 								'email' => $user['email']
 							];
+
+							$lesson_bad_users[$userId] = [
+								'email' => $user['email']
+							];
 						}
 					}
 
@@ -293,22 +293,6 @@ function reports_list_meta_box($post) {
 					if ( !$user_is_active && array_key_exists($userId, $bad_users) ) {
 						unset($bad_users[$userId]);
 					}
-
-					// jeśli jest to aktualna lekcja i raportowanie jest jeszcze otwarte
-					// if ( $i === 0 && $report_is_open ) {
-					// 	$max_reports = 2;
-					// }
-
-					// jeśli raport użytkownika dla danej lekcji nie istnieje, dopisz go do tablicy
-					// if ( !$userHasReport ) {            
-					// 	if ( $i === 0 ) {
-					// 		$bad_users[$userId] = [
-					// 			'email' => $user['email']
-					// 		];
-					// 	}
-					// 		$lesson_bad_users[$userId] = [
-					// 			'email' => $user['email']
-					// 		];
 
 					// echo "<br>Użytkownik $userId dodany do tablicy";
 					// echo array_key_exists($userId, $reports) ? "istnieje" : "nie istnieje";
@@ -334,13 +318,14 @@ function reports_list_meta_box($post) {
 				}
 
 			// echo "<br>Użytkownicy, który nie wypełnili danej lekcji:<br>";
-				// print_r($lesson_bad_users);
+			// print_r($lesson_bad_users);
 			// echo "<hr>";
 			}
 
-			// echo "<br>Maksymalna liczba raportów: $max_reports";
 			// echo "<br>Raporty z lekcji:<br>";
 			// print_r($reports);
+			
+			// echo "<br>Maksymalna liczba raportów: $max_reports";
 			// echo "<br>Użytkownicy, który nie wypełnili:<br>";
 			// print_r($bad_users);
 			// echo "<hr>";

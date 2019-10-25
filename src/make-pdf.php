@@ -16,6 +16,8 @@ function makePDF($user, $course_end, $upload_dir) {
     return;
   }
 
+  var_dump($user);
+
   if (! empty($user) ) {
     $user_id = $user['id'];
     $first_name = $user['first_name'];
