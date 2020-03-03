@@ -58,8 +58,41 @@
   &-heart {
 
     .wp_ulike_general_class {
-      padding: 7px 5px;
+      // padding: 7px 5px;
+      // border-radius: 5px;
+      padding: 0;
+      box-shadow: none;
+      border-radius: 0;
+      position: relative;
+    }
+
+    .wp_ulike_put_image {
+      border: 1px solid #bdbdbd;
       border-radius: 5px;
+      padding: 20px 60px 20px 15px;
+      cursor: pointer;
+      z-index: 1;
+
+      &:after {
+        left: 15px;
+        transform: translateY(-50%);
+      }
+    }
+
+    .count-box {
+      position: absolute;
+      padding: 0;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 0;
+    }
+  }
+
+  .wp_ulike_is_loading {
+
+    .wp_ulike_btn {
+      background-position: 14px center;
     }
   }
 }

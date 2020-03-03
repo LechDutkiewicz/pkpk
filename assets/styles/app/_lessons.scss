@@ -105,7 +105,9 @@
     &__report-status {
       font-weight: 400;
       @include media-breakpoint-down(xs) {
-        margin-bottom: 20px;
+        // margin-bottom: 20px;
+        display: block;
+        margin-top: 8px;
       }
 
       &.is-sended {
@@ -531,12 +533,8 @@ textarea {
 
 .comment-form-attachment {
   position: absolute;
-  width: calc(100% - 30px);
+  width: auto;
   bottom: 57px;
-
-  @include media-breakpoint-down(sm) {
-    width: calc(100% - 40px);
-  }
 
   label {
     @extend .btn;

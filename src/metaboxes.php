@@ -531,6 +531,7 @@ function pkpk_future_courses() {
 
 	// find near course
 	$courses = array();
+	
 	foreach ( $allcourses as $key => $course ) {
 		$download_id = get_field('course_download', $course->ID, false);
 		$course_meta = get_post_meta($download_id);

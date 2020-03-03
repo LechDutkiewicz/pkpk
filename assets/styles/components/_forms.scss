@@ -44,7 +44,9 @@ label[for="bpmj_edd_invoice_data_invoice_type"] {
   }
 }
 
-input,
+input[type='text'],
+input[type='email'],
+input[type='password'],
 textarea {
   border: 1px solid #c0d1d1;
   border-radius: 5px;
@@ -58,9 +60,9 @@ textarea {
     box-shadow: 0 0 28px rgba(nth($color-palette, 2), 0.18);
   }
 
-  form & {
-    appearance: none;
-  }
+  // form & {
+  //   appearance: none;
+  // }
 }
 
 label {
@@ -75,6 +77,46 @@ label {
 
   > p {
     margin-bottom: 4px;
+  }
+}
+
+input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  border: 2px solid $color-secondary;
+  border-radius: 5px;
+  color: $color-secondary;
+  margin: 0px 12px 0 0;
+  padding: 0 0 0 1px;
+  position: relative;
+  appearance: initial;
+  vertical-align: middle;
+
+  & + label {
+    position: relative;
+    width: auto;
+    margin-bottom: 0;
+
+    &::before {
+      content: "\f26b";
+      color: $color-secondary;
+      font-family: $font-family-material;
+      font-size: 0.8125rem;
+      line-height: 1;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.9);
+      transition: all 0.15s ease-in-out;
+      position: absolute;
+      top: 5px;
+      left: -27px;
+    }
+  }
+
+  &:checked + label::before {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
   }
 }
 
@@ -150,6 +192,15 @@ fieldset > label,
   > fieldset > span > legend {
     display: none;
   }
+
+  &_check {
+    margin-bottom: 18px;
+  }
+}
+
+.bpmj_edd_invoice_data_invoice_check,
+.edd-terms-agreement {
+  display: flex;
 }
 
 .shop-content {

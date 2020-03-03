@@ -50,7 +50,7 @@
         <nav class="nav-app nav-app--controls">
           <ul class="d-flex justify-content-end">
             <li><a href="{{ $course->getPath() }}">{{ __('Strona kursu', 'pkpk') }}</a></li>
-            <li class="hidden-md-down d-md-none"><a href="{{ get_permalink( get_page_by_title( 'Raporty' ) ) . $course->id }}">{{ __('Moje raporty', 'pkpk') }}</a></li>
+            <li class="d-md-none"><a href="{{ get_permalink( get_page_by_title( 'Raporty' ) ) . $course->id }}">{{ __('Moje raporty', 'pkpk') }}</a></li>
             <li class="banner__profile has-sub-menu">
               <a href="{{ get_permalink( get_page_by_title( 'Ustawienia' ) ) . $course->id  }}">
                 <span class="banner__user-hello">{{ __('Witaj', 'pkpk') }}</span>
@@ -68,7 +68,7 @@
               <div class="sub-menu">
                 <ul>
                   <li><a href="{{ $course->getPath() }}">{{ __('Moje lekcje') }}<i class="zmdi zmdi-edit"></i></a></li>
-                  <li><a href="{{ get_permalink( get_page_by_title( 'Raporty' ) ) . $course->id }}">{{ __('Moje raporty') }}<i class="zmdi zmdi-format-line-spacing"></i></a></li>
+                  <li class="d-none d-md-block"><a href="{{ get_permalink( get_page_by_title( 'Raporty' ) ) . $course->id }}">{{ __('Moje raporty') }}<i class="zmdi zmdi-format-line-spacing"></i></a></li>
                   <li><a href="{{ get_permalink( get_page_by_title( 'Ustawienia' ) ) . $course->id }}">{{ __('Ustawienia') }}<i class="zmdi zmdi-settings"></i></a></li>
                   <li class="sub-menu__log-out"><a href="{{ wp_logout_url() }}">{{ __('Wyloguj się') }}<i class="zmdi zmdi-sign-in"></i></a></li>
                 </ul>
