@@ -17,7 +17,7 @@
             <!-- Thank you page (optional) -->
             <input type="hidden" name="thankyou_url" value="<?php echo get_permalink( get_page_by_title( 'Sprawdź swój email!' ) ); ?>"/>
           	<!-- Przycisk zapisu -->
-          	<input type="submit" value="Zapisz się do Produktywnej Listy" class="btn btn--large btn--green btn--subscribe" style="top: 0"/>
+          	<input type="submit" value="Zapisz się" class="btn btn--large btn--green btn--subscribe" style="top: 0"/>
           </form>
         </div>
       </div>

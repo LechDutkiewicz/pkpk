@@ -8,6 +8,7 @@ use tpayLibs\src\_class_tpay\Utilities\Lang;
  */
 add_action('add_meta_boxes', function () {
 	add_meta_box( 'lesson-parent', esc_html__('Kurs', 'pkpk'), 'lesson_attributes_meta_box', 'lesson', 'side', 'high', null );
+	add_meta_box( 'missing-reports', esc_html__('Niewypełnione raporty (zamknięte)', 'pkpk'), 'missing_reports_meta_box', 'course', 'normal', 'high', null );
 	add_meta_box( 'lesson-list', esc_html__('Lekcje', 'pkpk'), 'lesson_list_meta_box', 'course', 'side', 'high', null );
 	add_meta_box( 'reports-list', esc_html__('Raporty', 'pkpk'), 'reports_list_meta_box', 'course', 'normal', 'high', null );
 	add_meta_box( 'course-users', esc_html__('Uczestnicy Kursu', 'pkpk'), 'course_users_meta_box', 'course', 'normal', 'high', null );
@@ -246,6 +247,7 @@ function reports_list_meta_box($post) {
 			// echo "Czy raport jest jeszcze otwarty? : $report_is_open";
 			// echo "<br>Czy raport jest obowiązkowy? : $mandatory";
 			// echo "<br>Iteracja: $i";
+			// echo "<hr>";
 
 			// jeśli raport nie jest obowiązkowy, dodaj kolejną iterację pętli
 			if ( !$mandatory ) {
@@ -333,6 +335,8 @@ function reports_list_meta_box($post) {
 			$i++;
 		}
 	}
+
+	wp_reset_query();
 
 	if ($bad_users) {
 		echo '<div><p>Lista aktywnych uczestników, którzy nie wypełnili dwóch ostatnich obowiązkowych, zamkniętych raportów, nie wypełnili obecnie otwartego (jeśli istnieje) i nie wypełnili żadnego nieobowiązkowego:</p>';
@@ -444,6 +448,256 @@ function reports_list_meta_box($post) {
 	setup_postdata( $original_post );
 }
 
+function missing_reports_meta_box($post) {
+	wp_enqueue_script( 'mytabs', get_bloginfo( 'stylesheet_directory' ). '/mytabs.js', array( 'jquery-ui-tabs' ) );
+
+	// Kinda dirty hack, wp_reset_postdata() not working
+	global $post;
+	$originalpost = $post;
+	$original_query = $wp_query;
+	$parent_id = $originalpost->ID;
+	$users = prod_userreporting_get_all_users_IDs($post->ID);
+	$course_users = course_users_info($post);
+
+	// The Query
+	$the_query = new WP_Query( array( 
+		'order' => 'DESC',
+		'post_type' => 'lesson',
+		'post_parent' => $parent_id,
+		'post_status' => 'publish',
+		'posts_per_page' => 10
+	) );
+
+	$i = 1;
+	$j = 1;
+	$max_reports = 3;
+
+	// setup vars
+
+	$nie_wypelnili_ostatnich_obowiazkowych = [];
+	$nie_wypelnili_ostatnich = [];
+
+	if ( $the_query->have_posts() ) {
+		while ( $the_query->have_posts() ) {
+			if ($i > $max_reports) {
+				break;
+			}
+
+			$the_query->the_post();
+			$reports = get_post_meta(get_the_ID(), 'prod_userreporting_reports', true);
+			$timevalid = get_post_meta(get_the_ID(), 'prod_userreporting_timevalid', true);
+			$mandatory = get_post_meta(get_the_ID(), 'prod_userreporting_mandatory', true) == "true";
+			$report_date = strtotime(get_the_time('Y/m/d'));
+			$report_expire = $report_date + $timevalid * 60 * 60;
+			$report_time_left = $report_expire - current_time('timestamp');
+			$report_is_open = false;
+
+			if ($report_time_left >= 0 || $timevalid === '0' ) {
+				$report_is_open = true;
+			}
+
+			// echo "Czy raport jest jeszcze otwarty? : $report_is_open";
+			// echo "<br>Czy raport jest obowiązkowy? : $mandatory";
+			// echo "<br>Iteracja: $i";
+			// echo "<br>Iteracja j: $j";
+			// echo "<hr>";
+
+			// jeśli raport nie jest obowiązkowy, dodaj kolejną iterację pętli
+			if ( !$mandatory ) {
+
+				$max_reports++;
+			}
+
+			if ($users) {
+
+				$lesson_bad_users = [];
+
+				foreach ($users as $user) {
+					$userHasReport = false;
+					$wpuser = get_user_by( 'email', $user['email'] );
+					$userId = $wpuser->ID;
+					$user_is_active = !in_array( 'inactive_subscriber', (array) $wpuser->roles );
+
+					// jeśli raport użytkownika dla danej lekcji istnieje lub jest jeszcze otwarty
+					if (
+						array_key_exists($userId, $reports)
+						|| ($report_is_open)
+						&& $i > 1
+						&& $mandatory
+					) {
+
+						continue;
+					}
+
+					else if ( $user_is_active ) {
+
+						if ( $mandatory ) {
+							if ( array_key_exists( $j-1, $nie_wypelnili_ostatnich_obowiazkowych) ) {
+
+								if ( array_key_exists( $userId, $nie_wypelnili_ostatnich_obowiazkowych[$j-1]) ) {
+									$nie_wypelnili_ostatnich_obowiazkowych[$j][$userId] = $user;
+								}
+
+							} else {
+								$nie_wypelnili_ostatnich_obowiazkowych[$j][$userId] = $user;
+							}
+						}
+
+						if ( array_key_exists( $i-1, $nie_wypelnili_ostatnich) ) {
+							
+							if ( array_key_exists( $userId, $nie_wypelnili_ostatnich[$i-1]) ) {
+								$nie_wypelnili_ostatnich[$i][$userId] = $user;
+							}
+						} else {
+							$nie_wypelnili_ostatnich[$i][$userId] = $user;
+						}
+					}
+				}
+			}
+			$i++;
+			$mandatory ? $j++ : false;
+		}
+	}
+
+	wp_reset_postdata();
+	wp_reset_query();
+
+	// Restore original query and post
+	$wp_query = $original_query;
+	$post = $originalpost;
+	setup_postdata( $original_post );
+	?>
+	<style>
+		.table__reports {
+			width: 100%;
+		}
+
+		.table__reports th,
+		.table__reports td {
+			width: 50%;
+		}
+
+		.table__reports thead {
+		}
+
+		.table__reports th {
+			text-align: left;
+			padding: 6px 3px;
+			background: #EBEBEB;
+			border-bottom: 1px solid grey;
+		}
+
+		.table__reports tbody td {
+			padding: 4px 3px;
+		}
+
+		.table__reports tbody tr:nth-child(even) {
+			background: #FAFAFA;
+		}
+	</style>
+	<div id="mytabs">
+		<ul class="category-tabs">
+			<li><a href="#frag1">Ostatnie 3 ob.</a></li>
+			<li><a href="#frag2">Ostatnie 2 ob.</a></li>
+			<li><a href="#frag3">Ostatni 1 ob.</a></li>
+			<li><a href="#frag4">Ostatnie 5</a></li>
+			<li><a href="#frag5">Ostatnie 4</a></li>
+		</ul>
+		<br class="clear" />
+		<div id="frag1">
+			<table cellspacing="0" class="table__reports">
+				<thead>
+					<tr>
+						<th>Imię użytkownika</th>
+						<th>Adres email</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ( $nie_wypelnili_ostatnich_obowiazkowych['3'] as $user ) : ?>
+						<tr>
+							<td><?= $user['first_name'] . " " . $user['last_name']; ?></td>
+							<td><a href="#prod-user-<?= $user['id']; ?>"><?= $user['email']; ?></a></td>
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+		<div class="hidden" id="frag2">
+			<table cellspacing="0" class="table__reports">
+				<thead>
+					<tr>
+						<th>Imię użytkownika</th>
+						<th>Adres email</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ( $nie_wypelnili_ostatnich_obowiazkowych['2'] as $user ) : ?>
+						<tr>
+							<td><?= $user['first_name'] . " " . $user['last_name']; ?></td>
+							<td><a href="#prod-user-<?= $user['id']; ?>"><?= $user['email']; ?></a></td>
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+		<div class="hidden" id="frag3">
+			<table cellspacing="0" class="table__reports">
+				<thead>
+					<tr>
+						<th>Imię użytkownika</th>
+						<th>Adres email</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ( $nie_wypelnili_ostatnich_obowiazkowych['1'] as $user ) : ?>
+						<tr>
+							<td><?= $user['first_name'] . " " . $user['last_name']; ?></td>
+							<td><a href="#prod-user-<?= $user['id']; ?>"><?= $user['email']; ?></a></td>
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+		<div class="hidden" id="frag4">
+			<table cellspacing="0" class="table__reports">
+				<thead>
+					<tr>
+						<th>Imię użytkownika</th>
+						<th>Adres email</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ( $nie_wypelnili_ostatnich['4'] as $user ) : ?>
+						<tr>
+							<td><?= $user['first_name'] . " " . $user['last_name']; ?></td>
+							<td><a href="#prod-user-<?= $user['id']; ?>"><?= $user['email']; ?></a></td>
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+		<div class="hidden" id="frag5">
+			<table cellspacing="0" class="table__reports">
+				<thead>
+					<tr>
+						<th>Imię użytkownika</th>
+						<th>Adres email</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ( $nie_wypelnili_ostatnich['5'] as $user ) : ?>
+						<tr>
+							<td><?= $user['first_name'] . " " . $user['last_name']; ?></td>
+							<td><a href="#prod-user-<?= $user['id']; ?>"><?= $user['email']; ?></a></td>
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<?php
+}
+
 /**
  * Get the Course dropdown
  */
@@ -535,10 +789,23 @@ function pkpk_future_courses() {
 	foreach ( $allcourses as $key => $course ) {
 		$download_id = get_field('course_download', $course->ID, false);
 		$course_meta = get_post_meta($download_id);
+		$course_sales = $course_meta['_edd_download_sales'];
+		$download_limit = $course_meta['_edd_download_limit'];
 		$prices = unserialize($course_meta['edd_variable_prices'][0]);
-		//print_r($course_meta);
-		//print_r( $course_meta['_edd_purchase_limit_end_date'] );
 		$purchase_end = $course_meta['_edd_purchase_limit_end_date'][0];
+
+		if ( $download_limit && $course_sales < $download_limit ) {
+			$limit_message = sprintf( _n( "There is %s place left", "There are %s places left", $download_limit[0] - $course_sales[0], "pkpk" ), number_format_i18n( $download_limit[0] - $course_sales[0] ) );
+
+			$re = '/(\D*)(\d+)(\D*)/m';
+
+			preg_match_all( $re, $limit_message, $matches, PREG_SET_ORDER, 0);
+		}
+
+		else if ( $download_limit && $course_sales == $download_limit ) {
+			$sold_out_message_1 = get_field('course_limit_counter_full', $post_id);
+			$sold_out_message_2 = get_field('course_limit_counter_full_sub', $post_id);
+		}
 
 		$courses[$key] = array(
 			'ID' => $course->ID,
@@ -546,15 +813,36 @@ function pkpk_future_courses() {
 			'start_raw' => get_field('course_start', $course->ID, false),
 			'purchase_end' => $purchase_end,
 			'downloadID' => $download_id,
+			'course_sales' => $course_sales,
+			'download_limit' => $download_limit,
+			// 'limit_message_1' => $matches[0][1],
+			// 'limit_message_2' => $matches[0][2],
+			// 'limit_message_3' => $matches[0][3],
+			// 'sold_out_message' => $sold_out_message,
+
 			'variants' => array(
 				'basic' => array(
 					'price' => $prices[1]['amount']
 				),
-				'pro' => array(
+				'plus' => array(
 					'price' => $prices[2]['amount']
-				)
+				),
+				'pro' => array(
+					'price' => $prices[3]['amount']
+				),
 			)
 		);
+
+		if ( isset($matches) && is_array($matches) ) {
+			$courses[$key]['limit_message_1'] = $matches[0][1];
+			$courses[$key]['limit_message_2'] = $matches[0][2];
+			$courses[$key]['limit_message_3'] = $matches[0][3];
+		}
+
+		if ( isset($sold_out_message_1) ) {
+			$courses[$key]['sold_out_message_1'] = $sold_out_message_1;
+			$courses[$key]['sold_out_message_2'] = $sold_out_message_2;
+		}
 	}
 	$now = date('Y-m-d H:i');
 	$future_courses = pkpk_find_closest_future_course($courses, $now, false, 'purchase_end');

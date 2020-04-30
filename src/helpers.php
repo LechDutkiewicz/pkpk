@@ -16,13 +16,13 @@ use Illuminate\Contracts\Container\Container as ContainerContract;
  */
 function sage($abstract = null, $parameters = [], ContainerContract $container = null)
 {
-    $container = $container ?: Container::getInstance();
-    if (!$abstract) {
-        return $container;
-    }
-    return $container->bound($abstract)
-    ? $container->make($abstract, $parameters)
-    : $container->make("sage.{$abstract}", $parameters);
+	$container = $container ?: Container::getInstance();
+	if (!$abstract) {
+		return $container;
+	}
+	return $container->bound($abstract)
+	? $container->make($abstract, $parameters)
+	: $container->make("sage.{$abstract}", $parameters);
 }
 
 /**
@@ -38,13 +38,13 @@ function sage($abstract = null, $parameters = [], ContainerContract $container =
  */
 function config($key = null, $default = null)
 {
-    if (is_null($key)) {
-        return sage('config');
-    }
-    if (is_array($key)) {
-        return sage('config')->set($key);
-    }
-    return sage('config')->get($key, $default);
+	if (is_null($key)) {
+		return sage('config');
+	}
+	if (is_array($key)) {
+		return sage('config')->set($key);
+	}
+	return sage('config')->get($key, $default);
 }
 
 /**
@@ -54,7 +54,7 @@ function config($key = null, $default = null)
  */
 function template($file, $data = [])
 {
-    return sage('blade')->render($file, $data);
+	return sage('blade')->render($file, $data);
 }
 
 /**
@@ -65,7 +65,7 @@ function template($file, $data = [])
  */
 function template_path($file, $data = [])
 {
-    return sage('blade')->compiledPath($file, $data);
+	return sage('blade')->compiledPath($file, $data);
 }
 
 /**
@@ -74,7 +74,7 @@ function template_path($file, $data = [])
  */
 function asset_path($asset)
 {
-    return sage('assets')->getUri($asset);
+	return sage('assets')->getUri($asset);
 }
 
 /**
@@ -83,9 +83,9 @@ function asset_path($asset)
  */
 function display_sidebar()
 {
-    static $display;
-    isset($display) || $display = apply_filters('sage/display_sidebar', false);
-    return $display;
+	static $display;
+	isset($display) || $display = apply_filters('sage/display_sidebar', false);
+	return $display;
 }
 
 /**
@@ -94,90 +94,90 @@ function display_sidebar()
  */
 function title()
 {
-    if (is_home()) {
-        if ($home = get_option('page_for_posts', true)) {
-            return get_the_title($home);
-        }
-        return __('Latest Posts', 'sage');
-    }
-    if (is_archive()) {
-        return get_the_archive_title();
-    }
-    if (is_search()) {
-        return sprintf(__('Search Results for %s', 'sage'), get_search_query());
-    }
-    if (is_404()) {
-        return __('Not Found', 'sage');
-    }
-    return get_the_title();
+	if (is_home()) {
+		if ($home = get_option('page_for_posts', true)) {
+			return get_the_title($home);
+		}
+		return __('Latest Posts', 'sage');
+	}
+	if (is_archive()) {
+		return get_the_archive_title();
+	}
+	if (is_search()) {
+		return sprintf(__('Search Results for %s', 'sage'), get_search_query());
+	}
+	if (is_404()) {
+		return __('Not Found', 'sage');
+	}
+	return get_the_title();
 }
 
 function update_slugs() {
-    $post_type = 'lesson';
+	$post_type = 'lesson';
 
-    $the_query = new WP_Query([
-      'post_type' => $post_type,
-      'posts_per_page' => -1
-  ]);
+	$the_query = new WP_Query([
+		'post_type' => $post_type,
+		'posts_per_page' => -1
+	]);
 
-    $monthnames = array(
-        'styczen',
-        'luty',
-        'marzec',
-        'kwiecien',
-        'maj',
-        'czerwiec',
-        'lipiec',
-        'sierpien',
-        'wrzesien',
-        'pazdziernik',
-        'listopad',
-        'grudzien',
-    );
+	$monthnames = array(
+		'styczen',
+		'luty',
+		'marzec',
+		'kwiecien',
+		'maj',
+		'czerwiec',
+		'lipiec',
+		'sierpien',
+		'wrzesien',
+		'pazdziernik',
+		'listopad',
+		'grudzien',
+	);
 
-    if ( $the_query->have_posts() ) {
-      while ( $the_query->have_posts() ) {
-        $the_query->the_post();
-        global $post;
-        $permalink = $post->post_name;
-        $new_permalink = $post->post_name;
+	if ( $the_query->have_posts() ) {
+		while ( $the_query->have_posts() ) {
+			$the_query->the_post();
+			global $post;
+			$permalink = $post->post_name;
+			$new_permalink = $post->post_name;
 
-        try {
-            if ( $post->post_type === 'lesson' ) {
-                $course_start = get_field('course_start', $post->post_parent, false);
-                $monthindex = date('m', strtotime($course_start));
-                $year = date('Y', strtotime($course_start));
-            } else if ( $post->post_type === 'course' ) {
-                $course_start = get_field('course_start', $post->ID, false);
-                $monthindex = date('m', strtotime($course_start));
-            } else {
-                $monthindex = intval(get_post_time( 'n', "GMT" == false, $post->ID ));
-            }
+			try {
+				if ( $post->post_type === 'lesson' ) {
+					$course_start = get_field('course_start', $post->post_parent, false);
+					$monthindex = date('m', strtotime($course_start));
+					$year = date('Y', strtotime($course_start));
+				} else if ( $post->post_type === 'course' ) {
+					$course_start = get_field('course_start', $post->ID, false);
+					$monthindex = date('m', strtotime($course_start));
+				} else {
+					$monthindex = intval(get_post_time( 'n', "GMT" == false, $post->ID ));
+				}
 
-            $monthname = $monthnames[$monthindex - 1];
-            if ( substr( $permalink, 0, 2 ) !== '20' ) {
-              $new_permalink = $year . '-' . $monthname . '-' . $post->post_name;
-          }
+				$monthname = $monthnames[$monthindex - 1];
+				if ( substr( $permalink, 0, 2 ) !== '20' ) {
+					$new_permalink = $year . '-' . $monthname . '-' . $post->post_name;
+				}
 
-          if ($permalink !== $new_permalink) {
-              $this_post = [
-                'ID' => $post->id,
-                'post_name' => $new_permalink
-            ];
+				if ($permalink !== $new_permalink) {
+					$this_post = [
+						'ID' => $post->id,
+						'post_name' => $new_permalink
+					];
 
-              // Update the post into the database
-            //   wp_update_post( $this_post );
-        }
+			  // Update the post into the database
+			//   wp_update_post( $this_post );
+				}
 
-    } catch (Exception $e) {
-        return;
-    }
-}
-/* Restore original Post Data */
-wp_reset_postdata();
-} else {
-      // no posts found
-}
+			} catch (Exception $e) {
+				return;
+			}
+		}
+		/* Restore original Post Data */
+		wp_reset_postdata();
+	} else {
+	  // no posts found
+	}
 }
 
 /**
@@ -187,22 +187,22 @@ wp_reset_postdata();
 
 function month_in_pl( $month ) {
 
-    $month_names = array(
-        1    => "stycznia",
-        2    => "lutego",
-        3    => "marca",
-        4    => "kwietnia",
-        5    => "maja",
-        6    => "czerwca",
-        7    => "lipca",
-        8    => "sierpnia",
-        9    => "września",
-        10   => "października",
-        11   => "listopada",
-        12   => "grudnia"
-    );
+	$month_names = array(
+		1    => "stycznia",
+		2    => "lutego",
+		3    => "marca",
+		4    => "kwietnia",
+		5    => "maja",
+		6    => "czerwca",
+		7    => "lipca",
+		8    => "sierpnia",
+		9    => "września",
+		10   => "października",
+		11   => "listopada",
+		12   => "grudnia"
+	);
 
-    return $month_names[$month];
+	return $month_names[$month];
 }
 
 /**
@@ -212,14 +212,60 @@ function month_in_pl( $month ) {
 
 function cta_warranty_msg( $color = 'dark', $layout = 'unset' ) {
 
-    $cta_warranty = get_field('cta_warranty', 'options-warranty');
-    $cta_warranty_tooltip = get_field('cta_warranty_tooltip', 'options-warranty');
+	$cta_warranty = get_field('cta_warranty', 'options-warranty');
+	$cta_warranty_tooltip = get_field('cta_warranty_tooltip', 'options-warranty');
 
-    if ( $cta_warranty && $cta_warranty_tooltip ) {
-        ?>
-        <span class="cta__warranty cta__warranty--<?= $color; ?> justify__content--<?= $layout; ?>" data-toggle="tooltip" data-html="true" title="<?= $cta_warranty_tooltip; ?>" data-trigger="hover focus"><span><?= $cta_warranty; ?></span><i class="fa fa-info"></i></span>
-        <?php
-    }
+	if ( $cta_warranty && $cta_warranty_tooltip ) {
+		?>
+		<span class="cta__warranty cta__warranty--<?= $color; ?> justify__content--<?= $layout; ?>" data-toggle="tooltip" data-html="true" title="<?= $cta_warranty_tooltip; ?>" data-trigger="hover focus"><span><?= $cta_warranty; ?></span><i class="fa fa-info"></i></span>
+		<?php
+	}
 
-    return false;
+	return false;
+}
+
+function cta_enroll( $ex_class = null, $size = 'large', $color = 'green', $show_sub = true ) {
+
+	global $post;
+
+	$frontpage_id = get_option( 'page_on_front' );
+
+	if ( $frontpage_id && $frontpage_id !== $post->ID ) {
+
+		$post_object = get_post($frontpage_id);
+		setup_postdata( $GLOBALS['post'] =& $post_object );
+		$GLOBALS['skip-meta'] = true;
+	}
+
+	$course = pkpk_find_closest_course();
+	$course_meta = get_post_meta($course['download_ID']);
+	$download_limit = $course_meta['_edd_download_limit'][0];
+	$course_sales = $course_meta['_edd_download_sales'][0];
+	$places_left = $download_limit - $course_sales;
+
+	$cta_anchor = get_field('cta_anchor', $frontpage_id);
+	$cta_anchor_limit = sprintf( _n( "%s place left", "%s places left", $places_left, "pkpk" ), number_format_i18n( $places_left ) );
+
+	if ( $download_limit > 0 && $places_left > 0 && $show_sub ) :
+		?>
+		<a href="#cennik" class="btn btn--<?= $size; ?> btn--<?= $color; ?> <?= $ex_class; ?> btn--withsub scroll-to-btn">
+			<?= $cta_anchor; ?>
+			<span class="btn__sub">
+				(<?= $cta_anchor_limit; ?>)
+			</span>
+		</a>
+
+		<?php
+	else :
+		?>
+		<a href="#cennik" class="btn btn--<?= $size; ?> btn--<?= $color; ?> <?= $ex_class; ?> scroll-to-btn">
+			<?= $cta_anchor; ?>
+		</a>
+		<?php
+	endif;
+
+	if ( $frontpage_id && $frontpage_id !== $post->ID ) {
+
+		wp_reset_postdata();
+	}
 }

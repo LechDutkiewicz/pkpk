@@ -46,8 +46,11 @@
     </div>
     @endif
     <div class="col-12 text-center" style="margin-top: 6rem; margin-bottom: 3rem;">
-      <a href="#cennik" class="btn btn--large btn--green scroll-to-btn">{{ __('Zapisz się do programu', 'pkpk') }}</a>
+      
+      {{ App\cta_enroll() }}
+
       {{ App\cta_warranty_msg('dark', 'center') }}
+      
     </div>
   </div>
   <div class="row justify-content-center">

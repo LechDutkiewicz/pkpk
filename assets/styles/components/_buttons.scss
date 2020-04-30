@@ -105,6 +105,45 @@
 		}
 	}
 
+	&--course-basic {
+		border-color: $course-basic;
+		background-color: $course-basic;
+		color: white;
+
+		&:hover,
+		&:focus {
+			color: white;
+			background-color: rgba($course-basic, 0.8);
+			border-color: rgba($course-basic, 0.1);
+		}
+	}
+
+	&--course-plus {
+		border-color: $course-plus;
+		background-color: $course-plus;
+		color: white;
+
+		&:hover,
+		&:focus {
+			color: white;
+			background-color: rgba($course-plus, 0.8);
+			border-color: rgba($course-plus, 0.1);
+		}
+	}
+
+	&--course-pro {
+		border-color: $course-pro;
+		background-color: $course-pro;
+		color: white;
+
+		&:hover,
+		&:focus {
+			color: white;
+			background-color: rgba($course-pro, 0.8);
+			border-color: rgba($course-pro, 0.1);
+		}
+	}
+
 	&--large {
 		font-size: 1rem;
 		padding: 17px 20px 20px;
@@ -137,6 +176,18 @@
 			background: $color-text__label;
 			color: white;
 		}
+	}
+
+	&--withsub {
+		padding-top: 26px;
+	}
+
+	&__sub {
+		color: rgba( $white, .6 );
+		display: block;
+		margin-top: 9px;
+		font-size: 13px;
+		text-transform: uppercase;
 	}
 }
 
@@ -790,5 +841,18 @@ button {
 		border-radius: 50px;
 		font-style: italic;
 		padding-right: 2px;
+	}
+}
+
+/*----------  Button w cennikach  ----------*/
+
+.btn--price {
+	width: auto;
+	padding-left: 72px;
+	padding-right: 72px;
+
+	&-thin {
+		padding-left: 22px;
+		padding-right: 22px;
 	}
 }

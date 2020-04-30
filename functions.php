@@ -139,7 +139,7 @@ function download_certificate() {
 
     // $user_id = $_GET['id'];
   $course = $_GET['course'];
-  $course = 2763;
+  // $course = 2763;
     //$my_nonce = $_GET['nonce'];
 
   if (! is_numeric($course)) {
@@ -280,46 +280,123 @@ function sort_likes($comments) {
     $comments = change_key($comments, $key, $comment->comment_ID);
 
     $liked = get_comment_meta( $comment->comment_ID, '_commentliked', true );
-    // var_dump($liked);
-    // var_dump($comment);
-    // echo count($comment->children);
-    // $children = $comment->get_children();
-    // echo "<br>DZIECI:";
-    // var_dump($children);
-    // echo "<hr>";
 
     if ($liked) {
 
-      // echo "ID polubionego postu: ". $comment->comment_ID . "<br>";
-
       $liked_comments_ids[] = $comment->comment_ID;
-      // unset($comments[$comment->comment_ID]);
 
       $children = $comment->get_children();
 
       if ( is_array($children) && count($children) > 0 ) {
         foreach ( $children as $child_key => $child_comment ) {
           $liked_comments_children_ids[] = $child_comment->comment_ID;
-          // unset($comments[$child_key]);
-          // echo "<br>" . $child_comment->comment_ID . "<br>";
         }
       }
     }
 
   }
 
-  echo "<hr>Komentarze klucze z ID:";
-
-  print_r(array_keys($comments));
-
-  echo "<hr>Polubione komentarze z ID:";
-
-  print_r($liked_comments_ids);
-
-  echo "<hr>Dzieci polubionych komentarzy z ID:";
-
-  print_r($liked_comments_children_ids);
-
   return $comments;
+}
+
+/*----------  Pobierz raporty danego użytkownika  ----------*/
+
+
+add_action( 'wp_ajax_fetch_user_reports', 'fetch_user_reports' );
+add_action( 'wp_ajax_nopriv_fetch_user_reports', 'fetch_user_reports' );
+
+function fetch_user_reports() {
+
+  if ( !isset($_POST) ) {
+    die( json_encode($reponse = 'Brak danych w tablicy POST') );
+  }
+
+  if ( array_key_exists('userid', $_POST) ) {
+    $user_id = $_POST['userid'];
+    $response = do_shortcode("[userreporting_all id=\"{$user_id}\"]");
+
+    die( json_encode($response) );
+  }
+}
+
+/*----------  Pobierz statystyki raportow danego użytkownika  ----------*/
+
+
+add_action( 'wp_ajax_fetch_user_stats', 'fetch_user_stats' );
+add_action( 'wp_ajax_nopriv_fetch_user_stats', 'fetch_user_stats' );
+
+function fetch_user_stats() {
+
+  if ( !isset($_POST) ) {
+    die( json_encode($reponse = 'Brak danych w tablicy POST') );
+  }
+
+  if ( array_key_exists('userid', $_POST) && array_key_exists('courseid', $_POST) ) {
+    $user_id = $_POST['userid'];
+    $course_id = $_POST['courseid'];
+
+    $args = array(
+      'post_parent' => $course_id,
+      'post_type'   => 'lesson', 
+      'numberposts' => -1,
+      'post_status' => 'publish' 
+    );
+
+    $the_query = new WP_Query($args);
+
+    $user_mandatory_reports = 0;
+    $user_not_mandatory_reports = 0;
+    $user_unfilled_mandatory_reports = 0;
+    $user_unfilled_not_mandatory_reports = 0;
+
+    if ( $the_query->have_posts() ) {
+      while ( $the_query->have_posts() ) {
+        $the_query->the_post();
+        $reports = get_post_meta(get_the_ID(), 'prod_userreporting_reports', true);
+        $mandatory = get_post_meta(get_the_ID(), 'prod_userreporting_mandatory', true) == "true";      
+        $lesson_id = get_the_ID();
+
+        $userHasReport = false;
+
+        if ($reports[$user_id] ) {
+          $userHasReport = true;
+        }
+
+        if ($userHasReport) {
+          if ($mandatory) {
+            $user_mandatory_reports++; 
+          } else {
+            $user_not_mandatory_reports++; 
+          }
+        } else {
+          if ($mandatory) {
+            $user_unfilled_mandatory_reports++; 
+          } else {
+            $user_unfilled_not_mandatory_reports++; 
+          }
+        }
+      }
+    }
+
+    wp_reset_postdata();
+
+    $user_mandatory_reports_success_rate = round( $user_mandatory_reports/($user_mandatory_reports + $user_unfilled_mandatory_reports), 2) * 100;
+    $user_not_mandatory_reports_success_rate = round( $user_not_mandatory_reports/($user_not_mandatory_reports + $user_unfilled_not_mandatory_reports), 2) * 100;
+
+    $response = "<ul class='user__stats'>";
+    $response .= "\n\t<li>Rodzaj | Wyp. | Niewyp. | %</li>";
+    $response .= "\n\t<li>Obow. | {$user_mandatory_reports} | {$user_unfilled_mandatory_reports} | {$user_mandatory_reports_success_rate}%</li>";
+    $response .= "\n\t<li>Nieob. | {$user_not_mandatory_reports} | {$user_unfilled_not_mandatory_reports} | {$user_not_mandatory_reports_success_rate}%</li>";
+    $response .= "\n</ul>";
+
+    // $response = [
+    //   "wypelnione_ob" => $user_mandatory_reports,
+    //   "wypelnione_nieob" => $user_not_mandatory_reports,
+    //   "niewypelnione_ob" => $user_unfilled_mandatory_reports,
+    //   "niewypelnione_nieob" => $user_unfilled_not_mandatory_reports
+    // ];
+
+    die( json_encode($response) );
+  }
 }
 

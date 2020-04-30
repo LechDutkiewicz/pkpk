@@ -17,7 +17,7 @@
       @while(have_posts()) @php(the_post())
         <div class="container container--padding">
           <div class="row">
-            <div class="col-md-9 content--app__main">
+            <div class="col-xs-12 col-md-9 content--app__main">
               <h1 class="content--app__heading">
                 {{ __('Twoje raporty', 'pkpk') }}
                 @if ($is_over)
@@ -28,7 +28,7 @@
                 @include('partials/course/reports')
               @endcomponent
             </div>
-            <div class="col-md-3 content--app__sidebar">
+            <div class="col-xs-12 col-md-3 content--app__sidebar">
               @include('partials/course/progress')
               @include('partials/course/lessons-list')
             </div>

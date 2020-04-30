@@ -1,0 +1,841 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ProduktywnoscKPK\n"
+"POT-Creation-Date: 2020-04-30 15:37+0200\n"
+"PO-Revision-Date: 2020-04-30 15:38+0200\n"
+"Last-Translator: Lech Dutkiewicz <lech@startprogress.eu>\n"
+"Language-Team: Lech Dutkiewicz <lech@startprogress.eu>\n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.13\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: style.css\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: src\n"
+"X-Poedit-SearchPath-1: templates\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: src/..metaboxes.php:9 src/metaboxes.php:10 src/post-types.php:8
+#: src/post-types.php:34
+#: src/uploads/cache/compiled/c6985900404a66bb2b2d4bad783394319b3c8d4b.php:24
+#: src/uploads/cache/compiled/c6985900404a66bb2b2d4bad783394319b3c8d4b.php:43
+msgid "Kurs"
+msgstr ""
+
+#: src/..metaboxes.php:10 src/metaboxes.php:12 src/post-types.php:60
+msgid "Lekcje"
+msgstr ""
+
+#: src/..metaboxes.php:11 src/metaboxes.php:13
+msgid "Raporty"
+msgstr ""
+
+#: src/..metaboxes.php:12 src/metaboxes.php:14
+msgid "Uczestnicy Kursu"
+msgstr ""
+
+#: src/..metaboxes.php:350 src/metaboxes.php:406
+msgid "Wypełnione"
+msgstr ""
+
+#: src/..metaboxes.php:352 src/metaboxes.php:408
+msgid "Niewypełnione"
+msgstr ""
+
+#: src/..metaboxes.php:379 src/metaboxes.php:437
+msgid "Ten kurs nie posiada żadnych lekcji z raportami."
+msgstr ""
+
+#: src/..metaboxes.php:385 src/..metaboxes.php:438 src/metaboxes.php:443
+#: src/metaboxes.php:746 src/post-types.php:66
+msgid "Dodaj nową lekcję"
+msgstr ""
+
+#: src/..metaboxes.php:422 src/metaboxes.php:730
+msgid "Zobacz"
+msgstr ""
+
+#: src/..metaboxes.php:424 src/metaboxes.php:732 src/post-types.php:16
+#: src/post-types.php:69
+msgid "Edytuj"
+msgstr ""
+
+#: src/..metaboxes.php:432 src/metaboxes.php:740
+msgid "Ten kurs nie posiada żadnych lekcji"
+msgstr ""
+
+#: src/..metaboxes.php:587 src/metaboxes.php:930
+msgid "(no parent)"
+msgstr ""
+
+#: src/..metaboxes.php:785
+msgid "Płatność możliwa przez:"
+msgstr ""
+
+#: src/..metaboxes.php:791
+msgid "oraz wiele innych"
+msgstr ""
+
+#: src/..metaboxes.php:820 src/metaboxes.php:1159
+msgid "First Name"
+msgstr ""
+
+#: src/..metaboxes.php:829 src/metaboxes.php:1168
+msgid "Last Name"
+msgstr ""
+
+#: src/..metaboxes.php:837 src/metaboxes.php:1176
+msgid "Email Address"
+msgstr ""
+
+#: src/..metaboxes.php:922
+msgid "Zapisz się - podsumowanie"
+msgstr ""
+
+#: src/..metaboxes.php:946 src/metaboxes.php:1242
+msgid "Typ kursu"
+msgstr ""
+
+#: src/..metaboxes.php:947 src/metaboxes.php:1247
+msgid "Termin"
+msgstr ""
+
+#: src/..metaboxes.php:948 src/metaboxes.php:1257
+msgid "Kwota"
+msgstr ""
+
+#: src/..metaboxes.php:984 src/metaboxes.php:1344 src/metaboxes.php:1464
+msgid "Go back"
+msgstr ""
+
+#: src/..metaboxes.php:1005 src/metaboxes.php:1495
+msgid "Zapisuję się i płacę"
+msgstr ""
+
+#: src/..metaboxes.php:1007 src/metaboxes.php:1497
+msgid "Free Download"
+msgstr ""
+
+#: src/..metaboxes.php:1119
+msgid "Have a discount code?"
+msgstr ""
+
+#: src/..metaboxes.php:1119
+msgctxt "Entering a discount code"
+msgid "Click to enter it"
+msgstr ""
+
+#: src/..metaboxes.php:1124 src/metaboxes.php:1614
+msgid "Discount"
+msgstr ""
+
+#: src/..metaboxes.php:1128 src/metaboxes.php:1618
+msgid "Enter discount"
+msgstr ""
+
+#: src/..metaboxes.php:1131 src/metaboxes.php:1621
+msgctxt "Apply discount at checkout"
+msgid "Zastosuj kod"
+msgstr ""
+
+#: src/admin.php:30
+msgid "Extra profile information"
+msgstr ""
+
+#: src/admin.php:34
+msgid "Address"
+msgstr ""
+
+#: src/admin.php:36
+msgid "My Field"
+msgstr ""
+
+#: src/admin.php:37
+msgid "Please enter your address."
+msgstr ""
+
+#: src/ajax-actions.php:6
+msgid "Cannot send email to destination. No parameter receive form AJAX call."
+msgstr ""
+
+#: src/course-app.php:510
+#, php-format
+msgid "%s <span class=\"says\">says:</span>"
+msgstr ""
+
+#: src/course-app.php:521
+#, php-format
+msgid "<strong>%1$s</strong>, %2$s"
+msgstr ""
+
+#: src/course-app.php:526
+msgid "Edit"
+msgstr ""
+
+#: src/course-app.php:530
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: src/course-app.php:547
+msgid "Odpowiedz"
+msgstr ""
+
+#: src/course-app.php:548
+msgid "Log in to Reply"
+msgstr ""
+
+#: src/filters.php:28
+msgid "kontynuuj"
+msgstr ""
+
+#: src/helpers.php:101
+msgid "Latest Posts"
+msgstr ""
+
+#: src/helpers.php:107
+#, php-format
+msgid "Search Results for %s"
+msgstr ""
+
+#: src/helpers.php:110
+msgid "Not Found"
+msgstr ""
+
+#: src/metaboxes.php:11
+msgid "Niewypełnione raporty (zamknięte)"
+msgstr ""
+
+#: src/metaboxes.php:798
+#, php-format
+msgid "There is %s place left"
+msgid_plural "There are %s places left"
+msgstr[0] "Zostało jeszcze %s wolne miejsce"
+msgstr[1] "Zostały jeszcze %s wolne miejsca"
+msgstr[2] "Zostało jeszcze %s wolnych miejsc"
+
+#: src/metaboxes.php:1155
+msgid "Informacje do założenia konta"
+msgstr ""
+
+#: src/metaboxes.php:1227 src/metaboxes.php:1238
+msgid "Podsumowanie zamówienia"
+msgstr ""
+
+#: src/metaboxes.php:1373
+msgid "Informacje o płatności"
+msgstr ""
+
+#: src/metaboxes.php:1377
+msgid "Jest to bezpieczna 128-bitowa płatność szyfrowana SSL"
+msgstr ""
+
+#: src/metaboxes.php:1415
+msgid "Karty płatnicze i przelewy"
+msgstr ""
+
+#: src/metaboxes.php:1429
+msgid "Pozostałe"
+msgstr ""
+
+#: src/metaboxes.php:1453
+msgid "Przejście do bezpiecznej płatności"
+msgstr ""
+
+#: src/metaboxes.php:1609
+msgctxt "Entering a discount code"
+msgid "Dodaj kupon zniżkowy"
+msgstr ""
+
+#: src/post-types.php:5
+msgctxt "Post Type General Name"
+msgid "Kursy"
+msgstr ""
+
+#: src/post-types.php:6
+msgctxt "Post Type Singular Name"
+msgid "Kurs"
+msgstr ""
+
+#: src/post-types.php:7
+msgid "Kursy"
+msgstr ""
+
+#: src/post-types.php:9 src/post-types.php:62
+msgid "Archiwum"
+msgstr ""
+
+#: src/post-types.php:10 src/post-types.php:63 src/post-types.php:117
+msgid "Item Attributes"
+msgstr ""
+
+#: src/post-types.php:11 src/post-types.php:64
+msgid "Rodzic:"
+msgstr ""
+
+#: src/post-types.php:12
+msgid "Wszystkie Kursy"
+msgstr ""
+
+#: src/post-types.php:13
+msgid "Dodaj nowy kurs"
+msgstr ""
+
+#: src/post-types.php:14
+msgid "Dodaj Nowy"
+msgstr ""
+
+#: src/post-types.php:15
+msgid "Nowy Kurs"
+msgstr ""
+
+#: src/post-types.php:17 src/post-types.php:70
+msgid "Aktualizuj"
+msgstr ""
+
+#: src/post-types.php:18
+msgid "Zobacz Kurs"
+msgstr ""
+
+#: src/post-types.php:19
+msgid "Zobacz Kursy"
+msgstr ""
+
+#: src/post-types.php:20
+msgid "Szukaj kursu"
+msgstr ""
+
+#: src/post-types.php:21 src/post-types.php:74 src/post-types.php:128
+msgid "Not found"
+msgstr ""
+
+#: src/post-types.php:22 src/post-types.php:75
+msgid "Not Found in Trash"
+msgstr ""
+
+#: src/post-types.php:23 src/post-types.php:76 src/post-types.php:130
+msgid "Featured Image"
+msgstr ""
+
+#: src/post-types.php:24 src/post-types.php:77 src/post-types.php:131
+msgid "Set featured image"
+msgstr ""
+
+#: src/post-types.php:25 src/post-types.php:78 src/post-types.php:132
+msgid "Remove featured image"
+msgstr ""
+
+#: src/post-types.php:26 src/post-types.php:79 src/post-types.php:133
+msgid "Use as featured image"
+msgstr ""
+
+#: src/post-types.php:27 src/post-types.php:80 src/post-types.php:134
+msgid "Insert into item"
+msgstr ""
+
+#: src/post-types.php:28 src/post-types.php:81 src/post-types.php:135
+msgid "Uploaded to this item"
+msgstr ""
+
+#: src/post-types.php:29 src/post-types.php:82 src/post-types.php:136
+msgid "Items list"
+msgstr ""
+
+#: src/post-types.php:30 src/post-types.php:83 src/post-types.php:137
+msgid "Items list navigation"
+msgstr ""
+
+#: src/post-types.php:31 src/post-types.php:84 src/post-types.php:138
+msgid "Filter items list"
+msgstr ""
+
+#: src/post-types.php:58
+msgctxt "Post Type General Name"
+msgid "Lekcje"
+msgstr ""
+
+#: src/post-types.php:59
+msgctxt "Post Type Singular Name"
+msgid "Lekcja"
+msgstr ""
+
+#: src/post-types.php:61 src/post-types.php:87
+msgid "Lekcja"
+msgstr ""
+
+#: src/post-types.php:65
+msgid "Wszystkie Lekcje"
+msgstr ""
+
+#: src/post-types.php:67 src/post-types.php:121
+msgid "Dodaj Nową"
+msgstr ""
+
+#: src/post-types.php:68
+msgid "Nowa Lekcja"
+msgstr ""
+
+#: src/post-types.php:71
+msgid "Zobacz Lekcję"
+msgstr ""
+
+#: src/post-types.php:72
+msgid "Zobacz Lekcje"
+msgstr ""
+
+#: src/post-types.php:73
+msgid "Szukaj lekcji"
+msgstr ""
+
+#: src/post-types.php:112
+msgctxt "Post Type General Name"
+msgid "Rekomendacje"
+msgstr ""
+
+#: src/post-types.php:113
+msgctxt "Post Type Singular Name"
+msgid "Rekomendacja"
+msgstr ""
+
+#: src/post-types.php:114
+msgid "Rekomendacje"
+msgstr ""
+
+#: src/post-types.php:115 src/post-types.php:141
+msgid "Rekomendacja"
+msgstr ""
+
+#: src/post-types.php:116
+msgid "Item Archives"
+msgstr ""
+
+#: src/post-types.php:118
+msgid "Parent Item:"
+msgstr ""
+
+#: src/post-types.php:119
+msgid "Wszystkie Rekomendacje"
+msgstr ""
+
+#: src/post-types.php:120
+msgid "Dodaj Nową Rekomendację"
+msgstr ""
+
+#: src/post-types.php:122
+msgid "New Item"
+msgstr ""
+
+#: src/post-types.php:123
+msgid "Edit Item"
+msgstr ""
+
+#: src/post-types.php:124
+msgid "Update Item"
+msgstr ""
+
+#: src/post-types.php:125
+msgid "View Item"
+msgstr ""
+
+#: src/post-types.php:126
+msgid "View Items"
+msgstr ""
+
+#: src/post-types.php:127
+msgid "Search Item"
+msgstr ""
+
+#: src/post-types.php:129
+msgid "Not found in Trash"
+msgstr ""
+
+#: src/post-types.php:142
+msgid "Testimonial information page."
+msgstr ""
+
+#: src/setup.php:34
+msgid "Sprawdzam!"
+msgstr ""
+
+#: src/setup.php:72
+msgid "Primary Navigation"
+msgstr ""
+
+#: src/setup.php:112
+msgid "Primary"
+msgstr ""
+
+#: src/setup.php:116
+msgid "Footer"
+msgstr ""
+
+#: src/uploads/cache/compiled/0e0db1d53e389c6830e835b0d924021717e62944.php:2
+#: src/uploads/cache/compiled/f8c928514b2c2a5404b7dc674af4c182b62de7d8.php:10
+msgid "Pages:"
+msgstr ""
+
+#: src/uploads/cache/compiled/1ac47a011e1d43d8e8f39496b73116c13bff1620.php:3
+#: src/uploads/cache/compiled/f4d6deceffc726c9db7237fe987dd42b5167ac05.php:3
+msgid "Co mówią uczestnicy?"
+msgstr ""
+
+#: src/uploads/cache/compiled/1fce317effd1bd0603b5ae5c0d2cce54cf27de9e.php:4
+msgid "Nie pamiętasz hasła?"
+msgstr ""
+
+#: src/uploads/cache/compiled/20d006d42cbb4230064190f5dcf8e27e39526e70.php:57
+#: src/uploads/cache/compiled/f1d59699dddd613bb8c64dd0a097c82be13e6d52.php:51
+msgid "Raport wysłany w terminie"
+msgstr ""
+
+#: src/uploads/cache/compiled/20d006d42cbb4230064190f5dcf8e27e39526e70.php:61
+#: src/uploads/cache/compiled/f1d59699dddd613bb8c64dd0a097c82be13e6d52.php:55
+msgid "Raport jeszcze nie wysłany"
+msgstr ""
+
+#: src/uploads/cache/compiled/20d006d42cbb4230064190f5dcf8e27e39526e70.php:64
+#: src/uploads/cache/compiled/f1d59699dddd613bb8c64dd0a097c82be13e6d52.php:58
+msgid "Nie możesz już wysłać raportu"
+msgstr ""
+
+#: src/uploads/cache/compiled/20d006d42cbb4230064190f5dcf8e27e39526e70.php:87
+msgid "Żaden raport nie został jeszcze wypełniony."
+msgstr ""
+
+#: src/uploads/cache/compiled/3351012662beb12259e83b65bc6518d93c7b1e32.php:7
+#: src/uploads/cache/compiled/5ce896fa398360363bbfe274571f96d6628a6026.php:7
+msgid "Historia Zamówień"
+msgstr ""
+
+#: src/uploads/cache/compiled/3351012662beb12259e83b65bc6518d93c7b1e32.php:11
+#: src/uploads/cache/compiled/5ce896fa398360363bbfe274571f96d6628a6026.php:11
+msgid "Wszystkie Twoje Zamówienia."
+msgstr ""
+
+#: src/uploads/cache/compiled/3351012662beb12259e83b65bc6518d93c7b1e32.php:15
+#: src/uploads/cache/compiled/5ce896fa398360363bbfe274571f96d6628a6026.php:15
+#: src/uploads/cache/compiled/8d8946fad24a33727e2231c854f9dc5a95e20d96.php:15
+msgid "Wróć na stronę główną"
+msgstr ""
+
+#: src/uploads/cache/compiled/386e64fa9a337be6f7cb789c2df1e20320ea3dfd.php:24
+#: src/uploads/cache/compiled/3878b95c298a061f281140f228a7626c02a4066a.php:30
+#: src/uploads/cache/compiled/c6985900404a66bb2b2d4bad783394319b3c8d4b.php:52
+msgid "Zaloguj się"
+msgstr ""
+
+#: src/uploads/cache/compiled/386e64fa9a337be6f7cb789c2df1e20320ea3dfd.php:26
+#: src/uploads/cache/compiled/3878b95c298a061f281140f228a7626c02a4066a.php:49
+#: src/uploads/cache/compiled/c6985900404a66bb2b2d4bad783394319b3c8d4b.php:74
+msgid "Wyloguj się"
+msgstr ""
+
+#: src/uploads/cache/compiled/386e64fa9a337be6f7cb789c2df1e20320ea3dfd.php:28
+#: src/uploads/cache/compiled/3878b95c298a061f281140f228a7626c02a4066a.php:31
+#: src/uploads/cache/compiled/c6985900404a66bb2b2d4bad783394319b3c8d4b.php:53
+msgid "Zapisz się"
+msgstr ""
+
+#: src/uploads/cache/compiled/3878b95c298a061f281140f228a7626c02a4066a.php:35
+#: src/uploads/cache/compiled/c6985900404a66bb2b2d4bad783394319b3c8d4b.php:57
+msgid "Witaj"
+msgstr ""
+
+#: src/uploads/cache/compiled/3878b95c298a061f281140f228a7626c02a4066a.php:46
+#: src/uploads/cache/compiled/c6985900404a66bb2b2d4bad783394319b3c8d4b.php:71
+msgid "Moje lekcje"
+msgstr ""
+
+#: src/uploads/cache/compiled/3878b95c298a061f281140f228a7626c02a4066a.php:47
+#: src/uploads/cache/compiled/c6985900404a66bb2b2d4bad783394319b3c8d4b.php:72
+msgid "Moje raporty"
+msgstr ""
+
+#: src/uploads/cache/compiled/3878b95c298a061f281140f228a7626c02a4066a.php:48
+#: src/uploads/cache/compiled/c6985900404a66bb2b2d4bad783394319b3c8d4b.php:73
+msgid "Ustawienia"
+msgstr ""
+
+#: src/uploads/cache/compiled/3878b95c298a061f281140f228a7626c02a4066a.php:53
+#: src/uploads/cache/compiled/c6985900404a66bb2b2d4bad783394319b3c8d4b.php:79
+#: src/uploads/cache/compiled/c6985900404a66bb2b2d4bad783394319b3c8d4b.php:86
+msgid "Przejdź do kursu"
+msgstr ""
+
+#: src/uploads/cache/compiled/4ddbe54d8ae3653c6bff143291067824cd940896.php:4
+msgid "Ustaw nowe hasło"
+msgstr ""
+
+#: src/uploads/cache/compiled/4ddbe54d8ae3653c6bff143291067824cd940896.php:5
+msgid "Wpisz nowe hasło poniżej"
+msgstr ""
+
+#: src/uploads/cache/compiled/85747755ddd8e5a9c97de4afcc08f0143f8e848b.php:10
+#, php-format
+msgctxt "comments title"
+msgid "One response to &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s responses to &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: src/uploads/cache/compiled/85747755ddd8e5a9c97de4afcc08f0143f8e848b.php:23
+msgid "&larr; Older comments"
+msgstr ""
+
+#: src/uploads/cache/compiled/85747755ddd8e5a9c97de4afcc08f0143f8e848b.php:26
+msgid "Newer comments &rarr;"
+msgstr ""
+
+#: src/uploads/cache/compiled/85747755ddd8e5a9c97de4afcc08f0143f8e848b.php:35
+msgid "Comments are closed."
+msgstr ""
+
+#: src/uploads/cache/compiled/87a11ac6a82bc91b1d7e6cb1dbb6ccfc42134951.php:10
+#: src/uploads/cache/compiled/eaf3ccb324669379569079e28d68a5250bb8900a.php:10
+msgid "Potwierdzenie zamówienia"
+msgstr ""
+
+#: src/uploads/cache/compiled/87a11ac6a82bc91b1d7e6cb1dbb6ccfc42134951.php:29
+#: src/uploads/cache/compiled/eaf3ccb324669379569079e28d68a5250bb8900a.php:29
+msgid "Dziękujemy"
+msgstr ""
+
+#: src/uploads/cache/compiled/87a11ac6a82bc91b1d7e6cb1dbb6ccfc42134951.php:33
+#: src/uploads/cache/compiled/eaf3ccb324669379569079e28d68a5250bb8900a.php:33
+msgid "Płatność została zrealizowana pomyślnie"
+msgstr ""
+
+#: src/uploads/cache/compiled/8d8946fad24a33727e2231c854f9dc5a95e20d96.php:7
+msgid "Wysłaliśmy Ci wiadomość!"
+msgstr ""
+
+#: src/uploads/cache/compiled/8d8946fad24a33727e2231c854f9dc5a95e20d96.php:11
+msgid "Sprawdź swoją skrzynkę e-mail."
+msgstr ""
+
+#: src/uploads/cache/compiled/8d8946fad24a33727e2231c854f9dc5a95e20d96.php:19
+msgid "Jeśli jednak pamiętasz hasło, wróć do logowania"
+msgstr ""
+
+#: src/uploads/cache/compiled/9be2647a9d3d9315b3f93ecde02c71ada9b70cfd.php:4
+msgid "Twoje lekcje"
+msgstr ""
+
+#: src/uploads/cache/compiled/9be2647a9d3d9315b3f93ecde02c71ada9b70cfd.php:9
+msgid "Załaduj poprzednie lekcje"
+msgstr ""
+
+#: src/uploads/cache/compiled/df6d2630648167f44f4cfbe5b6039d4a5461703b.php:21
+msgid "Najbliższy program:"
+msgstr ""
+
+#: src/uploads/cache/compiled/ec4e7adf7f71bdfc2ddd8bc72d4e455b606e0be8.php:3
+msgid "By"
+msgstr ""
+
+#: src/uploads/cache/compiled/f1d59699dddd613bb8c64dd0a097c82be13e6d52.php:64
+msgid "Przejdź do lekcji"
+msgstr ""
+
+#: src/uploads/cache/compiled/f1d59699dddd613bb8c64dd0a097c82be13e6d52.php:72
+msgid "Ten kurs nie ma żadnych lekcji"
+msgstr ""
+
+#: src/uploads/cache/compiled/f30b71d77b85a59f784d05ccaf078380f9f5227e.php:6
+msgid "Sorry, but the page you were trying to view does not exist."
+msgstr ""
+
+#: templates/history-purchases.php:3
+msgid "Your account has been successfully verified!"
+msgstr ""
+
+#: templates/history-purchases.php:18
+msgid "ID"
+msgstr ""
+
+#: templates/history-purchases.php:19
+msgid "Date"
+msgstr ""
+
+#: templates/history-purchases.php:20
+msgid "Amount"
+msgstr ""
+
+#: templates/history-purchases.php:21
+msgid "Details"
+msgstr ""
+
+#: templates/history-purchases.php:38
+msgid "Complete Purchase"
+msgstr ""
+
+#: templates/history-purchases.php:41
+msgid "View Details and Downloads"
+msgstr ""
+
+#: templates/history-purchases.php:62
+msgid "You have not made any purchases"
+msgstr ""
+
+#: templates/login-form.php:7
+msgid "Nazwa użytkownika"
+msgstr ""
+
+#: templates/login-form.php:9
+msgid "Adres e-mail"
+msgstr ""
+
+#: templates/login-form.php:11
+msgid "Nazwa użytkownika lub email"
+msgstr ""
+
+#: templates/login-form.php:18
+msgid "Hasło"
+msgstr ""
+
+#: templates/login-form.php:31
+msgid "Zaloguj"
+msgstr ""
+
+#: templates/lostpassword-form.php:6
+msgid "Adres email:"
+msgstr ""
+
+#: templates/lostpassword-form.php:8
+msgid "Username or E-mail:"
+msgstr ""
+
+#: templates/lostpassword-form.php:16
+msgid "Wyślij link"
+msgstr ""
+
+#: templates/partials/page-hero.blade.php:21
+#, php-format
+msgid "%s place left"
+msgid_plural "%s places left"
+msgstr[0] "%s wolne miejsce"
+msgstr[1] "%s wolne miejsca"
+msgstr[2] "%s wolnych miejsc"
+
+#: templates/profile-form.php:12
+msgid "Profil zaktualizowany."
+msgstr ""
+
+#: templates/profile-form.php:25
+msgid "Imię*"
+msgstr ""
+
+#: templates/profile-form.php:30
+msgid "Nazwisko*"
+msgstr ""
+
+#: templates/profile-form.php:35
+msgid "Adres e-mail*"
+msgstr ""
+
+#: templates/profile-form.php:43
+#, php-format
+msgid ""
+"There is a pending change of your e-mail to %1$s. <a href=\"%2$s\">Cancel</a>"
+msgstr ""
+
+#: templates/profile-form.php:52
+msgid "Pseudonim"
+msgstr ""
+
+#: templates/profile-form.php:57
+msgid "Wyświetlana nazwa"
+msgstr ""
+
+#: templates/profile-form.php:88
+msgid "Otrzymuj raporty mailowo"
+msgstr ""
+
+#: templates/profile-form.php:97
+msgid "Zaktualizuj profil"
+msgstr ""
+
+#: templates/profile-form.php:100 templates/resetpass-form.php:13
+msgid "Nowe hasło"
+msgstr ""
+
+#: templates/profile-form.php:111
+msgid "Powtórz nowe hasło"
+msgstr ""
+
+#: templates/profile-form.php:140
+msgid "Zmień hasło"
+msgstr ""
+
+#: templates/resetpass-form.php:13
+msgid "Strength indicator"
+msgstr ""
+
+#: templates/resetpass-form.php:22
+msgid "Confirm new password"
+msgstr ""
+
+#: templates/resetpass-form.php:31
+msgid "Resetuj hasło"
+msgstr ""
+
+#. Theme Name of the plugin/theme
+msgid "ProduktywnoscKPK"
+msgstr ""
+
+#. Theme URI of the plugin/theme
+msgid "http://produktywnosckrokpokroku.pl"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Custom theme for Piotr Nabielec"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Project:people & Thom Krupa"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://sincerelythom.com"
+msgstr ""
+
+#~ msgid "There is %s place left in the course"
+#~ msgid_plural "There are %s places left in the course"
+#~ msgstr[0] "Zostało jeszcze %s miejsce w kursie"
+#~ msgstr[1] "Zostały jeszcze %s miejsca w kursie"
+#~ msgstr[2] "Zostało jeszcze %s miejsc w kursie"
+
+#~ msgid "Zostało jeszcze %s miejsce w kursie"
+#~ msgid_plural "Zostały jeszcze %s miejsca w kursie"
+#~ msgstr[0] "Zostało jeszcze %s miejsce w kursie"
+#~ msgstr[1] "Zostały jeszcze %s miejsca w kursie"
+#~ msgstr[2] "Zostało jeszcze %s miejsc w kursie"
+
+#~ msgid ""
+#~ "<span>Zostało jeszcze</span> <span class='select-course__limit--count'>"
+#~ "%s</span> <span>miejsce w kursie</span>"
+#~ msgid_plural ""
+#~ "<span>Zostały jeszcze</span> <span class='select-course__limit--count'>"
+#~ "%s</span> <span>miejsca w kursie</span>"
+#~ msgstr[0] ""
+#~ "<span>Zostało jeszcze</span> <span class='select-course__limit--count'>"
+#~ "%s</span> <span>miejsce w kursie</span>"
+#~ msgstr[1] ""
+#~ "<span>Zostały jeszcze</span> <span class='select-course__limit--count'>"
+#~ "%s</span> <span>miejsca w kursie</span>"
+#~ msgstr[2] ""
+#~ "<span>Zostało jeszcze</span> <span class='select-course__limit--count'>"
+#~ "%s</span> <span>miejsc w kursie</span>"
+
+#~ msgid "Zostało jeszcze %s miejsc w kursie"
+#~ msgid_plural "pkpk"
+#~ msgstr[0] "Zostało jeszcze %s miejsce w kursie"
+#~ msgstr[1] "Zostały jeszcze %s miejsca w kursie"
+#~ msgstr[2] "Zostało jeszcze %s miejsc w kursie"

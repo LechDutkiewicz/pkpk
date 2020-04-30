@@ -200,3 +200,63 @@ $step-colors: (#6889ea, #00c3f4, #00d8cb, #00d893);
     }
   }
 }
+
+/*===============================================
+=            Course and reports page            =
+===============================================*/
+
+.single-course,
+.page-template-template-reports-blade {
+
+  @include media-breakpoint-down(sm) {
+
+    .content--app {
+
+      &__main {
+        order: 2;
+        margin-top: 0;
+      }
+
+      &__heading {
+        color: $color-text__content;
+        margin-top: 0;
+
+        span {
+          color: $color-text__label;
+        }
+      }
+
+      &__sidebar {
+        order: 1;
+        display: block;
+        margin-top: -210px;
+      }
+    }
+
+    .c-progress {
+      box-shadow: 0 12px 13px rgba(black, 0.09);
+      border-radius: 5px;
+      border: 1px solid rgba(#ebebeb, 0.47);
+      padding-top: 30px;
+      padding-bottom: 30px;
+      transform: translateZ(0);
+      background: white;
+      padding-left: 15px;
+      padding-right: 15px;
+      margin-bottom: 40px;
+
+      .btn {
+
+        &.btn--green {
+          display: inline-block;
+        }
+      }
+    }
+
+    .c-lessonts-list {
+      display: none;
+    }
+  }
+}
+
+/*=====  End of Course and reports page  ======*/

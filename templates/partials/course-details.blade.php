@@ -41,7 +41,7 @@
         <div class="course-details__item col-sm-4">
           <div class="course-details__item-content course-details__item-content--end">
             <p>
-              <a href="#cennik" class="btn btn--bg-transparent btn--border-green scroll-to-btn">{{ esc_html__('Zapisz się', 'pkpk') }}</a>
+              {{ App\cta_enroll('btn-bg-transparent', 'normal', 'border-green', false) }}
               <a href="#cennik" class="course-details__more-options scroll-to-btn">{{ esc_html__('Sprawdź inne terminy', 'pkpk') }} <i class="zmdi zmdi-arrow-right"></i></a>
             </p>
           </div>
@@ -138,11 +138,14 @@
         </div>
       </div>
     </div>
+    @php(wp_reset_postdata())
     <div class="col-12 text-center">
-      <a href="#cennik" class="btn btn--large btn--green scroll-to-btn">{{ __('Zapisz się do programu', 'pkpk') }}</a>
+
+      {{ App\cta_enroll() }}
+
       {{ App\cta_warranty_msg('dark', 'center') }}
+
     </div>
   </div>
 </div>
-@php(wp_reset_postdata())
 @endcomponent

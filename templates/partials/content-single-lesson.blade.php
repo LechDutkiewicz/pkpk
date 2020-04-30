@@ -50,7 +50,7 @@ $lesson_number = $lesson->currentNumber(get_the_ID());
         <div class="c-featured-comment__item bypostauthor">
           <footer class="comment-meta">
             <div class="comment-author vcard">
-              <b class="fn">{{ get_the_author_meta('user_nicename') }}</b> <span class="says">napisał:</span>
+              <b class="fn">{{ get_the_author_meta('display_name') }}</b> <span class="says">napisał:</span>
             </div>
           </footer>
           <div class="comment-content">

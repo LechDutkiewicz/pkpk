@@ -8,6 +8,10 @@ use Roots\Sage\Config;
 use Roots\Sage\Template\Blade;
 use Roots\Sage\Template\BladeProvider;
 
+// Make theme available for translation
+// Community translations can be found at https://github.com/roots/sage-translations
+define('THEME_DOMAIN','pkpk');
+
 /**
  * Theme assets
  */
@@ -49,6 +53,10 @@ add_action('after_setup_theme', function () {
     add_theme_support('soil-nav-walker');
     add_theme_support('soil-nice-search');
     add_theme_support('soil-relative-urls');
+
+  // Make theme available for translation
+  // Community translations can be found at https://github.com/roots/sage-translations
+    load_theme_textdomain( THEME_DOMAIN, get_template_directory() . '/lang');
 
     /**
      * Enable plugins to manage the document title

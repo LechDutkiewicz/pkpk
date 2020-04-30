@@ -58,9 +58,15 @@
     margin-bottom: 30px;
 
     strong,
-    b {
+    b,
+    a {
       font-weight: 800;
-      color: #fff;
+      color: $white;
+    }
+
+    a:hover,
+    a:focus {
+      color: darken( $white, .2 );
     }
 
     &:first-of-type {

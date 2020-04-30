@@ -29,3 +29,148 @@
 		}
 	}
 }
+
+/*==================================================
+=            Stylowanie w widoku lekcji            =
+==================================================*/
+
+/*----------  Lista raportów  ----------*/
+
+.postbox table.lesson__reports {
+	border-radius: 6px;
+	overflow: hidden;
+	border: none;
+
+	thead {
+
+		tr {
+
+			th {
+				background: $color-tertiary;
+				color: $white;
+				letter-spacing: .05em;
+				vertical-align: bottom;
+			}
+		}
+	}
+}
+
+.user__row {
+
+	> td {
+		border-top: 10px solid $white;
+		border-bottom: 1px solid #D3D3D3;
+
+		&:last-child {
+			position: relative;
+			overflow: hidden;
+		}
+	}
+}
+
+.user__meta {
+
+	i {
+		font-size: 14px;
+		line-height: 14px;
+		height: 14px;
+		vertical-align: middle;
+	}
+
+	a {
+		cursor: pointer;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	.spinner {
+		float: none;
+		vertical-align: middle;
+		margin: 0 0 0 6px;
+	}
+}
+
+.user__report {
+}
+
+.user__stats {
+	margin: 0;
+	padding: 0;
+	font-family: "Courier New";
+	font-size: 11px!important;
+
+	li {
+		margin: 0;
+
+		&:first-child {
+			padding-bottom: 4px;
+			margin-bottom: 4px;
+			border-bottom: 1px solid #EBEBEB;
+		}
+	}
+}
+
+.user__variant {
+
+	&--2,
+	&--3 {
+		td:last-child:before {
+			// position: absolute;
+			// right: -13px;
+			// color: $white;
+			// width: 30px;
+			// height: 30px;
+			// text-align: center;
+			// line-height: 30px;
+			// border-radius: 30px;
+			// margin-top: 7px;
+			// transform: rotate(10deg);
+			// box-shadow: 1px 1px 2px $body-color;
+			position: absolute;
+			right: -7px;
+			top: 26px;
+			color: $white;
+			height: 20px;
+			width: 60px;
+			line-height: 20px;
+			text-align: center;
+			text-transform: uppercase;
+			transform: rotate(45deg);
+			transform-origin: right;
+		}
+	}
+
+	&--2 {
+
+		background: rgba( $color-secondary, .05 );
+
+		td:last-child:before {
+			content: "plus";
+			background: $color-secondary;
+		}
+	}
+
+	&--3 {
+
+		background: rgba( $color-tertiary, .05 );
+
+		td:last-child:before {
+			content: "pro";
+			background: $color-tertiary;
+		}
+	}
+}
+
+#reportsModal {
+
+	.spinner {
+		display: block;
+		margin: 20px auto;
+		float: none;
+	}
+}
+
+
+/*=====  End of Stylowanie w widoku lekcji  ======*/

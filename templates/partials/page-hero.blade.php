@@ -11,12 +11,15 @@
       </div>
 
       <div class="page-hero__cta">
-        @php
-          $course = pkpk_find_closest_course();
-          $date = new DateTime($course['start_raw']);
-        @endphp
-        <a href="#cennik" class="btn btn--large btn--green scroll-to-btn">Zapisz się do programu</a>
+
+        {{ App\cta_enroll() }}
+
         {{ App\cta_warranty_msg("light") }}
+
+        @php
+        $course = pkpk_find_closest_course();
+        $date = new DateTime($course['start_raw']);
+        @endphp
         <p class="page-hero__closest-course">{{ esc_html__('Najbliższy program:', 'pkpk') }} {{ $date->format('d.m.Y') }}</p>
 
       </div>
