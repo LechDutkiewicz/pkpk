@@ -64,6 +64,10 @@
       color: $white;
     }
 
+    a {
+      text-decoration: underline;
+    }
+
     a:hover,
     a:focus {
       color: darken( $white, .2 );

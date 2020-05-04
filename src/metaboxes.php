@@ -802,7 +802,7 @@ function pkpk_future_courses() {
 			preg_match_all( $re, $limit_message, $matches, PREG_SET_ORDER, 0);
 		}
 
-		else if ( $download_limit && $course_sales == $download_limit ) {
+		else if ( $download_limit && $course_sales >= $download_limit ) {
 			$sold_out_message_1 = get_field('course_limit_counter_full', $post_id);
 			$sold_out_message_2 = get_field('course_limit_counter_full_sub', $post_id);
 		}

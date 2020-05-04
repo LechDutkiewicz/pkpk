@@ -32,7 +32,7 @@ $cta_full_anchor_sub = get_field('course_cta_anchor_limit_full_sub', $frontpage_
 			</div>
 		</div>
 
-		<div class="text-center" v-if="courses[selectedCourse].download_limit > 0 && (courses[selectedCourse].download_limit - courses[selectedCourse].course_sales == 0)">
+		<div class="text-center" v-if="courses[selectedCourse].download_limit > 0 && (courses[selectedCourse].download_limit - courses[selectedCourse].course_sales <= 0)">
 			<div class="select-course__limit d-none d-md-inline-block">
 				<span>@{{ courses[selectedCourse].sold_out_message_1 }}</span><span class="select-course__limit--sub">@{{ courses[selectedCourse].sold_out_message_2 }}</span>
 			</div>
@@ -72,12 +72,12 @@ $cta_full_anchor_sub = get_field('course_cta_anchor_limit_full_sub', $frontpage_
 
 					<div class="price-table__item-footer align-self-end">
 						<!-- Wyświetlane, jeśli jest jeszcze możliwe zapisanie się na kurs -->
-						<a :href="'{{ home_url('/zamowienie?edd_action=add_to_cart&download_id=') }}' + courses[selectedCourse].downloadID + '&amp;edd_options&#91;price_id&#93;=1'" class="btn btn--large btn--course-basic btn--price" v-if="!(courses[selectedCourse].download_limit > 0 && (courses[selectedCourse].download_limit - courses[selectedCourse].course_sales == 0))">{{ $cta_anchor }}</a>
+						<a :href="'{{ home_url('/zamowienie?edd_action=add_to_cart&download_id=') }}' + courses[selectedCourse].downloadID + '&amp;edd_options&#91;price_id&#93;=1'" class="btn btn--large btn--course-basic btn--price" v-if="!(courses[selectedCourse].download_limit > 0 && (courses[selectedCourse].download_limit - courses[selectedCourse].course_sales <= 0))">{{ $cta_anchor }}</a>
 
 						<!-- Wyświetlane w przypadku gdy włączone jest ograniczenie liczby uczestników i brakuje już wolnych miejsc -->
-						<div class="btn btn--large btn--course-basic btn--thin btn--withsub" @click="return function() {selectedCourse = 1, highlightDate = true; bsTooltipReflow();}()" :class="{selected: selectedCourse == 1}" v-if="courses[selectedCourse].download_limit > 0 && (courses[selectedCourse].download_limit - courses[selectedCourse].course_sales == 0)"><span>{{ $cta_full_anchor }}</span><span class="btn__sub">{{ $cta_full_anchor_sub }}</span></div>
+						<div class="btn btn--large btn--course-basic btn--thin btn--withsub" @click="return function() {selectedCourse = 1, highlightDate = true; bsTooltipReflow();}()" :class="{selected: selectedCourse == 1}" v-if="courses[selectedCourse].download_limit > 0 && (courses[selectedCourse].download_limit - courses[selectedCourse].course_sales <= 0)"><span>{{ $cta_full_anchor }}</span><span class="btn__sub">{{ $cta_full_anchor_sub }}</span></div>
 
-						<div v-if="!(courses[selectedCourse].download_limit > 0 && (courses[selectedCourse].download_limit - courses[selectedCourse].course_sales == 0))">
+						<div v-if="!(courses[selectedCourse].download_limit > 0 && (courses[selectedCourse].download_limit - courses[selectedCourse].course_sales <= 0))">
 							{{ App\cta_warranty_msg('dark', 'center') }}
 						</div>
 
@@ -124,12 +124,12 @@ $cta_full_anchor_sub = get_field('course_cta_anchor_limit_full_sub', $frontpage_
 
 					<div class="price-table__item-footer align-self-end">
 						<!-- Wyświetlane, jeśli jest jeszcze możliwe zapisanie się na kurs -->
-						<a :href="'{{ home_url('/zamowienie?edd_action=add_to_cart&download_id=') }}' + courses[selectedCourse].downloadID + '&amp;edd_options&#91;price_id&#93;=2'" class="btn btn--large btn--course-plus btn--price" v-if="!(courses[selectedCourse].download_limit > 0 && (courses[selectedCourse].download_limit - courses[selectedCourse].course_sales == 0))">{{ $cta_anchor }}</a>
+						<a :href="'{{ home_url('/zamowienie?edd_action=add_to_cart&download_id=') }}' + courses[selectedCourse].downloadID + '&amp;edd_options&#91;price_id&#93;=2'" class="btn btn--large btn--course-plus btn--price" v-if="!(courses[selectedCourse].download_limit > 0 && (courses[selectedCourse].download_limit - courses[selectedCourse].course_sales <= 0))">{{ $cta_anchor }}</a>
 
 						<!-- Wyświetlane w przypadku gdy włączone jest ograniczenie liczby uczestników i brakuje już wolnych miejsc -->
-						<div class="btn btn--large btn--course-plus btn--thin btn--withsub" @click="return function() {selectedCourse = 1, highlightDate = true; bsTooltipReflow();}()" :class="{selected: selectedCourse == 1}" v-if="courses[selectedCourse].download_limit > 0 && (courses[selectedCourse].download_limit - courses[selectedCourse].course_sales == 0)"><span>{{ $cta_full_anchor }}</span><span class="btn__sub">{{ $cta_full_anchor_sub }}</span></div>
+						<div class="btn btn--large btn--course-plus btn--thin btn--withsub" @click="return function() {selectedCourse = 1, highlightDate = true; bsTooltipReflow();}()" :class="{selected: selectedCourse == 1}" v-if="courses[selectedCourse].download_limit > 0 && (courses[selectedCourse].download_limit - courses[selectedCourse].course_sales <= 0)"><span>{{ $cta_full_anchor }}</span><span class="btn__sub">{{ $cta_full_anchor_sub }}</span></div>
 
-						<div v-if="!(courses[selectedCourse].download_limit > 0 && (courses[selectedCourse].download_limit - courses[selectedCourse].course_sales == 0))">
+						<div v-if="!(courses[selectedCourse].download_limit > 0 && (courses[selectedCourse].download_limit - courses[selectedCourse].course_sales <= 0))">
 							{{ App\cta_warranty_msg('dark', 'center') }}
 						</div>
 
@@ -181,12 +181,12 @@ $cta_full_anchor_sub = get_field('course_cta_anchor_limit_full_sub', $frontpage_
 
 					<div class="price-table__item-footer align-self-end">
 						<!-- Wyświetlane, jeśli jest jeszcze możliwe zapisanie się na kurs -->
-						<a :href="'{{ home_url('/zamowienie?edd_action=add_to_cart&download_id=') }}' + courses[selectedCourse].downloadID + '&amp;edd_options&#91;price_id&#93;=3'" class="btn btn--large btn--course-pro btn--price" v-if="!(courses[selectedCourse].download_limit > 0 && (courses[selectedCourse].download_limit - courses[selectedCourse].course_sales == 0))">{{ $cta_anchor }}</a>
+						<a :href="'{{ home_url('/zamowienie?edd_action=add_to_cart&download_id=') }}' + courses[selectedCourse].downloadID + '&amp;edd_options&#91;price_id&#93;=3'" class="btn btn--large btn--course-pro btn--price" v-if="!(courses[selectedCourse].download_limit > 0 && (courses[selectedCourse].download_limit - courses[selectedCourse].course_sales <= 0))">{{ $cta_anchor }}</a>
 
 						<!-- Wyświetlane w przypadku gdy włączone jest ograniczenie liczby uczestników i brakuje już wolnych miejsc -->
-						<div class="btn btn--large btn--course-pro btn--thin btn--withsub" @click="return function() {selectedCourse = 1, highlightDate = true; bsTooltipReflow();}()" :class="{selected: selectedCourse == 1}" v-if="courses[selectedCourse].download_limit > 0 && (courses[selectedCourse].download_limit - courses[selectedCourse].course_sales == 0)"><span>{{ $cta_full_anchor }}</span><span class="btn__sub">{{ $cta_full_anchor_sub }}</span></div>
+						<div class="btn btn--large btn--course-pro btn--thin btn--withsub" @click="return function() {selectedCourse = 1, highlightDate = true; bsTooltipReflow();}()" :class="{selected: selectedCourse == 1}" v-if="courses[selectedCourse].download_limit > 0 && (courses[selectedCourse].download_limit - courses[selectedCourse].course_sales <= 0)"><span>{{ $cta_full_anchor }}</span><span class="btn__sub">{{ $cta_full_anchor_sub }}</span></div>
 
-						<div v-if="!(courses[selectedCourse].download_limit > 0 && (courses[selectedCourse].download_limit - courses[selectedCourse].course_sales == 0))">
+						<div v-if="!(courses[selectedCourse].download_limit > 0 && (courses[selectedCourse].download_limit - courses[selectedCourse].course_sales <= 0))">
 							{{ App\cta_warranty_msg('dark', 'center') }}
 						</div>
 

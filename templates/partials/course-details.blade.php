@@ -47,6 +47,7 @@
           </div>
         </div>
       </div>
+      @php( pkpk_setup_featured_course() )
       <div class="course-details__row row">
         <div class="course-details__item col-6 col-sm-4">
           <p class="course-details__heading">
