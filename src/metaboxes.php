@@ -449,7 +449,9 @@ function reports_list_meta_box($post) {
 }
 
 function missing_reports_meta_box($post) {
-	wp_enqueue_script( 'mytabs', get_bloginfo( 'stylesheet_directory' ). '/mytabs.js', array( 'jquery-ui-tabs' ) );
+	// wp_enqueue_script( 'mytabs', get_bloginfo( 'stylesheet_directory' ). '/mytabs.js', array( 'jquery-ui-tabs' ) );
+
+	wp_enqueue_script( 'jquery-ui-tabs' );
 
 	// Kinda dirty hack, wp_reset_postdata() not working
 	global $post;
@@ -605,6 +607,8 @@ function missing_reports_meta_box($post) {
 		</ul>
 		<br class="clear" />
 		<div id="frag1">
+			<?php if ( is_array($nie_wypelnili_ostatnich_obowiazkowych['3'])
+			&& count($nie_wypelnili_ostatnich_obowiazkowych['3']) > 0 ) : ?>
 			<table cellspacing="0" class="table__reports">
 				<thead>
 					<tr>
@@ -621,8 +625,13 @@ function missing_reports_meta_box($post) {
 					<?php endforeach; ?>
 				</tbody>
 			</table>
+			<?php else: ?>
+				<p>Nie ma żadnej osoby (albo dostępnych lekcji), która spełnia te kryteria.</p>
+			<?php endif; ?>
 		</div>
 		<div class="hidden" id="frag2">
+			<?php if ( is_array($nie_wypelnili_ostatnich_obowiazkowych['2'])
+			&& count($nie_wypelnili_ostatnich_obowiazkowych['2']) > 0 ) : ?>
 			<table cellspacing="0" class="table__reports">
 				<thead>
 					<tr>
@@ -639,8 +648,13 @@ function missing_reports_meta_box($post) {
 					<?php endforeach; ?>
 				</tbody>
 			</table>
+			<?php else: ?>
+				<p>Nie ma żadnej osoby (albo dostępnych lekcji), która spełnia te kryteria.</p>
+			<?php endif; ?>
 		</div>
 		<div class="hidden" id="frag3">
+			<?php if ( is_array($nie_wypelnili_ostatnich_obowiazkowych['1'])
+			&& count($nie_wypelnili_ostatnich_obowiazkowych['1']) > 0 ) : ?>
 			<table cellspacing="0" class="table__reports">
 				<thead>
 					<tr>
@@ -657,8 +671,13 @@ function missing_reports_meta_box($post) {
 					<?php endforeach; ?>
 				</tbody>
 			</table>
+			<?php else: ?>
+				<p>Nie ma żadnej osoby (albo dostępnych lekcji), która spełnia te kryteria.</p>
+			<?php endif; ?>
 		</div>
 		<div class="hidden" id="frag4">
+			<?php if ( is_array($nie_wypelnili_ostatnich['4'])
+			&& count($nie_wypelnili_ostatnich['4']) > 0 ) : ?>
 			<table cellspacing="0" class="table__reports">
 				<thead>
 					<tr>
@@ -675,8 +694,13 @@ function missing_reports_meta_box($post) {
 					<?php endforeach; ?>
 				</tbody>
 			</table>
+			<?php else: ?>
+				<p>Nie ma żadnej osoby (albo dostępnych lekcji), która spełnia te kryteria.</p>
+			<?php endif; ?>
 		</div>
 		<div class="hidden" id="frag5">
+			<?php if ( is_array($nie_wypelnili_ostatnich['5'])
+			&& count($nie_wypelnili_ostatnich['5']) > 0 ) : ?>
 			<table cellspacing="0" class="table__reports">
 				<thead>
 					<tr>
@@ -693,6 +717,9 @@ function missing_reports_meta_box($post) {
 					<?php endforeach; ?>
 				</tbody>
 			</table>
+			<?php else: ?>
+				<p>Nie ma żadnej osoby (albo dostępnych lekcji), która spełnia te kryteria.</p>
+			<?php endif; ?>
 		</div>
 	</div>
 	<?php

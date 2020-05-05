@@ -6,7 +6,7 @@ export default {
 finalize() {
 	// JavaScript to be fired on all pages, after page specific JS is fired
 
-	if (typeof tabs !== "undefined") {
+	if ( $("#mytabs") ) {
 		$("#mytabs .hidden").removeClass('hidden');
 		$("#mytabs").tabs();
 	}
