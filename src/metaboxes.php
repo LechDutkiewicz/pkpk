@@ -8,7 +8,7 @@ use tpayLibs\src\_class_tpay\Utilities\Lang;
  */
 add_action('add_meta_boxes', function () {
 	add_meta_box( 'lesson-parent', esc_html__('Kurs', 'pkpk'), 'lesson_attributes_meta_box', 'lesson', 'side', 'high', null );
-	add_meta_box( 'missing-reports', esc_html__('Niewypełnione raporty (zamknięte)', 'pkpk'), 'missing_reports_meta_box', 'course', 'normal', 'high', null );
+	add_meta_box( 'missing-reports', esc_html__('"Czarna lista"', 'pkpk'), 'missing_reports_meta_box', 'course', 'normal', 'high', null );
 	add_meta_box( 'lesson-list', esc_html__('Lekcje', 'pkpk'), 'lesson_list_meta_box', 'course', 'side', 'high', null );
 	add_meta_box( 'reports-list', esc_html__('Raporty', 'pkpk'), 'reports_list_meta_box', 'course', 'normal', 'high', null );
 	add_meta_box( 'course-users', esc_html__('Uczestnicy Kursu', 'pkpk'), 'course_users_meta_box', 'course', 'normal', 'high', null );
@@ -213,36 +213,36 @@ function reports_list_meta_box($post) {
 	$users = prod_userreporting_get_all_users_IDs($post->ID);
 	$course_users = course_users_info($post);
 	// The Query
-	$the_query = new WP_Query( array( 
-		'order' => 'DESC',
-		'post_type' => 'lesson',
-		'post_parent' => $parent_id,
-		'post_status' => 'publish',
-		'posts_per_page' => 6
-	) );
+	// $the_query = new WP_Query( array( 
+	// 	'order' => 'DESC',
+	// 	'post_type' => 'lesson',
+	// 	'post_parent' => $parent_id,
+	// 	'post_status' => 'publish',
+	// 	'posts_per_page' => 6
+	// ) );
 
-	$i = 1;
-	$bad_users = [];
-	$max_reports = 3;
+	// $i = 1;
+	// $bad_users = [];
+	// $max_reports = 3;
 
-	if ( $the_query->have_posts() ) {
-		while ( $the_query->have_posts() ) {
-			if ($i > $max_reports) {
-				break;
-			}
+	// if ( $the_query->have_posts() ) {
+	// 	while ( $the_query->have_posts() ) {
+	// 		if ($i > $max_reports) {
+	// 			break;
+	// 		}
 
-			$the_query->the_post();
-			$reports = get_post_meta(get_the_ID(), 'prod_userreporting_reports', true);
-			$timevalid = get_post_meta(get_the_ID(), 'prod_userreporting_timevalid', true);
-			$mandatory = get_post_meta(get_the_ID(), 'prod_userreporting_mandatory', true) == "true";
-			$report_date = strtotime(get_the_time('Y/m/d'));
-			$report_expire = $report_date + $timevalid * 60 * 60;
-			$report_time_left = $report_expire - current_time('timestamp');
-			$report_is_open = false;
+	// 		$the_query->the_post();
+	// 		$reports = get_post_meta(get_the_ID(), 'prod_userreporting_reports', true);
+	// 		$timevalid = get_post_meta(get_the_ID(), 'prod_userreporting_timevalid', true);
+	// 		$mandatory = get_post_meta(get_the_ID(), 'prod_userreporting_mandatory', true) == "true";
+	// 		$report_date = strtotime(get_the_time('Y/m/d'));
+	// 		$report_expire = $report_date + $timevalid * 60 * 60;
+	// 		$report_time_left = $report_expire - current_time('timestamp');
+	// 		$report_is_open = false;
 
-			if ($report_time_left >= 0 || $timevalid === '0' ) {
-				$report_is_open = true;
-			}
+	// 		if ($report_time_left >= 0 || $timevalid === '0' ) {
+	// 			$report_is_open = true;
+	// 		}
 
 			// echo "Czy raport jest jeszcze otwarty? : $report_is_open";
 			// echo "<br>Czy raport jest obowiązkowy? : $mandatory";
@@ -250,51 +250,51 @@ function reports_list_meta_box($post) {
 			// echo "<hr>";
 
 			// jeśli raport nie jest obowiązkowy, dodaj kolejną iterację pętli
-			if ( !$mandatory ) {
+			// if ( !$mandatory ) {
 
-				$max_reports++;
-			}
+			// 	$max_reports++;
+			// }
 
-			if ($users) {
+			// if ($users) {
 
-				$lesson_bad_users = [];
+			// 	$lesson_bad_users = [];
 
-				foreach ($users as $user) {
-					$userHasReport = false;
-					$wpuser = get_user_by( 'email', $user['email'] );
-					$userId = $wpuser->ID;
-					$user_is_active = !in_array( 'inactive_subscriber', (array) $wpuser->roles );
+			// 	foreach ($users as $user) {
+			// 		$userHasReport = false;
+			// 		$wpuser = get_user_by( 'email', $user['email'] );
+			// 		$userId = $wpuser->ID;
+			// 		$user_is_active = !in_array( 'inactive_subscriber', (array) $wpuser->roles );
 
-					// jeśli raport użytkownika dla danej lekcji istnieje lub jest jeszcze otwarty
-					if ( (array_key_exists($userId, $reports) || ( $report_is_open) && $i > 1 && $mandatory ) ) {
+			// 		// jeśli raport użytkownika dla danej lekcji istnieje lub jest jeszcze otwarty
+			// 		if ( (array_key_exists($userId, $reports) || ( $report_is_open) && $i > 1 && $mandatory ) ) {
 
-						// jeśli użytkownik wcześniej trafił do tablicy niewypełnionych raportów, usuń go stamtąd
-						if ( array_key_exists($userId, $bad_users) ) {
-							unset($bad_users[$userId]);
-						}
+			// 			// jeśli użytkownik wcześniej trafił do tablicy niewypełnionych raportów, usuń go stamtąd
+			// 			if ( array_key_exists($userId, $bad_users) ) {
+			// 				unset($bad_users[$userId]);
+			// 			}
 
-						continue;
-					}
+			// 			continue;
+			// 		}
 
-					else {
+					// else {
 
-						// dodaj użytkownika do tablicy niewypełnionych raportów tylko jeśli to pierwsza iteracja pętli
-						if ( $i === 1 ) {
+					// 	// dodaj użytkownika do tablicy niewypełnionych raportów tylko jeśli to pierwsza iteracja pętli
+					// 	if ( $i === 1 ) {
 
-							$bad_users[$userId] = [
-								'email' => $user['email']
-							];
+					// 		$bad_users[$userId] = [
+					// 			'email' => $user['email']
+					// 		];
 
-							$lesson_bad_users[$userId] = [
-								'email' => $user['email']
-							];
-						}
-					}
+					// 		$lesson_bad_users[$userId] = [
+					// 			'email' => $user['email']
+					// 		];
+					// 	}
+					// }
 
 					// jeśli użytkownik nie jest aktywnym użytkownikiem a jego ID jest już w tablicy
-					if ( !$user_is_active && array_key_exists($userId, $bad_users) ) {
-						unset($bad_users[$userId]);
-					}
+					// if ( !$user_is_active && array_key_exists($userId, $bad_users) ) {
+					// 	unset($bad_users[$userId]);
+					// }
 
 					// echo "<br>Użytkownik $userId dodany do tablicy";
 					// echo array_key_exists($userId, $reports) ? "istnieje" : "nie istnieje";
@@ -317,36 +317,36 @@ function reports_list_meta_box($post) {
 					// 	unset($bad_users[$userId]);
 					// echo "<br>Użytkownik $userId usunięty metodą 33 z tablicy";
 					// }
-				}
+				// }
 
 			// echo "<br>Użytkownicy, który nie wypełnili danej lekcji:<br>";
 			// print_r($lesson_bad_users);
 			// echo "<hr>";
-			}
+			// }
 
 			// echo "<br>Raporty z lekcji:<br>";
 			// print_r($reports);
-			
+
 			// echo "<br>Maksymalna liczba raportów: $max_reports";
 			// echo "<br>Użytkownicy, który nie wypełnili:<br>";
 			// print_r($bad_users);
 			// echo "<hr>";
 
-			$i++;
-		}
-	}
+	// 		$i++;
+	// 	}
+	// }
 
-	wp_reset_query();
+	// wp_reset_query();
 
-	if ($bad_users) {
-		echo '<div><p>Lista aktywnych uczestników, którzy nie wypełnili dwóch ostatnich obowiązkowych, zamkniętych raportów, nie wypełnili obecnie otwartego (jeśli istnieje) i nie wypełnili żadnego nieobowiązkowego:</p>';
-		echo '<ol>';
-		foreach ($bad_users as $userId => $user) {
-			echo '<li><a href="#prod-user-' . $userId . '">' . $user['email'] . '</a></li>';
-		}
-		echo '</ol>';
-		echo '</div>';
-	}
+	// if ($bad_users) {
+	// 	echo '<div><p>Lista aktywnych uczestników, którzy nie wypełnili dwóch ostatnich obowiązkowych, zamkniętych raportów, nie wypełnili obecnie otwartego (jeśli istnieje) i nie wypełnili żadnego nieobowiązkowego:</p>';
+	// 	echo '<ol>';
+	// 	foreach ($bad_users as $userId => $user) {
+	// 		echo '<li><a href="#prod-user-' . $userId . '">' . $user['email'] . '</a></li>';
+	// 	}
+	// 	echo '</ol>';
+	// 	echo '</div>';
+	// }
 
 	// The Query
 	$the_query = new WP_Query( array( 
@@ -355,6 +355,7 @@ function reports_list_meta_box($post) {
 		'post_parent' => $parent_id,
 		'post_status' => 'publish',
 		'posts_per_page' => -1
+		// 'posts_per_page' => 10
 	) );
 
 	// The Loop
@@ -449,8 +450,8 @@ function reports_list_meta_box($post) {
 }
 
 function missing_reports_meta_box($post) {
-	// wp_enqueue_script( 'mytabs', get_bloginfo( 'stylesheet_directory' ). '/mytabs.js', array( 'jquery-ui-tabs' ) );
 
+	/* Dodaj skrypt jquery.ui.tabs */
 	wp_enqueue_script( 'jquery-ui-tabs' );
 
 	// Kinda dirty hack, wp_reset_postdata() not working
@@ -470,26 +471,42 @@ function missing_reports_meta_box($post) {
 		'posts_per_page' => 10
 	) );
 
-	$i = 1;
-	$j = 1;
-	$max_reports = 3;
+	$i = 1; // zmienna do przechowywania indeksów w tablicy wszystkich raportów
+	$j = 1; // zmienna do przechowywania indeksów w tablicy dla raportów obowiązkowych
+	$k = 1; // zmienna do przechowywania indeksów w tablicy dla raportów otwartych
+	$t = 1; // zmienna do przechowywania indeksów tabsów w widoku w backend
 
-	// setup vars
+	/* maksymalna ilość niewypełnionych raportów obowiązkowych z rzędu, której szukamy */
+	$max_raportow_obowiazkowych = 3;
+	$max_raportow = 5;
 
+	/* w tych tablicach przechowywana będzie lista ID użytkowników, którzy nie wypełnili ostatnich raportów */
 	$nie_wypelnili_ostatnich_obowiazkowych = [];
 	$nie_wypelnili_ostatnich = [];
+	$nie_wypelnili_aktualnego = [];
+
+	/* w tych tablicach przechowywana będzie informacja czy raporty są jeszcze zamknięte czy otwarte */
+	$status_raportow_obowiazkowych = [];
+	$status_raportow = [];
+	$status_raportow_otwartych = [];
+
+	/* w tej tablicy będzie lista uczestników, którzy nie wypełnili żadnego otwrtego raportu, 2 ostatnich obowiązkowych i żadnego nieobowiązkowego */
+	$czarna_lista = [];
 
 	if ( $the_query->have_posts() ) {
 		while ( $the_query->have_posts() ) {
-			if ($i > $max_reports) {
+			if ($i > $max_raportow_obowiazkowych) {
+				// echo "Przekroczyłem w iteracji {$i} ilość raportów obowiązkowych";
 				break;
 			}
 
 			$the_query->the_post();
+
 			$reports = get_post_meta(get_the_ID(), 'prod_userreporting_reports', true);
 			$timevalid = get_post_meta(get_the_ID(), 'prod_userreporting_timevalid', true);
 			$mandatory = get_post_meta(get_the_ID(), 'prod_userreporting_mandatory', true) == "true";
 			$report_date = strtotime(get_the_time('Y/m/d'));
+			$report_date = strtotime($post->post_date);
 			$report_expire = $report_date + $timevalid * 60 * 60;
 			$report_time_left = $report_expire - current_time('timestamp');
 			$report_is_open = false;
@@ -498,66 +515,165 @@ function missing_reports_meta_box($post) {
 				$report_is_open = true;
 			}
 
+			// if ($report_is_open) {
+			// 	continue;
+			// }
+
+
+			// echo "Data raportu: $report_date";
+			// echo "Jak długo ma być otwarty: $timevalid";
+			// echo "Kiedy się przedawnia: $report_expire";
+			// echo "Ile zostało: $report_time_left";
+			// echo "<br>";
+
 			// echo "Czy raport jest jeszcze otwarty? : $report_is_open";
 			// echo "<br>Czy raport jest obowiązkowy? : $mandatory";
 			// echo "<br>Iteracja: $i";
 			// echo "<br>Iteracja j: $j";
 			// echo "<hr>";
 
-			// jeśli raport nie jest obowiązkowy, dodaj kolejną iterację pętli
+			/* jeśli raport nie jest obowiązkowy, dodaj kolejną iterację pętli */
 			if ( !$mandatory ) {
 
-				$max_reports++;
+				// echo "Raport {$post->post_title} był nieobowiązkowy<br>";
+				$max_raportow_obowiazkowych++;
 			}
+
+			// echo "Tablica dla iteracji obowiązkowych {$j}<br>";
+			// var_dump($nie_wypelnili_ostatnich_obowiazkowych);
+			// echo "<hr>";
 
 			if ($users) {
 
 				$lesson_bad_users = [];
 
 				foreach ($users as $user) {
+					/* na początku załóż, że użytkownik nie wypełnił raportu */
 					$userHasReport = false;
 					$wpuser = get_user_by( 'email', $user['email'] );
 					$userId = $wpuser->ID;
+					/* sprawdź czy użytkownik jest aktywny w kursie */
 					$user_is_active = !in_array( 'inactive_subscriber', (array) $wpuser->roles );
 
-					// jeśli raport użytkownika dla danej lekcji istnieje lub jest jeszcze otwarty
+					if ( $i <= $max_raportow && !$report_is_open ) {
+						/* dodaj informacje o statusie raportu do tablicy o statusach wszystkich raportów */
+						$status_raportow[$i]['nazwa_raportu'] = $post->post_title;
+						$status_raportow[$i]['status'] = $report_is_open ? 'otwarty' : 'zamknięty';
+					}
+
+					if ( $report_is_open ) {
+						/* dodaj informacje o statusie raportu do tablicy o statusach otwartych raportów */
+						$status_raportow_otwartych[$k]['nazwa_raportu'] = $post->post_title;
+						$status_raportow_otwartych[$k]['status'] = 'otwarty';
+
+					} else {
+						/* dodaj informacje o statusie raportu do tablicy o statusach obowiązkowych raportów */
+						$status_raportow_obowiazkowych[$j]['nazwa_raportu'] = $post->post_title;
+						$status_raportow_obowiazkowych[$j]['status'] = 'zamknięty';
+
+					}
+
+					/* jeśli raport użytkownika dla danej lekcji istnieje lub jest jeszcze otwarty, iteruj dalej */
 					if (
-						array_key_exists($userId, $reports)
-						|| ($report_is_open)
-						&& $i > 1
-						&& $mandatory
+						( array_key_exists($userId, $reports)
+							// || ($report_is_open) )
+						// && ( $i > 1
+							&& $mandatory )
 					) {
 
+						// echo "Użytkownik {$user['first_name']} {$user['last_name']} wypełnił raport do lekcji {$post->post_title}<br>";
 						continue;
 					}
 
+					/* jeśli raportu nie ma, ale użytkownik jest dalej aktywny w kursie */
 					else if ( $user_is_active ) {
 
-						if ( $mandatory ) {
-							if ( array_key_exists( $j-1, $nie_wypelnili_ostatnich_obowiazkowych) ) {
+						// echo "Użytkownik {$user['first_name']} {$user['last_name']} nie wypełnił raport do lekcji {$post->post_title}<br>";
+						// echo "Zostanie dodany do tablicy z iteracją parametru j: {$j}, i: {$i}<br>";
 
+						/* jeśli raport jest obowiązkowy, to */
+						if ( $mandatory && !$report_is_open ) {
+
+							// echo "Tablica z czarną listą na wejściu pętli z parametrem j: {$j} i i:{$i}:</br>";
+							// var_dump($nie_wypelnili_ostatnich_obowiazkowych);
+							// echo "<br>";
+
+							/* jeśli istnieje poprzedni do obecnego indeks w tablicy raportów obowiązkowych, to */
+							if ( is_array($nie_wypelnili_ostatnich_obowiazkowych[$j-1]) && array_key_exists( $j-1, $nie_wypelnili_ostatnich_obowiazkowych) ) {
+
+								/* jeśli w indeksie poprzedniego raportu jest umieszczone ID użytkownika, to */
 								if ( array_key_exists( $userId, $nie_wypelnili_ostatnich_obowiazkowych[$j-1]) ) {
+
+									/* dodaj ID uzytkownika do indeksu o aktualnie iterowanym raporcie */
 									$nie_wypelnili_ostatnich_obowiazkowych[$j][$userId] = $user;
+									// echo "Wykonałem if nr 1.1 dla użytkownika {$user['first_name']} {$user['last_name']}</br>";
+								}
+								// echo "Wykonałem if nr 1.2 dla użytkownika {$user['first_name']} {$user['last_name']}</br>";
+
+								/* jeśli to pierwsza iteracja dla raportu obowiązkowego (bo nie ma jeszcze poprzedniego idneksu), to */
+							// } else if ( count($nie_wypelnili_ostatnich_obowiazkowych) === 0 ) {
+							} else if ( $j === 1 ) {
+
+								/* dodaj ID użytkownika do indeksu o aktualnie iterowanym raporcie */
+								$nie_wypelnili_ostatnich_obowiazkowych[$j][$userId] = $user;
+								// echo "Wykonałem if nr 2 dla użytkownika {$user['first_name']} {$user['last_name']}</br>";
+							}
+							// echo "Nie wykonałem żadnego if dla użytkownika {$user['first_name']} {$user['last_name']}</br>";
+						}
+
+						/* jeśli iteracja jest mniejsza niż maksymalna liczba raportów do śledzenia */
+						if ( $i <= $max_raportow && !$report_is_open ) {
+
+							// echo "Użytkownik {$user['first_name']} {$user['last_name']} nie wypełnił raport do lekcji {$post->post_title}<br>";
+							// echo "Zostanie dodany do tablicy wszystkich niewypełnionych z iteracją parametru j: {$j}, i: {$i}<br>";
+
+							/* jeśli istnieje poprzedni do obecnego indeks w tablicy wszystkich raportów, to */
+							if ( array_key_exists( $i-1, $nie_wypelnili_ostatnich) ) {
+
+								/* jeśli w indeksie poprzedniego raportu jest umieszczone ID użytkownika, to */
+								if ( array_key_exists( $userId, $nie_wypelnili_ostatnich[$i-1]) ) {
+
+									// echo "Użytkownik {$user['first_name']} {$user['last_name']} został dodany wg kryterium 1<br>";
+									/* dodaj ID użytkownika do indeksu o aktualnie iterowanym raporcie */
+									$nie_wypelnili_ostatnich[$i][$userId] = $user;
+								} else {
+									// echo "Użytkownik {$user['first_name']} {$user['last_name']} nie został dodany wg żadnego kryterium<br>";
 								}
 
+								/* jeśli jest to pierwsza iteracja dla wszystkich raportów (bo nie ma jeszcze poprzedniego indeksu), to */
 							} else {
-								$nie_wypelnili_ostatnich_obowiazkowych[$j][$userId] = $user;
+
+								// echo "Nie istnieje poprzedni do obecnego indeks<br>";
+								// echo "Użytkownik {$user['first_name']} {$user['last_name']} został dodany wg kryterium 2<br>";
+								/* dodaj ID użytkownika do indeksu o aktualnie iterowanym raporcie */
+								$nie_wypelnili_ostatnich[$i][$userId] = $user;
 							}
 						}
 
-						if ( array_key_exists( $i-1, $nie_wypelnili_ostatnich) ) {
-							
-							if ( array_key_exists( $userId, $nie_wypelnili_ostatnich[$i-1]) ) {
-								$nie_wypelnili_ostatnich[$i][$userId] = $user;
-							}
-						} else {
-							$nie_wypelnili_ostatnich[$i][$userId] = $user;
+						/* jeśli raport jest ciągle otwarty */
+						if ( $report_is_open ) {
+
+							/* dodaj ID użytkownika do indeksu o aktualnie iterowanym raporcie */
+							$nie_wypelnili_aktualnych[$k][$userId] = $user;
 						}
 					}
 				}
+
+				// echo "Tablica z czarną listą na wejściu pętli z parametrem j: {$j} i i:{$i}:</br>";
+				// foreach ( $nie_wypelnili_ostatnich as $lesson ) {
+				// 	echo "<ol>";
+				// 	foreach ( $lesson as $user ) {
+				// 		echo "<li>{$user['first_name']} {$user['last_name']}</li>";
+				// 	}
+				// 	echo "</ol>";
+				// 	echo "<hr style='width:30%;'>";
+				// }
+				// echo "<br>";
+				// echo "<hr>";
 			}
-			$i++;
-			$mandatory ? $j++ : false;
+			// $i++;
+			$mandatory && !$report_is_open ? $j++ : false;
+			$report_is_open ? $k++ : $i++;
 		}
 	}
 
@@ -568,6 +684,28 @@ function missing_reports_meta_box($post) {
 	$wp_query = $original_query;
 	$post = $originalpost;
 	setup_postdata( $original_post );
+
+	/* Czarna lista to najpierw Ci, którzy nie wypełnili 2 ostatnich obowiązkowych zamkniętych raportów */
+	$czarna_lista = $nie_wypelnili_ostatnich_obowiazkowych['2'];
+
+	if ( is_array($czarna_lista) ) {
+		foreach ( array_keys($czarna_lista) as $array_key ) {
+
+			/* Jeśli dana osoba nie jest na liście 4 ostatnich niewypełnionych raportów (również otwartych), usuń ją z listy. Znaczy to, że jednak coś wypełniła */
+			if ( !array_key_exists( $array_key, $nie_wypelnili_ostatnich['4']) ) {
+				unset( $czarna_lista[$array_key] );
+			}
+
+			/* Jeśli dana osoba nie jest na liście aktualnie otwartych raportów, usuń ją z listy. Znaczy to, że wypełniła których z jeszcze otwartych raportów */
+			if ( is_array($nie_wypelnili_aktualnych) ) {
+				foreach ( array_keys($nie_wypelnili_aktualnych) as $aktualne_array_key ) {
+					if ( !array_key_exists( $array_key, $nie_wypelnili_aktualnych[$aktualne_array_key]) ) {
+						unset( $czarna_lista[$array_key]);
+					}
+				}
+			}
+		}
+	}
 	?>
 	<style>
 		.table__reports {
@@ -576,7 +714,7 @@ function missing_reports_meta_box($post) {
 
 		.table__reports th,
 		.table__reports td {
-			width: 50%;
+			width: 33.33%;
 		}
 
 		.table__reports thead {
@@ -597,132 +735,170 @@ function missing_reports_meta_box($post) {
 			background: #FAFAFA;
 		}
 	</style>
+
+	<?php if ( is_array($czarna_lista) && count($czarna_lista) > 0 ) : ?>
+
+	<p>Lista aktywnych uczestników, którzy nie wypełnili dwóch ostatnich obowiązkowych, zamkniętych raportów, nie wypełnili obecnie otwartego (jeśli istnieje) i nie wypełnili żadnego nieobowiązkowego:</p>
+	<ol>
+		<?php foreach( $czarna_lista as $userId => $user ) : ?>
+			<li>
+				<a href="#prod-user-<?= $userId; ?>"><?= $user['email']; ?></a> | <a href="javascript:void(0);" data-toggle="modal" data-target="#reportsModal" data-user="<?= $user['id']; ?>" data-user-name="<?= $user['first_name']; ?> <?= $user['last_name']; ?>" style="color:#333;">
+					<small>pokaż raporty</small></a>
+				</li>
+			<?php endforeach; ?>
+		</ol>
+
+		<hr>
+	<?php endif; ?>
+
+	<h3>Informacje o ostatnich niewypełnionych raportach:</h3>
 	<div id="mytabs">
 		<ul class="category-tabs">
-			<li><a href="#frag1">Ostatnie 3 ob.</a></li>
-			<li><a href="#frag2">Ostatnie 2 ob.</a></li>
-			<li><a href="#frag3">Ostatni 1 ob.</a></li>
-			<li><a href="#frag4">Ostatnie 5</a></li>
-			<li><a href="#frag5">Ostatnie 4</a></li>
+			<?php for ( $i = 3; $i > 0; $i-- ) : ?>
+				<li><a href="#frag<?= $t; ?>"><?= $i; ?> ob. zamk.</a></li>
+				<?php $t++; ?>
+			<?php endfor; ?>
+			<?php for ( $i = 5; $i > 3; $i-- ) : ?>
+				<li><a href="#frag<?= $t; ?>"><?= $i; ?> zamk.</a></li>
+				<?php $t++; ?>
+			<?php endfor; ?>
+			<?php if ( is_array($nie_wypelnili_aktualnych) ) : ?>
+				<?php for ( $i = 1; $i <= count($nie_wypelnili_aktualnych); $i++ ) : ?>
+					<li><a href="#frag<?= $t; ?>"><?= $i ?> otw.</a></li>
+					<?php $t++; ?>
+				<?php endfor; ?>
+			<?php endif; ?>
 		</ul>
+		<?php $t = 1; ?>
 		<br class="clear" />
-		<div id="frag1">
-			<?php if ( is_array($nie_wypelnili_ostatnich_obowiazkowych['3'])
-			&& count($nie_wypelnili_ostatnich_obowiazkowych['3']) > 0 ) : ?>
-			<table cellspacing="0" class="table__reports">
-				<thead>
-					<tr>
-						<th>Imię użytkownika</th>
-						<th>Adres email</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php foreach ( $nie_wypelnili_ostatnich_obowiazkowych['3'] as $user ) : ?>
-						<tr>
-							<td><?= $user['first_name'] . " " . $user['last_name']; ?></td>
-							<td><a href="#prod-user-<?= $user['id']; ?>"><?= $user['email']; ?></a></td>
-						</tr>
+		<?php for ( $i = 3; $i > 0; $i-- ) : ?>
+			<div id="frag<?= $t; ?>">
+				<?php if (
+					is_array($nie_wypelnili_ostatnich_obowiazkowych[$i])
+					&& count($nie_wypelnili_ostatnich_obowiazkowych[$i]) > 0
+				) : ?>
+				<h4>Uwzględnione raporty</h4>
+				<div style="margin-bottom:20px">
+					<?php foreach ($status_raportow_obowiazkowych as $index => $raport): ?>
+						<?php if ($index <= $i) : ?>
+							<span style="display:inline-block;margin-right: 10px;"><?= $raport['nazwa_raportu'] ?>: <?= $raport['status']; ?>,</span>
+						<?php endif; ?>
 					<?php endforeach; ?>
-				</tbody>
-			</table>
-			<?php else: ?>
-				<p>Nie ma żadnej osoby (albo dostępnych lekcji), która spełnia te kryteria.</p>
-			<?php endif; ?>
-		</div>
-		<div class="hidden" id="frag2">
-			<?php if ( is_array($nie_wypelnili_ostatnich_obowiazkowych['2'])
-			&& count($nie_wypelnili_ostatnich_obowiazkowych['2']) > 0 ) : ?>
-			<table cellspacing="0" class="table__reports">
-				<thead>
-					<tr>
-						<th>Imię użytkownika</th>
-						<th>Adres email</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php foreach ( $nie_wypelnili_ostatnich_obowiazkowych['2'] as $user ) : ?>
+				</div>
+				<hr>
+				<table cellspacing="0" class="table__reports">
+					<thead>
 						<tr>
-							<td><?= $user['first_name'] . " " . $user['last_name']; ?></td>
-							<td><a href="#prod-user-<?= $user['id']; ?>"><?= $user['email']; ?></a></td>
+							<th>Imię użytkownika</th>
+							<th>Adres email</th>
+							<th>Raporty</th>
 						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ( $nie_wypelnili_ostatnich_obowiazkowych[$i] as $user ) : ?>
+							<tr>
+								<td><?= $user['first_name'] . " " . $user['last_name']; ?></td>
+								<td><a href="#prod-user-<?= $user['id']; ?>"><?= $user['email']; ?></a></td>
+								<td><a href="javascript:void(0);" data-toggle="modal" data-target="#reportsModal" data-user="<?= $user['id']; ?>" data-user-name="<?= $user['first_name']; ?> <?= $user['last_name']; ?>" style="color:#333;">
+									<small>pokaż raporty</small></a>
+								</td>
+							</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+				<?php else: ?>
+					<p>Nie ma żadnej osoby (albo dostępnych lekcji), która spełnia te kryteria.</p>
+				<?php endif; ?>
+			</div>
+			<?php $t++; ?>
+		<?php endfor; ?>
+		<?php for ( $i = 5; $i > 3; $i-- ) : ?>
+			<div class="hidden" id="frag<?= $t; ?>">
+				<?php if ( is_array($nie_wypelnili_ostatnich[$i])
+				&& count($nie_wypelnili_ostatnich[$i]) > 0 ) : ?>
+				<h4>Uwzględnione raporty</h4>
+				<div style="margin-bottom:20px">
+					<?php foreach ($status_raportow as $index => $raport): ?>
+						<?php if ($index <= $i) : ?>
+							<span style="display:inline-block;margin-right: 10px;"><?= $raport['nazwa_raportu'] ?>: <?= $raport['status']; ?>,</span>
+						<?php endif; ?>
 					<?php endforeach; ?>
-				</tbody>
-			</table>
-			<?php else: ?>
-				<p>Nie ma żadnej osoby (albo dostępnych lekcji), która spełnia te kryteria.</p>
-			<?php endif; ?>
-		</div>
-		<div class="hidden" id="frag3">
-			<?php if ( is_array($nie_wypelnili_ostatnich_obowiazkowych['1'])
-			&& count($nie_wypelnili_ostatnich_obowiazkowych['1']) > 0 ) : ?>
-			<table cellspacing="0" class="table__reports">
-				<thead>
-					<tr>
-						<th>Imię użytkownika</th>
-						<th>Adres email</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php foreach ( $nie_wypelnili_ostatnich_obowiazkowych['1'] as $user ) : ?>
+				</div>
+				<hr>
+				<table cellspacing="0" class="table__reports">
+					<thead>
 						<tr>
-							<td><?= $user['first_name'] . " " . $user['last_name']; ?></td>
-							<td><a href="#prod-user-<?= $user['id']; ?>"><?= $user['email']; ?></a></td>
+							<th>Imię użytkownika</th>
+							<th>Adres email</th>
+							<th>Raporty</th>
 						</tr>
-					<?php endforeach; ?>
-				</tbody>
-			</table>
-			<?php else: ?>
-				<p>Nie ma żadnej osoby (albo dostępnych lekcji), która spełnia te kryteria.</p>
-			<?php endif; ?>
-		</div>
-		<div class="hidden" id="frag4">
-			<?php if ( is_array($nie_wypelnili_ostatnich['4'])
-			&& count($nie_wypelnili_ostatnich['4']) > 0 ) : ?>
-			<table cellspacing="0" class="table__reports">
-				<thead>
-					<tr>
-						<th>Imię użytkownika</th>
-						<th>Adres email</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php foreach ( $nie_wypelnili_ostatnich['4'] as $user ) : ?>
-						<tr>
-							<td><?= $user['first_name'] . " " . $user['last_name']; ?></td>
-							<td><a href="#prod-user-<?= $user['id']; ?>"><?= $user['email']; ?></a></td>
-						</tr>
-					<?php endforeach; ?>
-				</tbody>
-			</table>
-			<?php else: ?>
-				<p>Nie ma żadnej osoby (albo dostępnych lekcji), która spełnia te kryteria.</p>
-			<?php endif; ?>
-		</div>
-		<div class="hidden" id="frag5">
-			<?php if ( is_array($nie_wypelnili_ostatnich['5'])
-			&& count($nie_wypelnili_ostatnich['5']) > 0 ) : ?>
-			<table cellspacing="0" class="table__reports">
-				<thead>
-					<tr>
-						<th>Imię użytkownika</th>
-						<th>Adres email</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php foreach ( $nie_wypelnili_ostatnich['5'] as $user ) : ?>
-						<tr>
-							<td><?= $user['first_name'] . " " . $user['last_name']; ?></td>
-							<td><a href="#prod-user-<?= $user['id']; ?>"><?= $user['email']; ?></a></td>
-						</tr>
-					<?php endforeach; ?>
-				</tbody>
-			</table>
-			<?php else: ?>
-				<p>Nie ma żadnej osoby (albo dostępnych lekcji), która spełnia te kryteria.</p>
-			<?php endif; ?>
+					</thead>
+					<tbody>
+						<?php foreach ( $nie_wypelnili_ostatnich[$i] as $user ) : ?>
+							<tr>
+								<td><?= $user['first_name'] . " " . $user['last_name']; ?></td>
+								<td><a href="#prod-user-<?= $user['id']; ?>"><?= $user['email']; ?></a></td>
+								<td><a href="javascript:void(0);" data-toggle="modal" data-target="#reportsModal" data-user="<?= $user['id']; ?>" data-user-name="<?= $user['first_name']; ?> <?= $user['last_name']; ?>">
+									<span>Pokaż raporty</span></a>
+								</td>
+							</tr>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+				<?php else: ?>
+					<p>Nie ma żadnej osoby (albo dostępnych lekcji), która spełnia te kryteria.</p>
+				<?php endif; ?>
+			</div>
+			<?php $t++; ?>
+		<?php endfor; ?>
+		<?php if ( is_array($nie_wypelnili_aktualnych) ) : ?>
+			<?php for ( $i = 1; $i <= count($nie_wypelnili_aktualnych); $i++ ) : ?>
+				<div class="hidden" id="frag<?= $i + 5; ?>">
+					<?php if ( is_array($nie_wypelnili_aktualnych[$i])
+					&& count($nie_wypelnili_aktualnych[$i]) > 0 ) : ?>
+					<h4>Uwzględniony raport</h4>
+					<div style="margin-bottom:20px">
+						<span style="display:inline-block;margin-right: 10px;"><?= $status_raportow_otwartych[$i]['nazwa_raportu'] ?>: <?= $status_raportow_otwartych[$i]['status']; ?>,</span>
+					</div>
+					<hr>
+					<table cellspacing="0" class="table__reports">
+						<thead>
+							<tr>
+								<th>Imię użytkownika</th>
+								<th>Adres email</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php foreach ( $nie_wypelnili_aktualnych[$i] as $user ) : ?>
+								<tr>
+									<td><?= $user['first_name'] . " " . $user['last_name']; ?></td>
+									<td><a href="#prod-user-<?= $user['id']; ?>"><?= $user['email']; ?></a></td>
+								</tr>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
+				<?php endif; ?>
+			</div>
+		<?php endfor; ?>
+	<?php endif; ?>
+</div>
+
+<!-- Popup z wszystkimi raportami użytkownika -->
+<div class="modal fade" id="reportsModal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title">Raporty | </h3>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body"><span class="spinner is-active"></span></div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+			</div>
 		</div>
 	</div>
-	<?php
+</div>
+<?php
 }
 
 /**

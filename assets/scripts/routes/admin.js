@@ -6,7 +6,7 @@ export default {
 finalize() {
 	// JavaScript to be fired on all pages, after page specific JS is fired
 
-	if ( $("#mytabs") ) {
+	if ( typeof $.ui !== 'undefined' && typeof $.ui.tabs !== 'undefined' && $("#mytabs").length > 0 ) {
 		$("#mytabs .hidden").removeClass('hidden');
 		$("#mytabs").tabs();
 	}
@@ -63,7 +63,7 @@ finalize() {
 			success: function(data){
 				modal.find('.modal-body').html(data);
 				/* eslint-disable no-console */
-				// console.log(data);
+				console.log(data);
 				/* eslint-enable no-console */
 			},
 			error: function(data){
