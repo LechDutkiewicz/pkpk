@@ -686,13 +686,15 @@ function missing_reports_meta_box($post) {
 	setup_postdata( $original_post );
 
 	/* Czarna lista to najpierw Ci, którzy nie wypełnili 2 ostatnich obowiązkowych zamkniętych raportów */
-	$czarna_lista = $nie_wypelnili_ostatnich_obowiazkowych['2'];
+	$czarna_lista = array_key_exists('2', $nie_wypelnili_ostatnich_obowiazkowych) ? $nie_wypelnili_ostatnich_obowiazkowych['2'] : null;
 
 	if ( is_array($czarna_lista) ) {
 		foreach ( array_keys($czarna_lista) as $array_key ) {
 
 			/* Jeśli dana osoba nie jest na liście 4 ostatnich niewypełnionych raportów (również otwartych), usuń ją z listy. Znaczy to, że jednak coś wypełniła */
-			if ( !array_key_exists( $array_key, $nie_wypelnili_ostatnich['4']) ) {
+			if (
+				array_key_exists( '4', $nie_wypelnili_ostatnich )
+				&& !array_key_exists( $array_key, $nie_wypelnili_ostatnich['4']) ) {
 				unset( $czarna_lista[$array_key] );
 			}
 

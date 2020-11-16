@@ -47,6 +47,7 @@ function save_extra_user_profile_fields( $user_id ) {
 
 	if ( !current_user_can( 'edit_user', $user_id ) ) { return false; }
 	update_user_meta( $user_id, 'report_on_email', $_POST['report_on_email'] );
+	update_user_meta( $user_id, 'accept_privacy', $_POST['accept_privacy'] );
 }
 
 if( function_exists('acf_add_options_page') ) {   

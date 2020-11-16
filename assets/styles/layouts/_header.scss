@@ -56,6 +56,10 @@
     top: 45px;
   }
 
+  [data-privacy-accepted="nie"] {
+    display: none;
+  }
+
   .logo {
     width: 215px;
     height: 100%;

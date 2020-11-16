@@ -3,7 +3,6 @@
 --}}
 
 @extends('layouts/base/app-logged-in')
-@php(the_content())
 
 @section('content')
   @php global $post @endphp

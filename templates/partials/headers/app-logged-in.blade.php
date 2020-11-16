@@ -5,10 +5,11 @@
   // $course_path = $course->getPath($course->getActiveCourse());
   $course_path = get_permalink($course->id);
   $courses = $course->getUserCourses();
+  $privacy_accepted = esc_attr( get_the_author_meta( "accept_privacy", $user->ID ) ) == "yes" ? "tak" : "nie";
 @endphp
 
 <header class="banner banner--shop banner--app-in">
-  <div class="container container--flex justify-content-center">
+  <div class="container container--flex justify-content-center" data-privacy-accepted="{{ $privacy_accepted }}">
     <div class="col-md-10 col-lg-9 col-xl-8">
       <div class="row justify-content-between align-items-center">
         <div class="d-flex align-items-center">

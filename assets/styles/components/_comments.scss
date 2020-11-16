@@ -53,6 +53,8 @@
   }
 }
 
+.wpulike-heart .wp_ulike_put_image:disabled:active, .wpulike-heart .wp_ulike_put_image:disabled:focus, .wpulike-heart .wp_ulike_put_image:disabled:hover, .wpulike-heart .wp_ulike_put_image[disabled="disabled"]:active, .wpulike-heart .wp_ulike_put_image[disabled="disabled"]:focus, .wpulike-heart .wp_ulike_put_image[disabled="disabled"]:hover
+
 .wpulike {
 
   &-heart {
@@ -76,6 +78,11 @@
       &:after {
         left: 15px;
         transform: translateY(-50%);
+      }
+
+      &:disabled:hover,
+      &:disabled:focus {
+      padding: 20px 60px 20px 15px;
       }
     }
 

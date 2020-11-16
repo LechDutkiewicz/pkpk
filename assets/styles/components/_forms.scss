@@ -268,26 +268,33 @@ form {
     }
   }
 
-  .tml-submit-wrap input[type="submit"] {
-    width: 100%;
-  }
+  // .tml-submit-wrap input[type="submit"] {
+  //   width: 100%;
+  // }
 }
 
 input[type="checkbox"].ios8-switch {
   position: absolute;
-  margin: 8px 0 0 16px;    
+  margin: 10px 0 0 16px;    
   border: 0;
+  width: 1px;
+  height: 1px;
+  left: 0;
 }
+
 input[type="checkbox"].ios8-switch + label {
   position: relative;
   padding: 5px 0 0 50px;
   line-height: 2.0em;
   margin: 10px 0 30px;
 }
+
 input[type="checkbox"].ios8-switch + label:before {
   content: "";
   position: absolute;
   display: block;
+  visibility: visible;
+  opacity: 1;
   left: 0;
   top: 0;
   width: 40px; /* x*5 */
@@ -298,6 +305,7 @@ input[type="checkbox"].ios8-switch + label:before {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
+
 input[type="checkbox"].ios8-switch + label:after {
   content: "";
   position: absolute;
@@ -312,6 +320,7 @@ input[type="checkbox"].ios8-switch + label:after {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
+
 input[type="checkbox"].ios8-switch + label:hover:after {
   box-shadow: 0 0 5px rgba(0,0,0,0.3);
 }
@@ -352,11 +361,11 @@ input[type="checkbox"].ios8-switch-sm:checked + label:after {
 /* LARGE */
 
 input[type="checkbox"].ios8-switch-lg {
-  margin: 10px 0 0 20px;
+  margin: 30px 0 0 35px;
 }
 input[type="checkbox"].ios8-switch-lg + label {
   position: relative;
-  padding: 7px 0 0 60px;
+  padding: 0 0 0 60px;
   line-height: 2.3em;
   border: 0;
 }
@@ -377,3 +386,6 @@ input[type="checkbox"].ios8-switch-lg:checked + label:after {
   margin-left: 20px; /* x*2 */
 }
 
+.asterisk {
+  color: theme-color("danger");
+}
