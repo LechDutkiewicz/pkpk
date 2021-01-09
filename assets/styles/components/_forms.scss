@@ -71,9 +71,9 @@ label {
   color: $color-text__label;
   text-transform: uppercase;
 
-  form & {
-    width: 100%;
-  }
+  // form & {
+  //   width: 100%;
+  // }
 
   > p {
     margin-bottom: 4px;

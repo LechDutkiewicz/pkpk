@@ -4,7 +4,10 @@
  * Do not edit anything in this file unless you know what you're doing
  */
 
-show_admin_bar(false);
+// show_admin_bar(false);
+if (!current_user_can('manage_options')) {
+  add_filter('show_admin_bar','__return_false');
+}
 
 // uncomment to enable error reporting
 // error_reporting(E_ALL);

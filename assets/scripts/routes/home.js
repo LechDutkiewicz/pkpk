@@ -9,7 +9,7 @@ import 'velocity-animate/velocity';
 //... some vue component imports ...
 
 Vue.use(VueResource);
-Vue.use(VueYouTubeEmbed)
+// Vue.use(VueYouTubeEmbed);
 
 export default {
 	init() {
@@ -51,12 +51,50 @@ export default {
 				notYetPopup: false
 			},
 			methods: {
+				ready (event) {
+					this.player = event;
+
+					/* ustaw player jako zmienną */
+					let player = this.player;
+
+					/* wycisz i włącz autoplay*/
+					player.mute().playVideo();
+
+					/* ustaw nakładkę na video jako zmienną */
+					let soundOverlay = document.getElementById('video-sound-overlay');
+					soundOverlay.style.display = 'block';
+
+					/* po kliknięciu w nakładkę wykonaj... */
+					soundOverlay.addEventListener("click", function(){
+						/* włącz dźwięk */
+						player.unMute();
+						/* odtwórz od początku */
+						player.seekTo(0);
+						/* usuń nakładkę z video */
+						soundOverlay.parentNode.parentNode.querySelector('.ytvideo__headline').remove();
+						soundOverlay.remove();
+
+						/* dodaj zmienne do data layer dla GTM */
+						window.dataLayer = window.dataLayer || [];
+						window.dataLayer.push({
+							"event":	"removeSoundOverlay",
+						});
+
+						/* wyślij event do facebook pixela */
+						if ( typeof fbq !== "undefined" ) {
+							fbq("trackCustom", "Video", {akcja:"play"});
+						}
+					});
+				},
 				playing: function() {
 					// The player is playing a video.
 					this.youtubePlaying = true;
 				},
 				end: function() {
-					this.youtubePlaying = false;
+					/* zacznij od początku, jeśli video ciągle jest wyciszone */
+					if (this.player.isMuted()) {
+						this.player.seekTo(0);
+					};
 				},
 				hamburger: function(){
 					this.navOpen = !this.navOpen;
@@ -169,7 +207,7 @@ export default {
 			}
 		});
 
-		$('.spin').velocity({  rotateZ: "+=360" }, { duration: 2000, easing: "linear", loop: true});
+$('.spin').velocity({  rotateZ: "+=360" }, { duration: 2000, easing: "linear", loop: true});
 
-	},
+},
 };

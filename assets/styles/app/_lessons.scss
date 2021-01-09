@@ -536,9 +536,9 @@ textarea {
 }
 
 .comment-form-attachment {
-  position: absolute;
-  width: auto;
-  bottom: 57px;
+  // position: absolute;
+  // width: auto;
+  // bottom: 57px;
 
   label {
     @extend .btn;
@@ -558,11 +558,26 @@ textarea {
     position: absolute;
     z-index: -1;
   }
+
+  span {
+
+    &:not(.required) {
+      font-size: 14px;
+    }
+  }
+
+  abbr {
+    text-decoration: none !important;
+
+    &:after {
+      content: " (" attr(title) ")";
+    }
+  }
 }
 
-.form-submit {
-  margin-top: 85px;
-}
+// .form-submit {
+//   margin-top: 85px;
+// }
 
 h2 {
   color: $color-text__heading;
