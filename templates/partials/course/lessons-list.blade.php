@@ -14,7 +14,7 @@
 @endphp
 
 @haveposts($args)
-<div class="c-lessons-list">
+<div class="c-lessons-list d-none d-md-block">
   <h3 class="c-lessons__heading sidebar-heading">{{ __('Spis treści', 'pkpk') }}</h3>
   <ul class="c-lessons-list__list">
     @query($args)

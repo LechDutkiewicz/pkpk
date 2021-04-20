@@ -1,9 +1,9 @@
 @php
-  global $post;
-  $user = wp_get_current_user();
-  $course = new App\Course();
-  $lesson = new App\Lesson();
-  $courses = $course->getUserCourses();
+global $post;
+$user = wp_get_current_user();
+$course = new App\Course();
+$lesson = new App\Lesson();
+$courses = $course->getUserCourses();
 @endphp
 
 <header class="banner banner--app" :class="bannerClass">
@@ -23,30 +23,30 @@
         </button>
 
         @if (count($courses) > 1)
-          <nav class="nav-app">
-            <ul class="d-flex justify-content-end">
-              <li class="has-sub-menu left-separator banner--app__course-name">
-                <a href="{!! the_permalink($course->id) !!}">
-                  {{ __('Kurs', 'pkpk') }} {{ the_field('course_start', $course->id) }}
-                  <i class="zmdi zmdi-chevron-down"></i>
-                </a>
+        <nav class="nav-app">
+          <ul class="d-flex justify-content-end">
+            <li class="has-sub-menu left-separator banner--app__course-name">
+              <a href="{!! the_permalink($course->id) !!}">
+                {{ __('Kurs', 'pkpk') }} {{ the_field('course_start', $course->id) }}
+                <i class="zmdi zmdi-chevron-down"></i>
+              </a>
 
-                <div class="sub-menu">
-                  <ul>
-                    @for ($i=0; $i < count($courses); $i++)
-                      @if ($courses[$i] != $course->id )
-                        <li><a href="{!! the_permalink($courses[$i]) !!}">{{ the_field('course_start', $courses[$i]) }}</a></li>
-                      @endif
-                    @endfor
-                  </ul>
-                </div>
-              </li>
-            </ul>
-          </nav>
+              <div class="sub-menu">
+                <ul>
+                  @for ($i=0; $i < count($courses); $i++)
+                  @if ($courses[$i] != $course->id )
+                  <li><a href="{!! the_permalink($courses[$i]) !!}">{{ the_field('course_start', $courses[$i]) }}</a></li>
+                  @endif
+                  @endfor
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
         @else
-          <a class="banner--app__course-name hidden-sm-down" href="{!! the_permalink($course->id) !!}">
-            {{ __('Kurs', 'pkpk') }} {{ the_field('course_start', $course->id) }}
-          </a>
+        <a class="banner--app__course-name hidden-sm-down" href="{!! the_permalink($course->id) !!}">
+          {{ __('Kurs', 'pkpk') }} {{ the_field('course_start', $course->id) }}
+        </a>
         @endif
 
         <nav class="nav-app nav-app--controls">
@@ -57,13 +57,13 @@
               <a href="{{ get_permalink( get_page_by_title( 'Ustawienia' ) ) . $course->id  }}">
                 <span class="banner__user-hello">{{ __('Witaj', 'pkpk') }}</span>
                 @if (!empty($user->user_firstname))
-                  <span class="banner__user-name">{{ $user->user_firstname }}</span>
+                <span class="banner__user-name">{{ $user->user_firstname }}</span>
                 @endif
                 @if (!empty($user->user_lastname))
-                  <span class="banner__user-name">{{ $user->user_lastname }}</span>
+                <span class="banner__user-name">{{ $user->user_lastname }}</span>
                 @endif
                 @if (empty($user->user_firstname) && empty($user->user_lastname))
-                  <span class="banner__user-name">{{ $user->user_nicename }}</span>
+                <span class="banner__user-name">{{ $user->user_nicename }}</span>
                 @endif
                 <i class="zmdi zmdi-chevron-down"></i>
               </a>
@@ -83,11 +83,14 @@
 
     @php
     $args = [
-      'post_type' => 'lesson',
-      'post_parent' => $course->id,
-      'order' => 'ASC',
+    'post_type' => 'lesson',
+    'post_parent' => $course->id,
+    'order' => 'DESC',
     ];
-    $i = 1;
+
+    $lessons_query = new WP_Query($args);
+    $i = $lessons_query->post_count;
+
     @endphp
 
     <div class="banner__lessons-list d-md-none" :class="{ 'is-open': lessonsOpen, 'hidden': !lessonsList }">
@@ -104,23 +107,26 @@
       <nav>
         <ul class="container">
           @query($args)
-            @if($lesson_id == get_the_ID())
-              <li class="active">
-                <span class="c-lessons-list__counter">{{ $i }}</span>
-                {{ the_title() }}
-              </li>
-            @else
-              <li>
-                <a href="{{ the_permalink() }}">
-                  <span class="c-lessons-list__counter">{{ $i }}</span>
-                  {{ the_title() }}
-                </a>
-              </li>
-            @endif
-            @php($i++)
+          @if($lesson_id == get_the_ID())
+          <li class="active">
+            <span class="c-lessons-list__counter">{{ $i }}</span>
+            {{ the_title() }}
+          </li>
+          @else
+          <li>
+            <a href="{{ the_permalink() }}">
+              <span class="c-lessons-list__counter">{{ $i }}</span>
+              {{ the_title() }}
+            </a>
+          </li>
+          @endif
+          @php($i--)
           @endquery
         </ul>
       </nav>
     </div>
+
+    @php(wp_reset_postdata())
+
   </div>
 </header>

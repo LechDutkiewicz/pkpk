@@ -9,7 +9,7 @@ import 'velocity-animate/velocity';
 //... some vue component imports ...
 
 Vue.use(VueResource);
-// Vue.use(VueYouTubeEmbed);
+Vue.use(VueYouTubeEmbed);
 
 export default {
 	init() {

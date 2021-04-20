@@ -216,6 +216,10 @@ fieldset > label,
   }
 }
 
+.wpcf7-form label {
+  width: 100%;
+}
+
 form {
   &[name="lostpasswordform"] .tml-user-login-wrap {
     margin-bottom: 25px;

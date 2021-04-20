@@ -3,7 +3,7 @@
   background-position: center;
   //background-attachment: fixed;
   display: flex;
-  align-items: flex-end;
+  // align-items: flex-end;
 
   @include media-breakpoint-down(md) {
     padding-top: 190px;
@@ -14,8 +14,18 @@
   }
 
   @include media-breakpoint-up(lg) {
-    height: 690px;
-    padding-bottom: 12vh;
+    // height: 690px;
+    height: 100vh;
+    max-height: 700px;
+    padding-top: 150px;
+  }
+
+  // @media (min-width: 1350px) {
+  //   padding-bottom: 12vh;
+  // }
+
+  @include media-breakpoint-up(xl) {
+    padding-bottom: 0;
   }
 
   
@@ -113,7 +123,7 @@
       max-width: calc(50% + 15px);
       flex: 0 0 calc(50% + 15px);
       margin-right: -15px;
-      align-self: baseline;
+      // align-self: baseline;
     }
 
     @include media-breakpoint-up(xl) {

@@ -111,14 +111,14 @@ Theme My Login will always look in your theme's directory first, before using th
 			<input class="hidden" value=" " /><!-- #24364 workaround -->
 			<div>
 				<span class="password-input-wrapper0">
-					<input type="password" name="pass1" id="password1" value="" autocomplete="off" aria-describedby="pass-strength-result"/>
+					<input type="password" name="pass1" id="password1" value="" autocomplete="new-password" aria-describedby="pass-strength-result"/>
 				</span>
 				<div id="pass-strength-result" aria-live="polite"></div>
 			</div>
 		</div>
 		<div class="form-field">
 			<label for="password2"><?php _e( 'Powtórz nowe hasło', 'theme-my-login' ); ?></label>
-			<input name="pass2" id="password2" type="password" class="regular-text" value="" autocomplete="off"/>
+			<input name="pass2" id="password2" type="password" class="regular-text" value="" autocomplete="new-password"/>
 		</div>
 
 		<script type='text/javascript'>

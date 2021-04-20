@@ -27,7 +27,7 @@
     <div :class="['page-hero__video order-1 order-lg-3', { playing: youtubePlaying == true }]">
       <div class="ytvideo__headline"><i class="zmdi zmdi-volume-up"></i><strong>Upewnij się, że masz włączony dźwięk!</strong> (Poczekaj proszę na pełne załadowanie filmu)</div>
       <div class="ytvideo-holder">
-        <!-- <youtube video-id="{{ the_field('hero_video_id') }}" player-width="100%" player-height="100%" @ready="ready" @ended="end" :player-vars="{autoplay: 1, controls: 2, cc_load_policy: 1, color: 'white', enablejsapi: 1, hl: 'pl', loop: 1, modestbranding: 1, origin: 'produktywnosckrokpokroku.pl', playsingline: 1, showinfo: 0}"></youtube> -->
+        <youtube video-id="{{ the_field('hero_video_id') }}" player-width="100%" player-height="100%" @ready="ready" @ended="end" :player-vars="{autoplay: 1, controls: 2, cc_load_policy: 1, color: 'white', enablejsapi: 1, hl: 'pl', loop: 1, modestbranding: 1, origin: 'produktywnosckrokpokroku.pl', playsingline: 1, showinfo: 0}"></youtube>
         <div id="video-sound-overlay">
           <div class="unmute-button">
             <img src="{{ App\asset_path('images/soundbutton-pkpk.png') }}" alt="Kliknij żeby włączyć dźwięk">
