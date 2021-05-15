@@ -33,7 +33,7 @@ $courses = $course->getUserCourses();
                 <ul>
                   @for ($i=0; $i < count($courses); $i++)
                   @if ($courses[$i] != $course->id )
-                  <li><a href="{!! the_permalink($courses[$i]) !!}">{{ the_field('course_start', $courses[$i]) }}</a></li>
+                  <li><a class="sub-menu__item" href="{!! the_permalink($courses[$i]) !!}">{{ the_field('course_start', $courses[$i]) }}</a></li>
                   @endif
                   @endfor
                 </ul>
@@ -52,7 +52,7 @@ $courses = $course->getUserCourses();
             <li><a href="{{ $course->getPath() }}">{{ __('Strona kursu', 'pkpk') }}</a></li>
             <li class="d-md-none"><a href="{{ get_permalink( get_page_by_title( 'Raporty' ) ) . $course->id }}">{{ __('Moje raporty', 'pkpk') }}</a></li>
             <li class="banner__profile has-sub-menu">
-              <a href="{{ get_permalink( get_page_by_title( 'Ustawienia' ) ) . $course->id  }}">
+              <a class="btn btn--course-pro" href="{{ get_permalink( get_page_by_title( 'Ustawienia' ) ) . $course->id  }}">
                 <span class="banner__user-hello">{{ __('Witaj', 'pkpk') }}</span>
                 @if (!empty($user->user_firstname))
                 <span class="banner__user-name">{{ $user->user_firstname }}</span>
@@ -63,14 +63,13 @@ $courses = $course->getUserCourses();
                 @if (empty($user->user_firstname) && empty($user->user_lastname))
                 <span class="banner__user-name">{{ $user->user_nicename }}</span>
                 @endif
-                <i class="zmdi zmdi-chevron-down"></i>
+                <i class="zmdi zmdi-chevron-down h-bd"></i>
               </a>
               <div class="sub-menu">
                 <ul>
-                  <li><a href="{{ $course->getPath() }}">{{ __('Moje lekcje') }}<i class="zmdi zmdi-edit"></i></a></li>
-                  <li class="d-none d-md-block"><a href="{{ get_permalink( get_page_by_title( 'Raporty' ) ) . $course->id }}">{{ __('Moje raporty') }}<i class="zmdi zmdi-format-line-spacing"></i></a></li>
-                  <li><a href="{{ get_permalink( get_page_by_title( 'Ustawienia' ) ) . $course->id }}">{{ __('Ustawienia') }}<i class="zmdi zmdi-settings"></i></a></li>
-                  <li class="sub-menu__log-out"><a href="{{ wp_logout_url() }}">{{ __('Wyloguj się') }}<i class="zmdi zmdi-sign-in"></i></a></li>
+                  <li class="d-none d-md-block"><a class="sub-menu__item" href="{{ get_permalink( get_page_by_title( 'Raporty' ) ) . $course->id }}">{{ __('Moje raporty') }}<i class="zmdi zmdi-format-line-spacing"></i></a></li>
+                  <li><a class="sub-menu__item" href="{{ get_permalink( get_page_by_title( 'Ustawienia' ) ) . $course->id }}">{{ __('Ustawienia') }}<i class="zmdi zmdi-settings"></i></a></li>
+                  <li class="sub-menu__log-out"><a class="sub-menu__item" href="{{ wp_logout_url() }}">{{ __('Wyloguj się') }}<i class="zmdi zmdi-sign-in"></i></a></li>
                 </ul>
               </div>
             </li>

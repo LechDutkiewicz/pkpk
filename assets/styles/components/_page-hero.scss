@@ -43,7 +43,7 @@
     color: white;
 
     @include media-breakpoint-up(lg) {
-      max-width: 40%;
+      max-width: 45%;
     }
     @include media-breakpoint-down(md) {
       margin-bottom: 40px;

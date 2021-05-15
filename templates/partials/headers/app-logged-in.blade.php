@@ -52,7 +52,7 @@
               <li><a href="#cennik" class="btn btn--bg-transparent btn--border-white scroll-to-btn">{{ esc_html__('Zapisz się', 'pkpk') }}</a></li>
             @else
               <li class="banner__profile has-sub-menu">
-                <a href="{{ get_permalink( get_page_by_title( 'Ustawienia' ) ) . $course->id  }}">
+                <a class="btn btn--course-basic" href="{{ get_permalink( get_page_by_title( 'Ustawienia' ) ) . $course->id  }}">
                   <span class="banner__user-hello">{{ __('Witaj', 'pkpk') }}</span>
                   @if (!empty($user->user_firstname))
                     <span class="banner__user-name">{{ $user->user_firstname }}</span>
@@ -67,7 +67,6 @@
                 </a>
                 <div class="sub-menu">
                   <ul>
-                    <li><a href="{{ $course_path }}">{{ __('Moje lekcje') }}<i class="zmdi zmdi-edit"></i></a></li>
                     <li><a href="{{ get_permalink( get_page_by_title( 'Raporty' ) ) . $course->id }}">{{ __('Moje raporty') }}<i class="zmdi zmdi-format-line-spacing"></i></a></li>
                     <li><a href="{{ get_permalink( get_page_by_title( 'Ustawienia' ) ) . $course->id  }}">{{ __('Ustawienia') }}<i class="zmdi zmdi-settings"></i></a></li>
                     <li class="sub-menu__log-out"><a href="{{ wp_logout_url() }}">{{ __('Wyloguj się') }}<i class="zmdi zmdi-sign-in"></i></a></li>

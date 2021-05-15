@@ -165,7 +165,7 @@
   }
 
   .nav-cta {
-    flex: 0 1 25%;
+    flex: 0 1 35%;
     display: flex;
     justify-content: flex-end;
 
@@ -174,7 +174,6 @@
 
       a {
         border-width: 1px 0 0;
-        border-radius: 0;
 
         &.btn--border-white {
           color: $color-green;
@@ -220,7 +219,7 @@
      align-items: center;
    }
 
-   a {
+   a:not(.btn):not(.sub-menu__item) {
      color: currentColor;
 
      &:hover {
@@ -284,15 +283,15 @@
       transition: all 0.15s ease-in-out;
     }
 
-    &:hover {
-      span:not(.banner__user-hello) {
-        color: rgba(white, 1);
+    // &:hover {
+    //   span:not(.banner__user-hello) {
+    //     color: rgba(white, 1);
 
-        .is-sticky & {
-          color: rgba(#2a3f4c, 1);
-        }
-      }
-    }
+    //     // .is-sticky & {
+    //     //   color: rgba(#2a3f4c, 1);
+    //     // }
+    //   }
+    // }
 
     &::before {
       @include media-breakpoint-up(lg) {
@@ -463,7 +462,6 @@
 
 .has-sub-menu {
   font-weight: 400;
-  color: rgba(white, 0.6);
   position: relative;
   display: flex;
   align-items: center;
@@ -473,7 +471,7 @@
     display: flex;
     align-items: center;
     padding: 0;
-    color: rgba(white, 0.6);
+    color: $white;
 
     .banner--app & {
       @include media-breakpoint-down(sm) {
@@ -487,9 +485,9 @@
       }
     }
 
-    .is-sticky & {
-      color: rgba(#2a3f4c, 0.6);
-    }
+    // .is-sticky & {
+    //   color: rgba(#2a3f4c, 0.6);
+    // }
 
     &::after {
       display: none !important;
@@ -542,6 +540,12 @@
       background: white;
       color: rgba(#2d414e, 0.6);
 
+      &.h-bd {
+        border: 1px solid $course-pro;
+        border-width: 1px 1px 1px 0;
+        border-radius: 0 5px 5px 0;
+      }
+
       .banner--app &,
       .banner--app-in & {
         @include media-breakpoint-up(md) {
@@ -575,7 +579,7 @@
   max-height: 100vh;
 
   @include media-breakpoint-down(sm) {
-    
+
     .sticky-wrapper {
       > * {
         background: white;
@@ -706,7 +710,7 @@
   .banner {
 
     @include media-breakpoint-down(sm) {
-      
+
       -webkit-transform: translateY(-100%);
       transform: translateY(-100%);
     }

@@ -42,14 +42,13 @@
             </a>
             <div class="sub-menu">
               <ul>
-                <li><a href="{{ $course_path }}">{{ __('Moje lekcje') }}<i class="zmdi zmdi-edit"></i></a></li>
-                <li><a href="{{ get_permalink( get_page_by_title( 'Raporty' ) ) . $course->id }}">{{ __('Moje raporty') }}<i class="zmdi zmdi-format-line-spacing"></i></a></li>
-                <li><a href="{{ get_permalink( get_page_by_title( 'Ustawienia' ) ) . $course->id }}">{{ __('Ustawienia') }}<i class="zmdi zmdi-settings"></i></a></li>
-                <li class="sub-menu__log-out"><a href="{{ wp_logout_url() }}">{{ __('Wyloguj się') }}<i class="zmdi zmdi-sign-in"></i></a></li>
+                <li><a class="sub-menu__item" href="{{ get_permalink( get_page_by_title( 'Raporty' ) ) . $course->id }}">{{ __('Moje raporty') }}<i class="zmdi zmdi-format-line-spacing"></i></a></li>
+                <li><a class="sub-menu__item" href="{{ get_permalink( get_page_by_title( 'Ustawienia' ) ) . $course->id }}">{{ __('Ustawienia') }}<i class="zmdi zmdi-settings"></i></a></li>
+                <li class="sub-menu__log-out"><a class="sub-menu__item" href="{{ wp_logout_url() }}">{{ __('Wyloguj się') }}<i class="zmdi zmdi-sign-in"></i></a></li>
               </ul>
             </div>
           </li>
-          <li><a href="{{ $course_path }}" class="btn btn--bg-transparent btn--border-white">{{ esc_html__('Przejdź do kursu', 'pkpk') }} <i class="zmdi zmdi-arrow-right"></i></a></li>
+          <li><a href="{{ $course_path }}" class="btn btn--course-pro">{{ esc_html__('Przejdź do kursu', 'pkpk') }} <i class="zmdi zmdi-arrow-right"></i></a></li>
         @endif
       </ul>
     </nav>

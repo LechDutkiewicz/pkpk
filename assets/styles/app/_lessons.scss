@@ -65,6 +65,19 @@
       }
     }
 
+    &__author-comment {
+      display: inline-block;
+      color: $white;
+      background: rgba( $color-secondary, .75 );
+      padding: 3px 6px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+
+      i {
+        margin-left: 6px;
+      }
+    }
+
     &__content {
       font-size: 0.9375rem;
       // font-weight: 300;
