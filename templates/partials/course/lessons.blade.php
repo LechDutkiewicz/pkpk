@@ -24,14 +24,6 @@
       <header>
         <p class="c-lessons__item__date">{{ the_date('j F Y') }}</p>
 
-        @php
-        $author_comment = get_field('comment');
-        @endphp
-
-        @if ($author_comment)
-        <span class="c-lessons__item__author-comment">Podsumowanie od autora<i class="zmdi zmdi-check-circle"></i></span>
-        @endif
-
         <h2 class="c-lessons__item__heading"><a href={{ the_permalink() }}><strong>{{ $lessons_count }}.</strong> {{ the_title() }}</a></h2>
       </header>
       <main class="c-lessons__item__content">
@@ -84,6 +76,15 @@ $report_status_class .= 'not-sended cannot-send';
   @endif
   @endif
 </span>
+
+        @php
+        $author_comment = get_field('comment');
+        @endphp
+
+        @if ($author_comment)
+        <a href="{{ the_permalink() }}#podsumowanie" class="c-lessons__item__author-comment"><i class="zmdi zmdi-check-circle"></i>Podsumowanie od autora</a>
+        @endif
+
 </div>
 <a href="{{ the_permalink() }}" class="btn btn--border-green">{{ __('Przejdź do lekcji', 'pkpk') }}</a>
 </footer>

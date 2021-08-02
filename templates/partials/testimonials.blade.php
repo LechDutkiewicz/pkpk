@@ -8,6 +8,9 @@
         'offset' => $offset
       );
     @endphp
+
+    <div><div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><figure style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%; margin-block-end: 0; margin-block-start: 0; margin-inline-start: 0; margin-inline-end: 0;" ><iframe src="https://api.vadoo.tv/iframe_test?id=LFx4ZxSeYQhFRASvxhoZwC2NuhXjFcJJ" scrolling="no" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute; overflow:hidden; border-radius: 5px;" allowfullscreen="1" allow="autoplay"></iframe></figure></div></div>
+    
     <div class="row--testimonials">
       <slick ref="slick" :options="slickOptions">
         @query($args)

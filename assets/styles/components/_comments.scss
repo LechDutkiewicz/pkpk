@@ -18,51 +18,58 @@
   @extend .btn-secondary;
 }
 
-.c-featured-comment {
-  margin-bottom: 4rem;
+// .c-featured-comment {
+//   margin-bottom: 4rem;
 
-  &__item {
-    background: #fafcfd;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding-top: 70px;
-    padding-bottom: 75px;
-    border-radius: 5px;
-    width: 100%;
+//   &__item {
+//     background: #fafcfd;
+//     display: flex;
+//     justify-content: center;
+//     flex-wrap: wrap;
+//     padding-top: 70px;
+//     padding-bottom: 75px;
+//     border-radius: 5px;
+//     width: 100%;
 
-    @include media-breakpoint-down(lg) {
-      padding-top: 40px;
-      padding-bottom: 40px;
-    }
+//     @include media-breakpoint-down(lg) {
+//       padding-top: 40px;
+//       padding-bottom: 40px;
+//     }
 
-    @include media-breakpoint-down(md) {
-      padding-top: 30px;
-      padding-bottom: 30px;
-    }
+//     @include media-breakpoint-down(md) {
+//       padding-top: 30px;
+//       padding-bottom: 30px;
+//     }
 
-    > * {
-      @extend .col-md-11;
-      @extend .col-xl-10;
-    }
-  }
+//     > * {
+//       @extend .col-md-11;
+//       @extend .col-xl-10;
+//     }
 
-  .comment-content {
-    font-size: 0.9375rem;
-    line-height: 1.7;
-  }
-}
+//     .comment-meta {
+//       border-top: 0;
+//       padding-top: 0;
+//       margin-top: 0;
+//     }
+//   }
+
+//   .comment-content {
+//     font-size: 0.9375rem;
+//     line-height: 1.7;
+//   }
+// }
 
 .wpulike-heart .wp_ulike_put_image:disabled:active, .wpulike-heart .wp_ulike_put_image:disabled:focus, .wpulike-heart .wp_ulike_put_image:disabled:hover, .wpulike-heart .wp_ulike_put_image[disabled="disabled"]:active, .wpulike-heart .wp_ulike_put_image[disabled="disabled"]:focus, .wpulike-heart .wp_ulike_put_image[disabled="disabled"]:hover
 
 .wpulike {
+  padding: 0;
 
   &-heart {
 
     .wp_ulike_general_class {
       // padding: 7px 5px;
       // border-radius: 5px;
-      padding: 0;
+      padding: 4px;
       box-shadow: none;
       border-radius: 0;
       position: relative;

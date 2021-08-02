@@ -8,8 +8,7 @@
   // Clear cart before any action
   do_action('pkpk_before_home_content');
 
-  function update_slugs() {
-    $post_type = 'lesson';
+  function update_slugs() {    $post_type = 'lesson';
 
     $the_query = new WP_Query([
       'post_type' => $post_type,
@@ -86,7 +85,7 @@
     @include('partials.faq')
     @include('partials.course-steps')
     @include('partials.course-pricelist')
-    @include('partials.testimonials', ['order' => '2', 'count' => 2, 'offset' => 2])
+    @include('partials.home.course-feedback')
     @include('partials.author-section')
     @include('partials.clients')
     @include('partials.home.course-desc')

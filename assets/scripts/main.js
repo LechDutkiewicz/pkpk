@@ -3,6 +3,7 @@
 /** import external dependencies */
 import 'jquery';
 import 'bootstrap';
+import 'lity';
 
 /** import local dependencies */
 import Router from './util/Router';

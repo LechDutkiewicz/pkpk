@@ -87,6 +87,7 @@
     "jquery": "1.12.4 - 3",
     "jquery-countdown": "^2.2.0",
     "jquery-sticky": "^1.0.4",
+    "lity": "^2.4.1",
     "material-design-iconic-font": "^2.2.0",
     "popper.js": "~1.11",
     "switchery": "^0.0.2",

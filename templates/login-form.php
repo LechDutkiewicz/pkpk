@@ -11,7 +11,7 @@
 					_e( 'Nazwa użytkownika lub email', 'pkpk' );
 				}
 			?></label>
-			<input type="email" name="log" id="user_login<?php $template->the_instance(); ?>" class="input" value="<?php $template->the_posted_value( 'log' ); ?>" size="20" required autofocus />
+			<input type="text" name="log" id="user_login<?php $template->the_instance(); ?>" class="input" value="<?php $template->the_posted_value( 'log' ); ?>" size="20" required autofocus />
 		</p>
 
 		<p class="tml-user-pass-wrap">

@@ -29,9 +29,9 @@ export default {
 					dots: true,
 					slidesToScroll: 2,
 					adaptiveHeight: true,
-					// infinite: false,
-					// fade: true,
-					// Any other options that can be got from plugin documentation
+					/* infinite: false, */
+					/* fade: true, */
+					/* Any other options that can be got from plugin documentation */
 					responsive: [
 					{
 						breakpoint: 1024,
@@ -87,7 +87,7 @@ export default {
 					});
 				},
 				playing: function() {
-					// The player is playing a video.
+					/* The player is playing a video. */
 					this.youtubePlaying = true;
 				},
 				end: function() {
@@ -100,60 +100,60 @@ export default {
 					this.navOpen = !this.navOpen;
 				},
 				fetchPricetable: function() {
-					//alert(this.$http);
+					/*alert(this.$http); */
 					this.$http.get('wp-json/pkpk/v1/pricetable').then(
 						response => {
-						// get body data
-						if (response.body) {
-							this.courses = response.body;
-						} else {
-							this.courses = null;
-						}
-						this.coursesFetched = true;
+							/* get body data */
+							if (response.body) {
+								this.courses = response.body;
+							} else {
+								this.courses = null;
+							}
+							this.coursesFetched = true;
+						},
+						response => {
+							/* error callback */
+						}).then(function(){              
+							$('[data-toggle="tooltip"]').tooltip();
+						});
 					},
-					response => {
-						// error callback
-					}).then(function(){              
-						$('[data-toggle="tooltip"]').tooltip();
-					});
+					notYet: function() {
+						this.notYetPopup = true;
+					},
+					closeNotYetPopup: function() {
+						this.notYetPopup = false;
+					},
+					bsTooltipReflow: function() {
+						setTimeout(function(){
+							$('.price-table__item-footer [data-toggle="tooltip"]').tooltip();
+						},100);
+						/* alert('huila'); */
+					},
 				},
-				notYet: function() {
-					this.notYetPopup = true;
-				},
-				closeNotYetPopup: function() {
-					this.notYetPopup = false;
-				},
-				bsTooltipReflow: function() {
-					setTimeout(function(){
-						$('.price-table__item-footer [data-toggle="tooltip"]').tooltip();
-					},100);
-					// alert('huila');
-				},
-			},
-			computed: {
-				bannerClass: function () {
-					return {
-						'nav-open': this.navOpen,
-						'white-logo': !this.navOpen && !this.headerSticky,
+				computed: {
+					bannerClass: function () {
+						return {
+							'nav-open': this.navOpen,
+							'white-logo': !this.navOpen && !this.headerSticky,
+						}
 					}
-				}
-			},
-			mounted: function() {        
-				this.fetchPricetable();
+				},
+				mounted: function() {        
+					this.fetchPricetable();
 
-				const header = $("#main-header");
+					const header = $("#main-header");
 
-				header.sticky({ topSpacing: 0, zIndex: 9 });
+					header.sticky({ topSpacing: 0, zIndex: 9 });
 
-				header.on('sticky-start', function() {
-					app.headerSticky = true;
-				});
+					header.on('sticky-start', function() {
+						app.headerSticky = true;
+					});
 
-				header.on('sticky-end', function() {
-					app.headerSticky = false;
-				});
+					header.on('sticky-end', function() {
+						app.headerSticky = false;
+					});
 
-					// setTimeout(() => app.notYetPopup = true, 5000)
+					/* setTimeout(() => app.notYetPopup = true, 5000) */
 
 					const root = $('html, body');
 
@@ -163,7 +163,8 @@ export default {
 
 						$('#app').velocity('scroll', {
 							duration: 500,
-							easing: [ .71,.29,.15,.99 ]
+							easing: [ .71,.29,.15,.99 ],
+							mobileHA: false,
 						});
 					});
 
@@ -178,34 +179,34 @@ export default {
 						}
 
 						/* eslint-disable no-console */
-						// console.log(t);
+						/* console.log(t); */
 						/* eslint-enable no-console */
 						app.navOpen = false;
 
 						e.preventDefault();
 						e.stopPropagation();
-					// set target to anchor's "href" attribute
-					const target = $(this).attr('href');
-					// scroll to each target
-					$(target).velocity('scroll', {
-						duration: 500,
-						offset: additionalOffset,
-						easing: [ .71,.29,.15,.99 ]
+						/* set target to anchor's "href" attribute */
+						const target = $(this).attr('href');
+						/* scroll to each target */
+						$(target).velocity('scroll', {
+							duration: 500,
+							offset: additionalOffset,
+							easing: [ .71,.29,.15,.99 ],
+							mobileHA: false,
+						});
 					});
-				});
 
 					if ( typeof wpcf7InitForm !== 'undefined' ) {
 						$('div.wpcf7 > form').wpcf7InitForm();
 					}
 
-				// $('[data-toggle="tooltip"]').tooltip();
-			},
-			filters: {
-				toFixed: function(value) {
-					return Number(Number(value).toFixed(2));
+				},
+				filters: {
+					toFixed: function(value) {
+						return Number(Number(value).toFixed(2));
+					}
 				}
-			}
-		});
+			});
 
 $('.spin').velocity({  rotateZ: "+=360" }, { duration: 2000, easing: "linear", loop: true});
 

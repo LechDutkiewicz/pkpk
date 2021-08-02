@@ -1,5 +1,6 @@
 @import "common/variables";
 @import "common/fonts";
+
 // Import npm dependencies
 @import "~material-design-iconic-font/scss/material-design-iconic-font";
 @import "~font-awesome/scss/font-awesome";
@@ -7,6 +8,8 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~slick-carousel/slick/slick";
 @import "~hamburgers/_sass/hamburgers/hamburgers";
+
+@import "~lity/dist/lity.css";
 
 @import "common/global";
 
@@ -19,6 +22,7 @@
 @import "components/boxes";
 @import "components/features-list";
 @import "components/testimonials";
+@import "components/opinia";
 @import "components/alert";
 @import "components/popup";
 @import "components/tooltip";

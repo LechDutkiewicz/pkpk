@@ -1,5 +1,5 @@
 .std-heading {
-  font-size: 1.875rem;
+  font-size: 1.75rem;
   font-weight: 300;
   line-height: 1;
   margin-bottom: 18px;
@@ -21,6 +21,12 @@
   &--center {
     text-align: center;
     justify-content: center;
+  }
+
+  &--bold {
+    display: block;
+    font-weight: 700;
+    margin-top: .5rem;
   }
 }
 

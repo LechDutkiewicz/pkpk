@@ -43,7 +43,7 @@ $lesson_number = $lesson->currentNumber(get_the_ID());
         </article>
       @endcomponent
       @if( get_field('comment') )
-      <div class="c-featured-comment c-comments">
+      <div class="c-featured-comment c-comments" id="podsumowanie">
         <h2>
           {{ __('Komentarz autora', 'pkpk') }}
         </h2>
