@@ -3685,6 +3685,10 @@ limiter@^1.0.5:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/limiter/-/limiter-1.1.2.tgz#229d8055891c8b11af9e0ee5200e8e09bb3dcbeb"
 
+lity@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/lity/-/lity-2.4.1.tgz#23083296db934fd76346f1b565d25d0a0168a551"
+
 load-json-file@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-1.1.0.tgz#956905708d58b4bab4c2261b04f59f31c99374c0"
@@ -5066,9 +5070,9 @@ qs@6.4.0, qs@~6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
 
-"qs@>= 0.4.0", qs@^6.3.0:
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.0.tgz#8d04954d364def3efc55b5a0793e1e2c8b1e6e49"
+"qs@>= 0.4.0", qs@^6.9.7:
+  version "6.9.7"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.7.tgz#4610846871485e1e048f44ae3b94033f0e675afe"
 
 query-string@^4.1.0:
   version "4.3.4"
